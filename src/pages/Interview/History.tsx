@@ -2,46 +2,30 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 import Button from '../../components/ui/button/Button';
 import ComponentCard from '../../components/common/ComponentCard';
+import { apiService } from '../../services/api';
 
 const History: React.FC = () => {
   const [interviews, setInterviews] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Mock interview history data
   useEffect(() => {
-    // Simulate API call
-    setTimeout(() => {
-      setInterviews([
-        {
-          id: 'interview_001',
-          domain: 'JavaScript',
-          difficulty: 'Intermediate',
-          score: 78,
-          date: '2024-01-15',
-          status: 'completed',
-          questionsCount: 5
-        },
-        {
-          id: 'interview_002',
-          domain: 'Python',
-          difficulty: 'Beginner',
-          score: 85,
-          date: '2024-01-10',
-          status: 'completed',
-          questionsCount: 3
-        },
-        {
-          id: 'interview_003',
-          domain: 'React',
-          difficulty: 'Advanced',
-          score: 65,
-          date: '2024-01-05',
-          status: 'completed',
-          questionsCount: 5
-        }
-      ]);
-      setLoading(false);
-    }, 1000);
+    const loadHistory = async () => {
+      try {
+        setLoading(true);
+        // For now, use a mock user ID. In a real app, this would come from authentication
+        const userId = 'user123';
+        const history = await apiService.getInterviewHistory(userId);
+        setInterviews(history);
+      } catch (error) {
+        console.error('Failed to load interview history:', error);
+        // For demo purposes, show empty state instead of error
+        setInterviews([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadHistory();
   }, []);
 
   const getScoreColor = (score: number) => {

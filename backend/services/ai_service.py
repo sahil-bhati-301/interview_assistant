@@ -94,33 +94,75 @@ Format the response as JSON with the following structure:
             }
 
     def generate_report(self, interview_data: Dict[str, Any]) -> Dict[str, Any]:
-        """Generate a comprehensive interview report"""
+        """Generate a comprehensive interview report using AI analysis"""
         questions_answers = interview_data.get('questions_answers', [])
         domain = interview_data.get('domain', 'general')
         difficulty = interview_data.get('difficulty', 'intermediate')
 
-        # Calculate basic statistics
-        total_questions = len(questions_answers)
-        total_score = sum(qa.get('analysis', {}).get('overallScore', 0) for qa in questions_answers)
-        average_score = total_score / total_questions if total_questions > 0 else 0
+        # Prepare the interview data for AI analysis
+        qa_text = ""
+        for i, qa in enumerate(questions_answers, 1):
+            qa_text += f"\nQuestion {i}: {qa.get('questionText', 'N/A')}\n"
+            qa_text += f"User Answer: {qa.get('text', 'N/A')}\n"
 
-        # Simple analysis based on scores
-        if average_score >= 80:
-            performance_level = "Excellent"
-            recommendations = "Great job! Consider advanced topics and real-world projects."
-        elif average_score >= 60:
-            performance_level = "Good"
-            recommendations = "Solid foundation. Focus on practical applications and edge cases."
-        else:
-            performance_level = "Needs Improvement"
-            recommendations = "Review fundamental concepts and practice more coding problems."
+        prompt = f"""Analyze this complete {domain} technical interview session for a {difficulty} level candidate.
 
-        return {
-            'overallScore': round(average_score, 1),
-            'performanceLevel': performance_level,
-            'totalQuestions': total_questions,
-            'recommendations': recommendations,
-            'domain': domain,
-            'difficulty': difficulty,
-            'completedAt': interview_data.get('completedAt')
-        }
+Interview Data:
+{qa_text}
+
+Provide a comprehensive analysis in the following JSON format:
+{{
+  "overallScore": 0-100,
+  "performanceLevel": "Excellent/Good/Needs Improvement",
+  "totalQuestions": {len(questions_answers)},
+  "domain": "{domain}",
+  "difficulty": "{difficulty}",
+  "strengths": ["array of key strengths identified"],
+  "weaknesses": ["array of areas needing improvement"],
+  "questionAnalysis": [
+    {{
+      "questionNumber": 1,
+      "score": 0-100,
+      "feedback": "detailed feedback for this question"
+    }}
+  ],
+  "recommendations": ["array of specific recommendations"],
+  "conceptMastery": {{
+    "wellUnderstood": ["concepts they excel at"],
+    "needsWork": ["concepts requiring more study"]
+  }}
+}}"""
+
+        try:
+            response = self.model.generate_content(prompt)
+            result = json.loads(response.text.strip())
+            return result
+        except Exception as e:
+            print(f"AI report generation failed: {e}")
+            # Fallback to basic analysis
+            total_questions = len(questions_answers)
+            total_score = sum(qa.get('analysis', {}).get('overallScore', 0) for qa in questions_answers)
+            average_score = total_score / total_questions if total_questions > 0 else 0
+
+            if average_score >= 80:
+                performance_level = "Excellent"
+            elif average_score >= 60:
+                performance_level = "Good"
+            else:
+                performance_level = "Needs Improvement"
+
+            return {
+                'overallScore': round(average_score, 1),
+                'performanceLevel': performance_level,
+                'totalQuestions': total_questions,
+                'domain': domain,
+                'difficulty': difficulty,
+                'strengths': ['Shows basic understanding'],
+                'weaknesses': ['Could provide more detailed explanations'],
+                'questionAnalysis': [],
+                'recommendations': ['Practice more coding problems', 'Review fundamental concepts'],
+                'conceptMastery': {
+                    'wellUnderstood': [],
+                    'needsWork': []
+                }
+            }

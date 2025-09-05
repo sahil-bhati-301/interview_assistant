@@ -15,6 +15,22 @@ initialize_firebase()
 interview_service = InterviewService()
 ai_service = AIService()
 
+@app.route('/')
+def home():
+    """Basic health check endpoint"""
+    return jsonify({
+        'status': 'API is running',
+        'message': 'AI Interview Assistant Backend',
+        'version': '1.0.0',
+        'endpoints': [
+            'POST /api/interview/start',
+            'GET /api/interview/<id>/questions',
+            'POST /api/interview/<id>/complete',
+            'GET /api/interview/<id>/report',
+            'GET /api/interview/history/<user_id>'
+        ]
+    })
+
 @app.route('/api/interview/start', methods=['POST'])
 def start_interview():
     """Start a new interview session"""
@@ -59,6 +75,59 @@ def get_report(interview_id):
     try:
         result = interview_service.generate_report(interview_id)
         return jsonify(result), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/interview/<interview_id>/questions', methods=['GET'])
+def get_interview_questions(interview_id):
+    """Get all questions for an interview"""
+    try:
+        # Get interview data from Firestore
+        interview_ref = interview_service.db.collection('interviews').document(interview_id)
+        interview_doc = interview_ref.get()
+
+        if not interview_doc.exists:
+            return jsonify({'error': 'Interview not found'}), 404
+
+        interview_data = interview_doc.to_dict()
+        questions = interview_data.get('questions', [])
+
+        return jsonify({
+            'questions': questions,
+            'totalQuestions': len(questions)
+        }), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/interview/<interview_id>/complete', methods=['POST'])
+def complete_interview(interview_id):
+    """Complete interview by submitting all answers at once"""
+    try:
+        data = request.get_json()
+        answers = data.get('answers', [])
+
+        # Submit all answers
+        for answer_data in answers:
+            question_id = answer_data.get('questionId')
+            answer_text = answer_data.get('text')
+
+            if question_id and answer_text:
+                interview_service.submit_answer(interview_id, question_id, answer_text, 'text')
+
+        # Mark interview as completed and generate report
+        interview_ref = interview_service.db.collection('interviews').document(interview_id)
+        interview_ref.update({
+            'status': 'completed',
+            'completedAt': interview_service.db.field_value.server_timestamp()
+        })
+
+        # Generate the final report
+        report = interview_service.generate_report(interview_id)
+
+        return jsonify({
+            'message': 'Interview completed successfully',
+            'report': report
+        }), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 

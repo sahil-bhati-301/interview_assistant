@@ -3,6 +3,7 @@ import uuid
 from datetime import datetime
 from utils.firebase_utils import get_firestore_client
 from services.ai_service import AIService
+from question_bank import get_questions
 
 class InterviewService:
     def __init__(self):
@@ -13,17 +14,18 @@ class InterviewService:
         """Start a new interview session"""
         interview_id = str(uuid.uuid4())
 
-        # Generate questions for the interview
+        # Get questions from question bank
+        question_bank_questions = get_questions(domain, difficulty, question_count)
+
+        # Format questions for the interview
         questions = []
-        for i in range(question_count):
-            question = self.ai_service.generate_question(domain, difficulty)
+        for qb_question in question_bank_questions:
             questions.append({
-                'id': question['id'],
-                'text': question['question'],
-                'domain': question['domain'],
-                'difficulty': question['difficulty'],
-                'type': question['type'],
-                'tags': question['tags']
+                'id': qb_question['id'],
+                'text': qb_question['question'],
+                'domain': domain,
+                'difficulty': difficulty,
+                'type': qb_question['type']
             })
 
         # Create interview document
@@ -145,11 +147,24 @@ class InterviewService:
         if interview_data.get('status') != 'completed':
             raise ValueError("Interview not completed yet")
 
-        # Prepare data for AI report generation
+        # Prepare data for AI report generation with questions and answers
+        questions = interview_data.get('questions', [])
+        answers = interview_data.get('answers', [])
+
+        # Combine questions and answers for AI analysis
+        questions_answers = []
+        for i, answer in enumerate(answers):
+            if i < len(questions):
+                questions_answers.append({
+                    'questionText': questions[i].get('text', ''),
+                    'text': answer.get('text', ''),
+                    'analysis': answer.get('analysis', {})
+                })
+
         report_data = {
             'domain': interview_data.get('domain'),
             'difficulty': interview_data.get('difficulty'),
-            'questions_answers': interview_data.get('answers', []),
+            'questions_answers': questions_answers,
             'completedAt': interview_data.get('completedAt')
         }
 
