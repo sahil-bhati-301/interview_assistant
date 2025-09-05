@@ -4,7 +4,9 @@ import json
 from typing import Dict, Any
 from dotenv import load_dotenv
 
+# Load environment variables
 load_dotenv()
+print(f"DEBUG: GEMINI_API_KEY loaded: {bool(os.getenv('GEMINI_API_KEY'))}")
 
 class AIService:
     def __init__(self):
@@ -82,15 +84,31 @@ Format the response as JSON with the following structure:
             result = json.loads(response.text.strip())
             return result
         except Exception as e:
-            # Fallback analysis if AI fails
+            # Fallback analysis if AI fails - analyze based on answer content
+            user_answer_lower = user_answer.lower().strip()
+
+            # Check for poor answers
+            poor_indicators = ['idk', 'i don\'t know', 'no idea', 'don\'t know', 'not sure', 'no', 'none', 'nothing']
+            if any(indicator in user_answer_lower for indicator in poor_indicators) or len(user_answer.strip()) < 5:
+                return {
+                    'correctness': 0,
+                    'depth': 0,
+                    'conceptsIdentified': [],
+                    'missingConcepts': ['basic understanding of the topic'],
+                    'suggestions': 'You need to study the fundamentals of this topic.',
+                    'strengths': 'Attempted to answer the question.',
+                    'overallScore': 5
+                }
+
+            # Generic fallback for other cases
             return {
-                'correctness': 60,
-                'depth': 50,
-                'conceptsIdentified': ['basic understanding'],
-                'missingConcepts': ['detailed explanation'],
+                'correctness': 30,
+                'depth': 20,
+                'conceptsIdentified': ['basic attempt'],
+                'missingConcepts': ['detailed explanation', 'specific examples'],
                 'suggestions': 'Try to provide more specific examples and technical details.',
-                'strengths': 'Shows basic understanding of the topic.',
-                'overallScore': 55
+                'strengths': 'Shows willingness to answer.',
+                'overallScore': 25
             }
 
     def generate_report(self, interview_data: Dict[str, Any]) -> Dict[str, Any]:

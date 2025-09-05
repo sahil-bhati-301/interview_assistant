@@ -115,10 +115,11 @@ def complete_interview(interview_id):
                 interview_service.submit_answer(interview_id, question_id, answer_text, 'text')
 
         # Mark interview as completed and generate report
+        from firebase_admin import firestore
         interview_ref = interview_service.db.collection('interviews').document(interview_id)
         interview_ref.update({
             'status': 'completed',
-            'completedAt': interview_service.db.field_value.server_timestamp()
+            'completedAt': firestore.SERVER_TIMESTAMP
         })
 
         # Generate the final report
