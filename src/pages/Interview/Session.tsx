@@ -2,93 +2,103 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import Button from '../../components/ui/button/Button';
 import ComponentCard from '../../components/common/ComponentCard';
+import { apiService, Question, AnswerAnalysis } from '../../services/api';
 
 const Session: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [currentQuestion, setCurrentQuestion] = useState<any>(null);
-  const [answer, setAnswer] = useState('');
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [answers, setAnswers] = useState<string[]>([]);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [currentAnswer, setCurrentAnswer] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [questionNumber, setQuestionNumber] = useState(1);
-  const [totalQuestions, setTotalQuestions] = useState(5);
-
-  // Mock questions for demonstration
-  const mockQuestions = [
-    {
-      id: 'q1',
-      text: 'What is the difference between var, let, and const in JavaScript?',
-      domain: 'javascript',
-      difficulty: 'intermediate',
-      type: 'technical'
-    },
-    {
-      id: 'q2',
-      text: 'Explain the concept of closures in JavaScript with an example.',
-      domain: 'javascript',
-      difficulty: 'intermediate',
-      type: 'technical'
-    },
-    {
-      id: 'q3',
-      text: 'What are the different ways to create objects in JavaScript?',
-      domain: 'javascript',
-      difficulty: 'intermediate',
-      type: 'technical'
-    },
-    {
-      id: 'q4',
-      text: 'Explain the difference between == and === operators in JavaScript.',
-      domain: 'javascript',
-      difficulty: 'intermediate',
-      type: 'technical'
-    },
-    {
-      id: 'q5',
-      text: 'What is the purpose of the useEffect hook in React?',
-      domain: 'javascript',
-      difficulty: 'intermediate',
-      type: 'technical'
-    }
-  ];
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Load first question
-    setCurrentQuestion(mockQuestions[0]);
-  }, []);
+    const loadQuestions = async () => {
+      if (!id) return;
 
-  const handleSubmitAnswer = async () => {
-    if (!answer.trim()) return;
+      try {
+        setLoading(true);
+        // Get all questions for this interview
+        const response = await fetch(`http://localhost:5000/api/interview/${id}/questions`);
+        const data = await response.json();
+
+        setQuestions(data.questions);
+        // Initialize answers array with empty strings
+        setAnswers(new Array(data.questions.length).fill(''));
+      } catch (error) {
+        console.error('Failed to load questions:', error);
+        alert('Failed to load questions. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadQuestions();
+  }, [id]);
+
+  const handleAnswerChange = (answer: string) => {
+    const newAnswers = [...answers];
+    newAnswers[currentQuestionIndex] = answer;
+    setAnswers(newAnswers);
+    setCurrentAnswer(answer);
+  };
+
+  const handleNext = () => {
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setCurrentAnswer(answers[currentQuestionIndex + 1] || '');
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(currentQuestionIndex - 1);
+      setCurrentAnswer(answers[currentQuestionIndex - 1] || '');
+    }
+  };
+
+  const handleSubmitInterview = async () => {
+    if (!id) return;
 
     setIsSubmitting(true);
 
     try {
-      // In a real implementation, this would call the API
-      console.log('Submitting answer:', answer);
+      // Submit all answers at once
+      const response = await fetch(`http://localhost:5000/api/interview/${id}/complete`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          answers: answers.map((answer, index) => ({
+            questionId: questions[index].id,
+            text: answer
+          }))
+        })
+      });
 
-      // Mock response
-      if (questionNumber < totalQuestions) {
-        setQuestionNumber(prev => prev + 1);
-        setAnswer('');
-        // Load next question from mock questions
-        const nextQuestion = mockQuestions[questionNumber];
-        setCurrentQuestion(nextQuestion);
-      } else {
-        // Interview completed - navigate to results
+      if (response.ok) {
+        // Navigate to results
         navigate(`/interview/${id}/results`);
+      } else {
+        throw new Error('Failed to submit interview');
       }
     } catch (error) {
-      console.error('Error submitting answer:', error);
+      console.error('Error submitting interview:', error);
+      alert('Failed to submit interview. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  if (!currentQuestion) {
+  if (loading || questions.length === 0) {
     return (
       <div className="flex items-center justify-center min-h-96">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-400">Loading question...</p>
+          <p className="mt-4 text-gray-600 dark:text-gray-400">Loading questions...</p>
         </div>
       </div>
     );
@@ -103,12 +113,12 @@ const Session: React.FC = () => {
             Interview Session
           </h1>
           <p className="text-gray-600 dark:text-gray-400 mt-1">
-            Question {questionNumber} of {totalQuestions}
+            Question {currentQuestionIndex + 1} of {questions.length}
           </p>
         </div>
         <div className="text-right">
           <div className="text-sm text-gray-600 dark:text-gray-400">
-            {currentQuestion.domain} • {currentQuestion.difficulty}
+            {questions[currentQuestionIndex]?.domain} • {questions[currentQuestionIndex]?.difficulty}
           </div>
         </div>
       </div>
@@ -117,7 +127,7 @@ const Session: React.FC = () => {
       <div className="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
         <div
           className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-          style={{ width: `${(questionNumber / totalQuestions) * 100}%` }}
+          style={{ width: `${((currentQuestionIndex + 1) / questions.length) * 100}%` }}
         ></div>
       </div>
 
@@ -131,7 +141,7 @@ const Session: React.FC = () => {
               </h2>
               <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
                 <p className="text-lg text-gray-900 dark:text-white leading-relaxed">
-                  {currentQuestion.text}
+                  {questions[currentQuestionIndex]?.text}
                 </p>
               </div>
             </div>
@@ -142,37 +152,65 @@ const Session: React.FC = () => {
               Your Answer
             </h3>
             <textarea
-              value={answer}
-              onChange={(e) => setAnswer(e.target.value)}
+              value={currentAnswer}
+              onChange={(e) => handleAnswerChange(e.target.value)}
               placeholder="Type your answer here..."
               className="w-full h-48 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none dark:bg-gray-800 dark:border-gray-600 dark:text-white"
               disabled={isSubmitting}
             />
             <div className="flex justify-between items-center mt-2">
               <span className="text-sm text-gray-600 dark:text-gray-400">
-                {answer.length} characters
+                {currentAnswer.length} characters
               </span>
               <span className="text-sm text-gray-600 dark:text-gray-400">
-                Press Enter to submit
+                Save and navigate between questions
               </span>
             </div>
           </div>
 
           {/* Action Buttons */}
           <div className="flex justify-between">
-            <Button
-              variant="outline"
-              onClick={() => navigate('/interview')}
-              disabled={isSubmitting}
-            >
-              End Interview
-            </Button>
-            <Button
-              onClick={handleSubmitAnswer}
-              disabled={!answer.trim() || isSubmitting}
-            >
-              {isSubmitting ? 'Submitting...' : 'Submit Answer'}
-            </Button>
+            <div className="flex gap-2">
+              <Button
+                variant="outline"
+                onClick={handlePrevious}
+                disabled={currentQuestionIndex === 0 || isSubmitting}
+              >
+                Previous
+              </Button>
+              <Button
+                variant="outline"
+                onClick={handleNext}
+                disabled={currentQuestionIndex === questions.length - 1 || isSubmitting}
+              >
+                Next
+              </Button>
+            </div>
+            <div className="flex gap-2">
+              <Button
+                variant="outline"
+                onClick={() => navigate('/interview')}
+                disabled={isSubmitting}
+              >
+                End Interview
+              </Button>
+              {currentQuestionIndex === questions.length - 1 ? (
+                <Button
+                  onClick={handleSubmitInterview}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Submitting...' : 'Complete Interview'}
+                </Button>
+              ) : (
+                <Button
+                  variant="outline"
+                  onClick={() => setCurrentQuestionIndex(questions.length - 1)}
+                  disabled={isSubmitting}
+                >
+                  Jump to Last
+                </Button>
+              )}
+            </div>
           </div>
         </div>
       </div>

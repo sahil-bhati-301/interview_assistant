@@ -2,67 +2,31 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import Button from '../../components/ui/button/Button';
 import ComponentCard from '../../components/common/ComponentCard';
+import { apiService, InterviewResult } from '../../services/api';
 
 const Results: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [results, setResults] = useState<any>(null);
+  const [results, setResults] = useState<InterviewResult | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Mock results data for demonstration
   useEffect(() => {
-    // Simulate API call
-    setTimeout(() => {
-      setResults({
-        overallScore: 78,
-        performanceLevel: 'Good',
-        totalQuestions: 5,
-        domain: 'JavaScript',
-        difficulty: 'Intermediate',
-        strengths: [
-          'Good understanding of closures',
-          'Clear explanation of variable scoping',
-          'Practical examples provided'
-        ],
-        weaknesses: [
-          'Could improve on advanced concepts',
-          'More technical depth needed in some areas'
-        ],
-        questionAnalysis: [
-          {
-            question: 'What is the difference between var, let, and const?',
-            score: 85,
-            feedback: 'Excellent explanation of scoping differences with clear examples.'
-          },
-          {
-            question: 'Explain closures in JavaScript',
-            score: 90,
-            feedback: 'Very good understanding with practical examples.'
-          },
-          {
-            question: 'Different ways to create objects',
-            score: 70,
-            feedback: 'Good coverage but could include more modern approaches.'
-          },
-          {
-            question: '== vs === operators',
-            score: 75,
-            feedback: 'Solid explanation of type coercion concepts.'
-          },
-          {
-            question: 'useEffect hook in React',
-            score: 65,
-            feedback: 'Basic understanding but could be more comprehensive.'
-          }
-        ],
-        recommendations: [
-          'Practice more advanced JavaScript concepts',
-          'Focus on React hooks and lifecycle methods',
-          'Work on explaining concepts with real-world examples'
-        ]
-      });
-      setLoading(false);
-    }, 2000);
+    const loadResults = async () => {
+      if (!id) return;
+
+      try {
+        setLoading(true);
+        const interviewResults = await apiService.getResults(id);
+        setResults(interviewResults);
+      } catch (error) {
+        console.error('Failed to load results:', error);
+        alert('Failed to load results. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadResults();
   }, [id]);
 
   if (loading) {

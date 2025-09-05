@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import Button from '../../components/ui/button/Button';
 import ComponentCard from '../../components/common/ComponentCard';
+import { apiService, InterviewSettings } from '../../services/api';
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
@@ -21,13 +22,23 @@ const Dashboard: React.FC = () => {
     { id: 'advanced', name: 'Advanced', description: 'Complex topics and architecture' },
   ];
 
-  const handleStartInterview = () => {
-    // For now, create a mock interview ID and navigate to session
-    const mockInterviewId = `interview_${Date.now()}`;
-    console.log('Starting interview:', { selectedDomain, selectedDifficulty, questionCount });
+  const handleStartInterview = async () => {
+    try {
+      const settings: InterviewSettings = {
+        domain: selectedDomain,
+        difficulty: selectedDifficulty,
+        questionCount: questionCount
+      };
 
-    // Navigate to interview session
-    navigate(`/interview/${mockInterviewId}`);
+      const response = await apiService.startInterview(settings);
+      console.log('Interview started:', response);
+
+      // Navigate to interview session
+      navigate(`/interview/${response.interviewId}`);
+    } catch (error) {
+      console.error('Failed to start interview:', error);
+      alert('Failed to start interview. Please try again.');
+    }
   };
 
   return (
