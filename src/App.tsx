@@ -15,6 +15,7 @@ import InterviewDashboard from "./pages/Interview/Dashboard";
 import InterviewSession from "./pages/Interview/Session";
 import InterviewResults from "./pages/Interview/Results";
 import InterviewHistory from "./pages/Interview/History";
+import Analytics from "./pages/Analytics";
 import About from "./pages/About";
 
 export default function App() {
@@ -42,6 +43,9 @@ export default function App() {
               <Route path="/interview/history" element={<InterviewHistory />} />
               <Route path="/interview/:id" element={<InterviewSession />} />
               <Route path="/interview/:id/results" element={<InterviewResults />} />
+
+              {/* Analytics Page */}
+              <Route path="/analytics" element={<Analytics />} />
 
               {/* About Page */}
               <Route path="/about" element={<About />} />
