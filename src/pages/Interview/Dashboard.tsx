@@ -8,7 +8,7 @@ import { useAuth } from '../../context/AuthContext';
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
-  const [selectedDomain, setSelectedDomain] = useState('javascript');
+  const [selectedDomain, setSelectedDomain] = useState('java');
   const [selectedDifficulty, setSelectedDifficulty] = useState('intermediate');
   const [questionCount, setQuestionCount] = useState(5);
   const [interviewHistory, setInterviewHistory] = useState<any[]>([]);
@@ -18,6 +18,9 @@ const Dashboard: React.FC = () => {
     { id: 'javascript', name: 'JavaScript', icon: '🟨' },
     { id: 'python', name: 'Python', icon: '🐍' },
     { id: 'react', name: 'React', icon: '⚛️' },
+    { id: 'java', name: 'Java', icon: '☕' },
+    { id: 'nodejs', name: 'Node.js', icon: '🟢' },
+    { id: 'systemdesign', name: 'System Design', icon: '🏗️' },
   ];
 
   const difficulties = [
@@ -145,7 +148,7 @@ const Dashboard: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Domain Selection */}
         <ComponentCard title="Choose Domain">
-          <div className="space-y-3">
+          <div className="max-h-96 overflow-y-auto space-y-3 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent">
             {domains.map((domain) => (
               <div
                 key={domain.id}
@@ -170,6 +173,11 @@ const Dashboard: React.FC = () => {
               </div>
             ))}
           </div>
+          {domains.length > 4 && (
+            <div className="text-xs text-gray-500 dark:text-gray-400 text-center mt-3">
+              Scroll to see all domains
+            </div>
+          )}
         </ComponentCard>
 
         {/* Difficulty & Settings */}
