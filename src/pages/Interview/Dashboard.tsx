@@ -3,9 +3,11 @@ import { Link, useNavigate } from 'react-router';
 import Button from '../../components/ui/button/Button';
 import ComponentCard from '../../components/common/ComponentCard';
 import { apiService, InterviewSettings } from '../../services/api';
+import { useAuth } from '../../context/AuthContext';
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [selectedDomain, setSelectedDomain] = useState('javascript');
   const [selectedDifficulty, setSelectedDifficulty] = useState('intermediate');
   const [questionCount, setQuestionCount] = useState(5);
@@ -24,16 +26,18 @@ const Dashboard: React.FC = () => {
 
   const handleStartInterview = async () => {
     try {
+      if (!user) {
+        alert('Please log in to start an interview');
+        return;
+      }
+
       const settings: InterviewSettings = {
         domain: selectedDomain,
         difficulty: selectedDifficulty,
         questionCount: questionCount
       };
 
-      // For now, use a mock user ID. In a real app, this would come from authentication
-      const userId = 'user123';
-
-      const response = await apiService.startInterview({ ...settings, userId });
+      const response = await apiService.startInterview({ ...settings, userId: user.uid });
       console.log('Interview started:', response);
 
       // Navigate to interview session

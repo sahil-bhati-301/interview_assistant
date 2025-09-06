@@ -3,8 +3,10 @@ import { Link } from 'react-router';
 import Button from '../../components/ui/button/Button';
 import ComponentCard from '../../components/common/ComponentCard';
 import { apiService } from '../../services/api';
+import { useAuth } from '../../context/AuthContext';
 
 const History: React.FC = () => {
+  const { user } = useAuth();
   const [interviews, setInterviews] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [clearing, setClearing] = useState(false);
@@ -13,9 +15,12 @@ const History: React.FC = () => {
     const loadHistory = async () => {
       try {
         setLoading(true);
-        // For now, use a mock user ID. In a real app, this would come from authentication
-        const userId = 'user123';
-        const history = await apiService.getInterviewHistory(userId);
+        if (!user) {
+          setInterviews([]);
+          return;
+        }
+
+        const history = await apiService.getInterviewHistory(user.uid);
         setInterviews(history);
       } catch (error) {
         console.error('Failed to load interview history:', error);
@@ -27,7 +32,7 @@ const History: React.FC = () => {
     };
 
     loadHistory();
-  }, []);
+  }, [user]);
 
   const getScoreColor = (score: number) => {
     if (score >= 80) return 'text-green-600';
@@ -46,12 +51,14 @@ const History: React.FC = () => {
       return;
     }
 
+    if (!user) {
+      alert('Please log in to clear your history');
+      return;
+    }
+
     try {
       setClearing(true);
-      // For now, use a mock user ID. In a real app, this would come from authentication
-      const userId = 'user123';
-
-      const response = await apiService.clearInterviewHistory(userId);
+      const response = await apiService.clearInterviewHistory(user.uid);
       console.log('History cleared:', response);
 
       // Refresh the history

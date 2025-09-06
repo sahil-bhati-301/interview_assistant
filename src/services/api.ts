@@ -65,10 +65,14 @@ class ApiService {
   }
 
   async startInterview(settings: InterviewSettings): Promise<{ interviewId: string }> {
+    if (!settings.userId) {
+      throw new Error('User ID is required to start an interview');
+    }
+
     return this.request('/interview/start', {
       method: 'POST',
       body: JSON.stringify({
-        userId: settings.userId || 'user123',
+        userId: settings.userId,
         domain: settings.domain,
         difficulty: settings.difficulty,
         questionCount: settings.questionCount
