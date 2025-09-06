@@ -181,7 +181,8 @@ class InterviewService:
     def get_interview_history(self, user_id: str) -> List[Dict[str, Any]]:
         """Get interview history for a user"""
         interviews_ref = self.db.collection('interviews')
-        query = interviews_ref.where('userId', '==', user_id).order_by('startedAt', direction='descending')
+        # Get all interviews for the user (simplified query to avoid index requirement)
+        query = interviews_ref.where('userId', '==', user_id)
         results = query.stream()
 
         history = []
