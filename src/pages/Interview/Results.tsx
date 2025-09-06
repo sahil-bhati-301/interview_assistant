@@ -2,7 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import Button from '../../components/ui/button/Button';
 import ComponentCard from '../../components/common/ComponentCard';
-import { apiService, InterviewResult } from '../../services/api';
+import { apiService } from '../../services/api';
+
+interface InterviewResult {
+  overallScore: number;
+  performanceLevel: string;
+  totalQuestions: number;
+  domain: string;
+  difficulty: string;
+  strengths: string[];
+  weaknesses: string[];
+  questionAnalysis: Array<{
+    questionNumber: number;
+    score: number;
+    feedback: string;
+  }>;
+  recommendations: string[];
+  conceptMastery: {
+    wellUnderstood: string[];
+    needsWork: string[];
+  };
+}
 
 const Results: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -16,8 +36,9 @@ const Results: React.FC = () => {
 
       try {
         setLoading(true);
-        const interviewResults = await apiService.getResults(id);
-        setResults(interviewResults);
+        const response = await apiService.getResults(id);
+        // The API returns the report nested inside a "report" object
+        setResults(response.report);
       } catch (error) {
         console.error('Failed to load results:', error);
         alert('Failed to load results. Please try again.');
