@@ -30,7 +30,10 @@ const Dashboard: React.FC = () => {
         questionCount: questionCount
       };
 
-      const response = await apiService.startInterview(settings);
+      // For now, use a mock user ID. In a real app, this would come from authentication
+      const userId = 'user123';
+
+      const response = await apiService.startInterview({ ...settings, userId });
       console.log('Interview started:', response);
 
       // Navigate to interview session

@@ -4,6 +4,7 @@ export interface InterviewSettings {
   domain: string;
   difficulty: string;
   questionCount: number;
+  userId?: string;
 }
 
 export interface Question {
@@ -66,7 +67,12 @@ class ApiService {
   async startInterview(settings: InterviewSettings): Promise<{ interviewId: string }> {
     return this.request('/interview/start', {
       method: 'POST',
-      body: JSON.stringify(settings),
+      body: JSON.stringify({
+        userId: settings.userId || 'user123',
+        domain: settings.domain,
+        difficulty: settings.difficulty,
+        questionCount: settings.questionCount
+      }),
     });
   }
 
