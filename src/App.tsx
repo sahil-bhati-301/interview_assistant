@@ -15,6 +15,7 @@ import InterviewDashboard from "./pages/Interview/Dashboard";
 import InterviewSession from "./pages/Interview/Session";
 import InterviewResults from "./pages/Interview/Results";
 import InterviewHistory from "./pages/Interview/History";
+import About from "./pages/About";
 
 export default function App() {
   return (
@@ -41,6 +42,9 @@ export default function App() {
               <Route path="/interview/history" element={<InterviewHistory />} />
               <Route path="/interview/:id" element={<InterviewSession />} />
               <Route path="/interview/:id/results" element={<InterviewResults />} />
+
+              {/* About Page */}
+              <Route path="/about" element={<About />} />
             </Route>
 
             {/* Fallback Route */}

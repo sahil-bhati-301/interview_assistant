@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router';
 import Button from '../../components/ui/button/Button';
 import ComponentCard from '../../components/common/ComponentCard';
@@ -11,6 +11,8 @@ const Dashboard: React.FC = () => {
   const [selectedDomain, setSelectedDomain] = useState('javascript');
   const [selectedDifficulty, setSelectedDifficulty] = useState('intermediate');
   const [questionCount, setQuestionCount] = useState(5);
+  const [interviewHistory, setInterviewHistory] = useState<any[]>([]);
+  const [loadingStats, setLoadingStats] = useState(true);
 
   const domains = [
     { id: 'javascript', name: 'JavaScript', icon: '🟨' },
@@ -23,6 +25,80 @@ const Dashboard: React.FC = () => {
     { id: 'intermediate', name: 'Intermediate', description: 'Core concepts and best practices' },
     { id: 'advanced', name: 'Advanced', description: 'Complex topics and architecture' },
   ];
+
+  // Fetch interview history for stats
+  useEffect(() => {
+    const loadInterviewHistory = async () => {
+      if (!user) {
+        setInterviewHistory([]);
+        setLoadingStats(false);
+        return;
+      }
+
+      try {
+        setLoadingStats(true);
+        const history = await apiService.getInterviewHistory(user.uid);
+        setInterviewHistory(history);
+      } catch (error) {
+        console.error('Failed to load interview history:', error);
+        setInterviewHistory([]);
+      } finally {
+        setLoadingStats(false);
+      }
+    };
+
+    loadInterviewHistory();
+  }, [user]);
+
+  // Listen for history cleared event to refresh stats
+  useEffect(() => {
+    const handleHistoryCleared = () => {
+      // Refresh interview history when cleared from History page
+      if (user) {
+        apiService.getInterviewHistory(user.uid)
+          .then(history => {
+            setInterviewHistory(history);
+          })
+          .catch(error => {
+            console.error('Failed to refresh interview history:', error);
+            setInterviewHistory([]);
+          });
+      } else {
+        setInterviewHistory([]);
+      }
+    };
+
+    window.addEventListener('interviewHistoryCleared', handleHistoryCleared);
+
+    return () => {
+      window.removeEventListener('interviewHistoryCleared', handleHistoryCleared);
+    };
+  }, [user]);
+
+  // Calculate stats from interview history
+  const calculateStats = () => {
+    if (interviewHistory.length === 0) {
+      return {
+        totalInterviews: 0,
+        averageScore: 0,
+        domainsPracticed: 0
+      };
+    }
+
+    const totalInterviews = interviewHistory.length;
+    const averageScore = Math.round(
+      interviewHistory.reduce((sum, interview) => sum + (interview.score || 0), 0) / totalInterviews
+    );
+    const domainsPracticed = new Set(interviewHistory.map(i => i.domain)).size;
+
+    return {
+      totalInterviews,
+      averageScore,
+      domainsPracticed
+    };
+  };
+
+  const stats = calculateStats();
 
   const handleStartInterview = async () => {
     try {
@@ -164,15 +240,21 @@ const Dashboard: React.FC = () => {
       <ComponentCard title="Your Progress">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="text-center">
-            <div className="text-2xl font-bold text-blue-600">0</div>
+            <div className="text-2xl font-bold text-blue-600">
+              {loadingStats ? '...' : stats.totalInterviews}
+            </div>
             <div className="text-sm text-gray-600 dark:text-gray-400">Interviews Completed</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-green-600">0%</div>
+            <div className="text-2xl font-bold text-green-600">
+              {loadingStats ? '...' : `${stats.averageScore}%`}
+            </div>
             <div className="text-sm text-gray-600 dark:text-gray-400">Average Score</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-purple-600">0</div>
+            <div className="text-2xl font-bold text-purple-600">
+              {loadingStats ? '...' : stats.domainsPracticed}
+            </div>
             <div className="text-sm text-gray-600 dark:text-gray-400">Domains Practiced</div>
           </div>
         </div>
