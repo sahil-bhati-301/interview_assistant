@@ -247,6 +247,255 @@ QUESTION_BANK = {
                 "type": "technical"
             }
         ]
+    },
+    "java": {
+        "beginner": [
+            {
+                "id": "java_beg_001",
+                "question": "What is Java and what are its main features?",
+                "type": "technical"
+            },
+            {
+                "id": "java_beg_002",
+                "question": "What are the basic data types in Java?",
+                "type": "technical"
+            },
+            {
+                "id": "java_beg_003",
+                "question": "What is the difference between JDK, JRE, and JVM?",
+                "type": "technical"
+            },
+            {
+                "id": "java_beg_004",
+                "question": "How do you create a basic class in Java?",
+                "type": "technical"
+            },
+            {
+                "id": "java_beg_005",
+                "question": "What are access modifiers in Java?",
+                "type": "technical"
+            }
+        ],
+        "intermediate": [
+            {
+                "id": "java_int_001",
+                "question": "What is object-oriented programming? Explain the four pillars.",
+                "type": "technical"
+            },
+            {
+                "id": "java_int_002",
+                "question": "What is the difference between ArrayList and LinkedList?",
+                "type": "technical"
+            },
+            {
+                "id": "java_int_003",
+                "question": "Explain exception handling in Java with try-catch-finally.",
+                "type": "technical"
+            },
+            {
+                "id": "java_int_004",
+                "question": "What are generics in Java and why are they useful?",
+                "type": "technical"
+            },
+            {
+                "id": "java_int_005",
+                "question": "What is the difference between method overloading and method overriding?",
+                "type": "technical"
+            }
+        ],
+        "advanced": [
+            {
+                "id": "java_adv_001",
+                "question": "Explain the Java Memory Model and garbage collection.",
+                "type": "technical"
+            },
+            {
+                "id": "java_adv_002",
+                "question": "What are design patterns? Explain Singleton and Factory patterns.",
+                "type": "technical"
+            },
+            {
+                "id": "java_adv_003",
+                "question": "What is multithreading in Java? Explain synchronization.",
+                "type": "technical"
+            },
+            {
+                "id": "java_adv_004",
+                "question": "What are Java 8 features like lambdas and streams?",
+                "type": "technical"
+            },
+            {
+                "id": "java_adv_005",
+                "question": "Explain the difference between HashMap, HashTable, and ConcurrentHashMap.",
+                "type": "technical"
+            }
+        ]
+    },
+    "nodejs": {
+        "beginner": [
+            {
+                "id": "node_beg_001",
+                "question": "What is Node.js and what is it used for?",
+                "type": "technical"
+            },
+            {
+                "id": "node_beg_002",
+                "question": "How do you create a basic HTTP server in Node.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_beg_003",
+                "question": "What is npm and how do you use it?",
+                "type": "technical"
+            },
+            {
+                "id": "node_beg_004",
+                "question": "What are modules in Node.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_beg_005",
+                "question": "How do you handle file operations in Node.js?",
+                "type": "technical"
+            }
+        ],
+        "intermediate": [
+            {
+                "id": "node_int_001",
+                "question": "What is asynchronous programming in Node.js? Explain callbacks.",
+                "type": "technical"
+            },
+            {
+                "id": "node_int_002",
+                "question": "What are Promises and how do they work in Node.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_int_003",
+                "question": "Explain Express.js and its main features.",
+                "type": "technical"
+            },
+            {
+                "id": "node_int_004",
+                "question": "What is middleware in Express.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_int_005",
+                "question": "How do you handle errors in Node.js applications?",
+                "type": "technical"
+            }
+        ],
+        "advanced": [
+            {
+                "id": "node_adv_001",
+                "question": "What is the event loop in Node.js? How does it work?",
+                "type": "technical"
+            },
+            {
+                "id": "node_adv_002",
+                "question": "Explain clustering and worker threads in Node.js.",
+                "type": "technical"
+            },
+            {
+                "id": "node_adv_003",
+                "question": "What are streams in Node.js and when to use them?",
+                "type": "technical"
+            },
+            {
+                "id": "node_adv_004",
+                "question": "How do you handle authentication and security in Node.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_adv_005",
+                "question": "What is the difference between process.nextTick() and setImmediate()?",
+                "type": "technical"
+            }
+        ]
+    },
+    "systemdesign": {
+        "beginner": [
+            {
+                "id": "sd_beg_001",
+                "question": "What is system design and why is it important?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_beg_002",
+                "question": "What are the main components of a web application architecture?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_beg_003",
+                "question": "What is the difference between monolithic and microservices architecture?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_beg_004",
+                "question": "What are APIs and what are different types of APIs?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_beg_005",
+                "question": "What is load balancing and why is it important?",
+                "type": "technical"
+            }
+        ],
+        "intermediate": [
+            {
+                "id": "sd_int_001",
+                "question": "Design a URL shortening service like bit.ly.",
+                "type": "technical"
+            },
+            {
+                "id": "sd_int_002",
+                "question": "How would you design a notification system for a social media platform?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_int_003",
+                "question": "Explain database sharding and when to use it.",
+                "type": "technical"
+            },
+            {
+                "id": "sd_int_004",
+                "question": "What is caching and what are different caching strategies?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_int_005",
+                "question": "How do you handle database connections in a high-traffic application?",
+                "type": "technical"
+            }
+        ],
+        "advanced": [
+            {
+                "id": "sd_adv_001",
+                "question": "Design a distributed file storage system like Dropbox.",
+                "type": "technical"
+            },
+            {
+                "id": "sd_adv_002",
+                "question": "How would you design a real-time chat application for millions of users?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_adv_003",
+                "question": "Explain CAP theorem and its implications for distributed systems.",
+                "type": "technical"
+            },
+            {
+                "id": "sd_adv_004",
+                "question": "How do you design for high availability and fault tolerance?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_adv_005",
+                "question": "What are design patterns for scalable systems? Explain a few.",
+                "type": "technical"
+            }
+        ]
     }
 }
 
