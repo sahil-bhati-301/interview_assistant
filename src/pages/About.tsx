@@ -8,20 +8,26 @@ const About: React.FC = () => {
     <div className="max-w-4xl mx-auto space-y-8">
       {/* Header */}
       <div className="text-center">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-          About AI Interview Assistant
-        </h1>
-        <p className="text-xl text-gray-600 dark:text-gray-400">
-          Revolutionizing technical interview preparation with AI-powered insights
-        </p>
+        <div className="mb-6">
+          <img
+            src="/images/logo.png"
+            alt="Immense Technologies Logo"
+            className="w-24 h-24 mx-auto mb-4 rounded-lg"
+          />
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+            Immense Technologies
+          </h1>
+          <p className="text-xl font-medium text-gray-700 dark:text-gray-300">
+            Think Immense.
+          </p>
+        </div>
       </div>
 
-      {/* Mission */}
-      <ComponentCard title="Our Mission">
+      {/* About */}
+      <ComponentCard title="About Immense Technologies">
         <div className="text-center py-8">
-          <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-            To democratize technical interview preparation by providing personalized,
-            AI-driven feedback that helps developers of all levels succeed in their career aspirations.
+          <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-4xl mx-auto">
+            "At Immense Technologies, we believe innovation should be as immense as the challenges we face. We're driven to create AI-powered solutions that go beyond limits, turning bold ideas into real-world impact. For us, technology isn't just a tool — it's the key to unlocking immense possibilities."
           </p>
         </div>
       </ComponentCard>
@@ -87,42 +93,6 @@ const About: React.FC = () => {
         </div>
       </ComponentCard>
 
-      {/* Developer Section */}
-      <ComponentCard title="Meet the Developer">
-        <div className="text-center py-8">
-          <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mx-auto mb-6 flex items-center justify-center">
-            <span className="text-white text-4xl font-bold">D</span>
-          </div>
-
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-            Demo Developer
-          </h3>
-          <p className="text-lg text-gray-600 dark:text-gray-400 mb-4">
-            Full-Stack Developer & AI Enthusiast
-          </p>
-
-          <div className="flex justify-center gap-4 mb-6">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-blue-600">50+</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Projects</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-green-600">3+</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Years Experience</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-purple-600">10+</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Technologies</div>
-            </div>
-          </div>
-
-          <p className="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Passionate about creating innovative solutions that make a difference.
-            Specializing in modern web technologies, AI integration, and user-centric design.
-            Always learning and exploring new ways to solve complex problems.
-          </p>
-        </div>
-      </ComponentCard>
 
       {/* Technologies */}
       <ComponentCard title="Built With">
@@ -149,14 +119,15 @@ const About: React.FC = () => {
       <ComponentCard title="Get In Touch">
         <div className="text-center py-6">
           <p className="text-gray-600 dark:text-gray-400 mb-4">
-            Have questions or feedback? We'd love to hear from you!
+            Ready to unlock immense possibilities with AI-powered solutions?
+            Let's create something extraordinary together!
           </p>
           <div className="flex justify-center gap-4">
             <Button variant="outline">
-              Contact Support
+              Contact Immense Technologies
             </Button>
             <Button variant="outline">
-              Report Issue
+              Explore Our Solutions
             </Button>
           </div>
         </div>
@@ -166,7 +137,7 @@ const About: React.FC = () => {
       <div className="text-center pt-6">
         <Link to="/interview">
           <Button>
-            Back to Interview Assistant
+            Back to Immense Interview Assistant
           </Button>
         </Link>
       </div>
