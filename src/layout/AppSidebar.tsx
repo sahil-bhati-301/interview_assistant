@@ -31,7 +31,8 @@ const navItems: NavItem[] = [
     name: "Interview Assistant",
     subItems: [
       { name: "Dashboard", path: "/interview", pro: false },
-      { name: "History", path: "/interview/history", pro: false }
+      { name: "History", path: "/interview/history", pro: false },
+      { name: "Analytics", path: "/analytics", pro: false }
     ],
   },
 ];

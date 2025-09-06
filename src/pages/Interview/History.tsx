@@ -186,7 +186,22 @@ const History: React.FC = () => {
                         {interview.domain} Interview
                       </h3>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {interview.difficulty} • {interview.questionsCount} questions • {interview.date}
+                        {interview.difficulty} • {interview.questionsCount} questions • {
+                          (() => {
+                            const interviewDate = interview.date || interview.createdAt;
+                            if (interviewDate) {
+                              try {
+                                const date = new Date(interviewDate);
+                                if (!isNaN(date.getTime())) {
+                                  return date.toLocaleDateString();
+                                }
+                              } catch (error) {
+                                console.warn('Invalid date format:', interviewDate);
+                              }
+                            }
+                            return 'Date not available';
+                          })()
+                        }
                       </p>
                     </div>
                   </div>

@@ -188,6 +188,17 @@ class InterviewService:
         history = []
         for doc in results:
             interview_data = doc.to_dict()
+
+            # Extract score from report if available
+            score = 0
+            report = interview_data.get('report')
+            if report and isinstance(report, dict):
+                score = report.get('overallScore', 0)
+
+            # Extract additional fields for frontend
+            questions_count = len(interview_data.get('questions', []))
+            date = interview_data.get('completedAt') or interview_data.get('startedAt')
+
             history.append({
                 'id': doc.id,
                 'domain': interview_data.get('domain'),
@@ -196,7 +207,10 @@ class InterviewService:
                 'status': interview_data.get('status'),
                 'totalQuestions': interview_data.get('totalQuestions', 0),
                 'completedAt': interview_data.get('completedAt'),
-                'report': interview_data.get('report')
+                'report': interview_data.get('report'),
+                'score': score,
+                'questionsCount': questions_count,
+                'date': date
             })
 
         return history
