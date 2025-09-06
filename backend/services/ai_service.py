@@ -15,7 +15,7 @@ class AIService:
             raise ValueError("GEMINI_API_KEY environment variable is required")
 
         genai.configure(api_key=api_key)
-        self.model = genai.GenerativeModel('gemini-pro')
+        self.model = genai.GenerativeModel('gemini-2.5-flash')
 
     def generate_question(self, domain: str, difficulty: str, question_type: str = "technical") -> Dict[str, Any]:
         """Generate a technical interview question using Gemini AI"""
@@ -35,7 +35,13 @@ Format the response as JSON with the following structure:
         try:
             response = self.model.generate_content(prompt)
             # Parse the JSON response
-            result = json.loads(response.text.strip())
+            response_text = response.text.strip()
+            if response_text.startswith('```json'):
+                response_text = response_text[7:]  # Remove ```json
+            if response_text.endswith('```'):
+                response_text = response_text[:-3]  # Remove ```
+            response_text = response_text.strip()
+            result = json.loads(response_text)
 
             # Add a unique ID
             result['id'] = f"{domain}_{difficulty}_{hash(result['question']) % 10000}"
@@ -81,7 +87,13 @@ Format the response as JSON with the following structure:
 
         try:
             response = self.model.generate_content(prompt)
-            result = json.loads(response.text.strip())
+            response_text = response.text.strip()
+            if response_text.startswith('```json'):
+                response_text = response_text[7:]  # Remove ```json
+            if response_text.endswith('```'):
+                response_text = response_text[:-3]  # Remove ```
+            response_text = response_text.strip()
+            result = json.loads(response_text)
             return result
         except Exception as e:
             # Fallback analysis if AI fails - analyze based on answer content
@@ -153,7 +165,14 @@ Provide a comprehensive analysis in the following JSON format:
 
         try:
             response = self.model.generate_content(prompt)
-            result = json.loads(response.text.strip())
+            # Remove markdown code block formatting if present
+            response_text = response.text.strip()
+            if response_text.startswith('```json'):
+                response_text = response_text[7:]  # Remove ```json
+            if response_text.endswith('```'):
+                response_text = response_text[:-3]  # Remove ```
+            response_text = response_text.strip()
+            result = json.loads(response_text)
             return result
         except Exception as e:
             print(f"AI report generation failed: {e}")
