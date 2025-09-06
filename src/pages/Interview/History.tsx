@@ -63,6 +63,10 @@ const History: React.FC = () => {
 
       // Refresh the history
       setInterviews([]);
+
+      // Dispatch custom event to refresh dashboard stats
+      window.dispatchEvent(new CustomEvent('interviewHistoryCleared'));
+
       alert(`Successfully cleared ${response.deletedCount} interviews from your history.`);
     } catch (error) {
       console.error('Failed to clear history:', error);
@@ -125,7 +129,10 @@ const History: React.FC = () => {
         <ComponentCard title="">
           <div className="text-center">
             <div className="text-2xl font-bold text-green-600">
-              {Math.round(interviews.reduce((sum, interview) => sum + interview.score, 0) / interviews.length)}%
+              {interviews.length > 0
+                ? Math.round(interviews.reduce((sum, interview) => sum + (interview.score || 0), 0) / interviews.length) + '%'
+                : '0%'
+              }
             </div>
             <div className="text-sm text-gray-600 dark:text-gray-400">Average Score</div>
           </div>
@@ -141,7 +148,10 @@ const History: React.FC = () => {
         <ComponentCard title="">
           <div className="text-center">
             <div className="text-2xl font-bold text-orange-600">
-              {Math.max(...interviews.map(i => i.score))}%
+              {interviews.length > 0
+                ? Math.max(...interviews.map(i => i.score || 0)) + '%'
+                : '0%'
+              }
             </div>
             <div className="text-sm text-gray-600 dark:text-gray-400">Best Score</div>
           </div>
