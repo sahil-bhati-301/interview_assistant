@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import Button from '../../components/ui/button/Button';
 import ComponentCard from '../../components/common/ComponentCard';
+import AnswerInput from '../../components/interview/AnswerInput';
 import { apiService, Question, AnswerAnalysis } from '../../services/api';
 
 const Session: React.FC = () => {
@@ -151,19 +152,19 @@ const Session: React.FC = () => {
             <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-3">
               Your Answer
             </h3>
-            <textarea
-              value={currentAnswer}
-              onChange={(e) => handleAnswerChange(e.target.value)}
-              placeholder="Type your answer here..."
-              className="w-full h-48 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+            <AnswerInput
+              onSubmit={(answer) => {
+                handleAnswerChange(answer);
+                // Auto-advance to next question after submission
+                if (currentQuestionIndex < questions.length - 1) {
+                  setTimeout(() => handleNext(), 500);
+                }
+              }}
               disabled={isSubmitting}
             />
-            <div className="flex justify-between items-center mt-2">
+            <div className="text-center mt-2">
               <span className="text-sm text-gray-600 dark:text-gray-400">
-                {currentAnswer.length} characters
-              </span>
-              <span className="text-sm text-gray-600 dark:text-gray-400">
-                Save and navigate between questions
+                💡 Choose text or voice input • Answers are saved automatically
               </span>
             </div>
           </div>
@@ -222,7 +223,10 @@ const Session: React.FC = () => {
           <p>• Take your time to think through your answer</p>
           <p>• Be specific and provide examples when possible</p>
           <p>• Explain your thought process, not just the final answer</p>
-          <p>• You can use the text area for notes before submitting</p>
+          <p>• Choose between text or voice input based on your preference</p>
+          <p>• Voice input works best in quiet environments with clear speech</p>
+          <p>• Supported browsers: Chrome, Edge, Safari, Opera</p>
+          <p>• You can review and edit your voice transcript before submitting</p>
         </div>
       </ComponentCard>
     </div>
