@@ -7,6 +7,7 @@ import { apiService } from '../../services/api';
 const History: React.FC = () => {
   const [interviews, setInterviews] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [clearing, setClearing] = useState(false);
 
   useEffect(() => {
     const loadHistory = async () => {
@@ -40,6 +41,30 @@ const History: React.FC = () => {
     return 'bg-red-100 dark:bg-red-900/20';
   };
 
+  const handleClearHistory = async () => {
+    if (!window.confirm('Are you sure you want to clear all your interview history? This action cannot be undone.')) {
+      return;
+    }
+
+    try {
+      setClearing(true);
+      // For now, use a mock user ID. In a real app, this would come from authentication
+      const userId = 'user123';
+
+      const response = await apiService.clearInterviewHistory(userId);
+      console.log('History cleared:', response);
+
+      // Refresh the history
+      setInterviews([]);
+      alert(`Successfully cleared ${response.deletedCount} interviews from your history.`);
+    } catch (error) {
+      console.error('Failed to clear history:', error);
+      alert('Failed to clear history. Please try again.');
+    } finally {
+      setClearing(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-96">
@@ -63,11 +88,23 @@ const History: React.FC = () => {
             Review your past interview performances
           </p>
         </div>
-        <Link to="/interview">
-          <Button>
-            New Interview
-          </Button>
-        </Link>
+        <div className="flex items-center space-x-3">
+          {interviews.length > 0 && (
+            <Button
+              variant="outline"
+              onClick={handleClearHistory}
+              disabled={clearing}
+              className="text-red-600 border-red-300 hover:bg-red-50 dark:text-red-400 dark:border-red-600 dark:hover:bg-red-900/20"
+            >
+              {clearing ? 'Clearing...' : 'Clear History'}
+            </Button>
+          )}
+          <Link to="/interview">
+            <Button>
+              New Interview
+            </Button>
+          </Link>
+        </div>
       </div>
 
       {/* Stats Overview */}

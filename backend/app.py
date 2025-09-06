@@ -73,8 +73,26 @@ def submit_answer(interview_id):
 def get_report(interview_id):
     """Get the analysis report for an interview"""
     try:
-        result = interview_service.generate_report(interview_id)
-        return jsonify(result), 200
+        # First check if report exists in results collection
+        results_ref = interview_service.db.collection('results').document(interview_id)
+        result_doc = results_ref.get()
+
+        if result_doc.exists:
+            # Return cached report
+            return jsonify(result_doc.to_dict()), 200
+        else:
+            # Generate new report and cache it
+            result = interview_service.generate_report(interview_id)
+
+            # Cache the report in results collection
+            from firebase_admin import firestore
+            results_ref.set({
+                'interviewId': interview_id,
+                'report': result,
+                'generatedAt': firestore.SERVER_TIMESTAMP
+            })
+
+            return jsonify(result), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
@@ -138,6 +156,36 @@ def get_interview_history(user_id):
     try:
         result = interview_service.get_interview_history(user_id)
         return jsonify(result), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/interview/history/<user_id>', methods=['DELETE'])
+def clear_interview_history(user_id):
+    """Clear all interview history for a user"""
+    try:
+        # Get all interviews for the user
+        interviews_ref = interview_service.db.collection('interviews')
+        query = interviews_ref.where('userId', '==', user_id)
+        results = query.stream()
+
+        deleted_count = 0
+        for doc in results:
+            interview_id = doc.id
+
+            # Delete the interview document
+            doc.reference.delete()
+
+            # Delete the corresponding result document
+            results_ref = interview_service.db.collection('results').document(interview_id)
+            if results_ref.get().exists:
+                results_ref.delete()
+
+            deleted_count += 1
+
+        return jsonify({
+            'message': f'Successfully deleted {deleted_count} interviews and their results',
+            'deletedCount': deleted_count
+        }), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 

@@ -87,12 +87,18 @@ class ApiService {
     });
   }
 
-  async getResults(interviewId: string): Promise<InterviewResult> {
+  async getResults(interviewId: string): Promise<{ report: InterviewResult }> {
     return this.request(`/interview/${interviewId}/report`);
   }
 
   async getInterviewHistory(userId: string): Promise<any[]> {
     return this.request(`/interview/history/${userId}`);
+  }
+
+  async clearInterviewHistory(userId: string): Promise<{ message: string; deletedCount: number }> {
+    return this.request(`/interview/history/${userId}`, {
+      method: 'DELETE',
+    });
   }
 }
 
