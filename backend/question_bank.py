@@ -496,6 +496,338 @@ QUESTION_BANK = {
                 "type": "technical"
             }
         ]
+    },
+    "machinelearning": {
+        "beginner": [
+            {
+                "id": "ml_beg_001",
+                "question": "What is Machine Learning and what are its main types?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_beg_002",
+                "question": "What is the difference between supervised and unsupervised learning?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_beg_003",
+                "question": "What is a training dataset in machine learning?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_beg_004",
+                "question": "What are features and labels in machine learning?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_beg_005",
+                "question": "What is overfitting in machine learning?",
+                "type": "technical"
+            }
+        ],
+        "intermediate": [
+            {
+                "id": "ml_int_001",
+                "question": "Explain the bias-variance tradeoff in machine learning.",
+                "type": "technical"
+            },
+            {
+                "id": "ml_int_002",
+                "question": "What is cross-validation and why is it important?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_int_003",
+                "question": "Explain the difference between precision and recall.",
+                "type": "technical"
+            },
+            {
+                "id": "ml_int_004",
+                "question": "What are ensemble methods? Explain bagging and boosting.",
+                "type": "technical"
+            },
+            {
+                "id": "ml_int_005",
+                "question": "How do you handle missing data in a dataset?",
+                "type": "technical"
+            }
+        ],
+        "advanced": [
+            {
+                "id": "ml_adv_001",
+                "question": "Explain the mathematics behind gradient descent optimization.",
+                "type": "technical"
+            },
+            {
+                "id": "ml_adv_002",
+                "question": "What are convolutional neural networks (CNNs) and their applications?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_adv_003",
+                "question": "Explain the concept of transfer learning in deep learning.",
+                "type": "technical"
+            },
+            {
+                "id": "ml_adv_004",
+                "question": "What are autoencoders and what are they used for?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_adv_005",
+                "question": "How do you deploy machine learning models in production?",
+                "type": "technical"
+            }
+        ]
+    },
+    "dsa": {
+        "beginner": [
+            {
+                "id": "dsa_beg_001",
+                "question": "What is the difference between an array and a linked list?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_beg_002",
+                "question": "Explain the concept of Big O notation with examples.",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_beg_003",
+                "question": "What is a stack and what are its main operations?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_beg_004",
+                "question": "What is a queue and how does it differ from a stack?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_beg_005",
+                "question": "What is a binary search and when would you use it?",
+                "type": "technical"
+            }
+        ],
+        "intermediate": [
+            {
+                "id": "dsa_int_001",
+                "question": "Explain the difference between DFS and BFS graph traversal algorithms.",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_int_002",
+                "question": "What is dynamic programming? Give an example problem.",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_int_003",
+                "question": "How does a hash table work and what are collision resolution techniques?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_int_004",
+                "question": "Explain the heap data structure and its applications.",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_int_005",
+                "question": "What are balanced binary search trees and why are they important?",
+                "type": "technical"
+            }
+        ],
+        "advanced": [
+            {
+                "id": "dsa_adv_001",
+                "question": "Explain the time and space complexity of various sorting algorithms.",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_adv_002",
+                "question": "What are graph algorithms like Dijkstra, Bellman-Ford, and Floyd-Warshall?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_adv_003",
+                "question": "Explain advanced tree data structures like Trie, Segment Tree, and Fenwick Tree.",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_adv_004",
+                "question": "What are advanced dynamic programming techniques and optimization methods?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_adv_005",
+                "question": "How do you design algorithms for large-scale distributed systems?",
+                "type": "technical"
+            }
+        ]
+    },
+    "aws": {
+        "beginner": [
+            {
+                "id": "aws_beg_001",
+                "question": "What is AWS and what are its main benefits?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_beg_002",
+                "question": "What is Amazon EC2 and what is it used for?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_beg_003",
+                "question": "Explain Amazon S3 and its main use cases.",
+                "type": "technical"
+            },
+            {
+                "id": "aws_beg_004",
+                "question": "What is Amazon RDS and when would you use it?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_beg_005",
+                "question": "What are AWS regions and availability zones?",
+                "type": "technical"
+            }
+        ],
+        "intermediate": [
+            {
+                "id": "aws_int_001",
+                "question": "How do you secure an AWS account using IAM best practices?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_int_002",
+                "question": "Explain auto-scaling in AWS and its benefits.",
+                "type": "technical"
+            },
+            {
+                "id": "aws_int_003",
+                "question": "What is AWS Lambda and what are serverless architectures?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_int_004",
+                "question": "How do you set up a VPC and configure security groups?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_int_005",
+                "question": "What are CloudFormation templates and their benefits?",
+                "type": "technical"
+            }
+        ],
+        "advanced": [
+            {
+                "id": "aws_adv_001",
+                "question": "Design a highly available and fault-tolerant architecture on AWS.",
+                "type": "technical"
+            },
+            {
+                "id": "aws_adv_002",
+                "question": "How do you implement disaster recovery strategies on AWS?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_adv_003",
+                "question": "Explain AWS networking concepts like Direct Connect and VPN.",
+                "type": "technical"
+            },
+            {
+                "id": "aws_adv_004",
+                "question": "How do you optimize AWS costs for large-scale applications?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_adv_005",
+                "question": "What are advanced AWS services like SageMaker and Rekognition?",
+                "type": "technical"
+            }
+        ]
+    },
+    "cybersecurity": {
+        "beginner": [
+            {
+                "id": "cyber_beg_001",
+                "question": "What is cybersecurity and why is it important?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_beg_002",
+                "question": "What are the CIA triad principles in cybersecurity?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_beg_003",
+                "question": "What is the difference between a virus and malware?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_beg_004",
+                "question": "What is encryption and why is it important?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_beg_005",
+                "question": "What are strong passwords and why are they important?",
+                "type": "technical"
+            }
+        ],
+        "intermediate": [
+            {
+                "id": "cyber_int_001",
+                "question": "Explain the OWASP Top 10 web application vulnerabilities.",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_int_002",
+                "question": "What is SQL injection and how can it be prevented?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_int_003",
+                "question": "Explain cross-site scripting (XSS) and its prevention methods.",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_int_004",
+                "question": "What is multi-factor authentication and why is it important?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_int_005",
+                "question": "How do firewalls work and what are different types?",
+                "type": "technical"
+            }
+        ],
+        "advanced": [
+            {
+                "id": "cyber_adv_001",
+                "question": "Explain advanced persistent threats (APTs) and their characteristics.",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_adv_002",
+                "question": "What are zero-trust security models and their implementation?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_adv_003",
+                "question": "Explain cryptographic algorithms and their applications in security.",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_adv_004",
+                "question": "What are security information and event management (SIEM) systems?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_adv_005",
+                "question": "How do you conduct a security audit and vulnerability assessment?",
+                "type": "technical"
+            }
+        ]
     }
 }
 
