@@ -8,7 +8,7 @@ import { useAuth } from '../../context/AuthContext';
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
-  const [selectedDomain, setSelectedDomain] = useState('java');
+  const [selectedDomain, setSelectedDomain] = useState('machinelearning');
   const [selectedDifficulty, setSelectedDifficulty] = useState('intermediate');
   const [questionCount, setQuestionCount] = useState(5);
   const [interviewHistory, setInterviewHistory] = useState<any[]>([]);
@@ -21,6 +21,10 @@ const Dashboard: React.FC = () => {
     { id: 'java', name: 'Java', icon: '☕' },
     { id: 'nodejs', name: 'Node.js', icon: '🟢' },
     { id: 'systemdesign', name: 'System Design', icon: '🏗️' },
+    { id: 'machinelearning', name: 'Machine Learning', icon: '🤖' },
+    { id: 'dsa', name: 'Data Structures & Algorithms', icon: '🧠' },
+    { id: 'aws', name: 'AWS', icon: '☁️' },
+    { id: 'cybersecurity', name: 'Cybersecurity', icon: '🔒' },
   ];
 
   const difficulties = [
@@ -225,7 +229,7 @@ const Dashboard: React.FC = () => {
               <select
                 value={questionCount}
                 onChange={(e) => setQuestionCount(Number(e.target.value))}
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:border-gray-600"
+                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:border-gray-600 dark:text-white"
               >
                 <option value={3}>3 Questions</option>
                 <option value={5}>5 Questions</option>
