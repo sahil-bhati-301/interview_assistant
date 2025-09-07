@@ -6,7 +6,13 @@ from services.ai_service import AIService
 from utils.firebase_utils import initialize_firebase
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=[
+    "https://interview-88de2.web.app",
+    "http://localhost:3000",
+    "http://localhost:5173",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:5173"
+])
 
 # Initialize Firebase
 initialize_firebase()
@@ -221,3 +227,6 @@ def get_user_incomplete_interviews(user_id):
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
+else:
+    # For production (Render)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
