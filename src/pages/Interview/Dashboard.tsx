@@ -11,21 +11,41 @@ const Dashboard: React.FC = () => {
   const [selectedDomain, setSelectedDomain] = useState('machinelearning');
   const [selectedDifficulty, setSelectedDifficulty] = useState('intermediate');
   const [questionCount, setQuestionCount] = useState(5);
+  const [selectedCategory, setSelectedCategory] = useState('all');
   const [interviewHistory, setInterviewHistory] = useState<any[]>([]);
   const [loadingStats, setLoadingStats] = useState(true);
 
   const domains = [
-    { id: 'javascript', name: 'JavaScript', icon: '🟨' },
-    { id: 'python', name: 'Python', icon: '🐍' },
-    { id: 'react', name: 'React', icon: '⚛️' },
-    { id: 'java', name: 'Java', icon: '☕' },
-    { id: 'nodejs', name: 'Node.js', icon: '🟢' },
-    { id: 'systemdesign', name: 'System Design', icon: '🏗️' },
-    { id: 'machinelearning', name: 'Machine Learning', icon: '🤖' },
-    { id: 'dsa', name: 'Data Structures & Algorithms', icon: '🧠' },
-    { id: 'aws', name: 'AWS', icon: '☁️' },
-    { id: 'cybersecurity', name: 'Cybersecurity', icon: '🔒' },
+    { id: 'javascript', name: 'JavaScript', icon: '🟨', category: 'technical' },
+    { id: 'python', name: 'Python', icon: '🐍', category: 'technical' },
+    { id: 'react', name: 'React', icon: '⚛️', category: 'technical' },
+    { id: 'java', name: 'Java', icon: '☕', category: 'technical' },
+    { id: 'nodejs', name: 'Node.js', icon: '🟢', category: 'technical' },
+    { id: 'systemdesign', name: 'System Design', icon: '🏗️', category: 'technical' },
+    { id: 'machinelearning', name: 'Machine Learning', icon: '🤖', category: 'technical' },
+    { id: 'dsa', name: 'Data Structures & Algorithms', icon: '🧠', category: 'technical' },
+    { id: 'aws', name: 'AWS', icon: '☁️', category: 'technical' },
+    { id: 'cybersecurity', name: 'Cybersecurity', icon: '🔒', category: 'technical' },
   ];
+
+  const categories = [
+    { id: 'all', name: 'All Domains', icon: '🎯' },
+    { id: 'technical', name: 'Technical', icon: '💻' },
+    { id: 'hr', name: 'HR Related', icon: '👥' },
+    { id: 'company', name: 'Company Specific', icon: '🏢' },
+    { id: 'role', name: 'Role Specific', icon: '🎭' },
+  ];
+
+  const filteredDomains = selectedCategory === 'all'
+    ? domains
+    : domains.filter(domain => domain.category === selectedCategory);
+
+  // Reset selected domain if it's not in the filtered list
+  useEffect(() => {
+    if (selectedDomain && !filteredDomains.find(d => d.id === selectedDomain)) {
+      setSelectedDomain(filteredDomains[0]?.id || '');
+    }
+  }, [selectedCategory, filteredDomains, selectedDomain]);
 
   const difficulties = [
     { id: 'beginner', name: 'Beginner', description: 'Basic concepts and fundamentals' },
@@ -152,8 +172,32 @@ const Dashboard: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Domain Selection */}
         <ComponentCard title="Choose Domain">
+          {/* Category Filter */}
+          <div className="mb-4">
+            <h3 className="text-sm font-medium text-gray-900 dark:text-white mb-3">
+              Filter by Category
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {categories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => setSelectedCategory(category.id)}
+                  className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    selectedCategory === category.id
+                      ? 'bg-blue-500 text-white'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
+                  }`}
+                >
+                  <span>{category.icon}</span>
+                  <span>{category.name}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Domain List */}
           <div className="max-h-96 overflow-y-auto space-y-3 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent">
-            {domains.map((domain) => (
+            {filteredDomains.map((domain) => (
               <div
                 key={domain.id}
                 onClick={() => setSelectedDomain(domain.id)}
@@ -177,9 +221,20 @@ const Dashboard: React.FC = () => {
               </div>
             ))}
           </div>
-          {domains.length > 4 && (
+          {filteredDomains.length > 4 && (
             <div className="text-xs text-gray-500 dark:text-gray-400 text-center mt-3">
-              Scroll to see all domains
+              Scroll to see all {selectedCategory === 'all' ? 'domains' : `${selectedCategory} domains`}
+            </div>
+          )}
+          {filteredDomains.length === 0 && (
+            <div className="text-center py-8">
+              <div className="text-4xl mb-2">📭</div>
+              <p className="text-gray-600 dark:text-gray-400">
+                No domains available in this category yet
+              </p>
+              <p className="text-sm text-gray-500 dark:text-gray-500 mt-1">
+                Future updates will add more domains
+              </p>
             </div>
           )}
         </ComponentCard>

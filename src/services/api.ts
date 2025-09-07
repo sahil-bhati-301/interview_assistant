@@ -104,6 +104,17 @@ class ApiService {
       method: 'DELETE',
     });
   }
+
+  async cleanupAbandonedInterviews(daysOld: number = 7): Promise<{ message: string; cleanedCount: number; cutoffDays: number }> {
+    return this.request('/interview/cleanup', {
+      method: 'POST',
+      body: JSON.stringify({ daysOld }),
+    });
+  }
+
+  async getIncompleteInterviews(userId: string): Promise<any[]> {
+    return this.request(`/interview/incomplete/${userId}`);
+  }
 }
 
 export const apiService = new ApiService();
