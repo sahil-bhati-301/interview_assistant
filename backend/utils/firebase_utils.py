@@ -14,11 +14,40 @@ def initialize_firebase():
     except ValueError:
         # Firebase not initialized, so initialize it
         cred_path = os.getenv('FIREBASE_CREDENTIALS_PATH')
+        private_key = os.getenv('FIREBASE_PRIVATE_KEY')
+        project_id = os.getenv('FIREBASE_PROJECT_ID')
+
         if cred_path and os.path.exists(cred_path):
+            # Use credentials file (development)
             cred = credentials.Certificate(cred_path)
             firebase_admin.initialize_app(cred)
+        elif private_key and project_id:
+            # Use environment variables (production)
+            import json
+            from google.oauth2 import service_account
+
+            # Parse the private key (it's stored as JSON string in env var)
+            try:
+                cred_dict = json.loads(private_key)
+                cred = credentials.Certificate(cred_dict)
+                firebase_admin.initialize_app(cred, {
+                    'projectId': project_id
+                })
+            except (json.JSONDecodeError, ValueError):
+                # If it's not JSON, treat it as the private key string
+                cred_dict = {
+                    "type": "service_account",
+                    "project_id": project_id,
+                    "private_key": private_key.replace('\\n', '\n'),
+                    "client_email": os.getenv('FIREBASE_CLIENT_EMAIL', ''),
+                    "token_uri": "https://oauth2.googleapis.com/token"
+                }
+                cred = credentials.Certificate(cred_dict)
+                firebase_admin.initialize_app(cred, {
+                    'projectId': project_id
+                })
         else:
-            # For development, you can use the default credentials
+            # Fallback for development
             firebase_admin.initialize_app()
 
 def get_firestore_client():
