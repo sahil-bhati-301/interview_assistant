@@ -22,12 +22,21 @@ def home():
         'status': 'API is running',
         'message': 'AI Interview Assistant Backend',
         'version': '1.0.0',
+        'features': [
+            'Complete interview history only (no incomplete interviews)',
+            'Automatic cleanup of abandoned interviews',
+            'Domain filtering system',
+            'AI-powered question analysis'
+        ],
         'endpoints': [
             'POST /api/interview/start',
-            'GET /api/interview/<id>/questions',
-            'POST /api/interview/<id>/complete',
+            'GET /api/interview/<id>/question',
+            'POST /api/interview/<id>/answer',
             'GET /api/interview/<id>/report',
-            'GET /api/interview/history/<user_id>'
+            'GET /api/interview/history/<user_id>',
+            'DELETE /api/interview/history/<user_id>',
+            'POST /api/interview/cleanup',
+            'GET /api/interview/incomplete/<user_id>'
         ]
     })
 
@@ -186,6 +195,27 @@ def clear_interview_history(user_id):
             'message': f'Successfully deleted {deleted_count} interviews and their results',
             'deletedCount': deleted_count
         }), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/interview/cleanup', methods=['POST'])
+def cleanup_abandoned_interviews():
+    """Clean up abandoned interviews older than specified days"""
+    try:
+        data = request.get_json()
+        days_old = data.get('daysOld', 7)  # Default to 7 days
+
+        result = interview_service.cleanup_abandoned_interviews(days_old)
+        return jsonify(result), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/interview/incomplete/<user_id>', methods=['GET'])
+def get_user_incomplete_interviews(user_id):
+    """Get incomplete interviews for a user"""
+    try:
+        result = interview_service.get_user_incomplete_interviews(user_id)
+        return jsonify(result), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 

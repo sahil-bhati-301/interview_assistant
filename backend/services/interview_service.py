@@ -1,6 +1,6 @@
 from typing import Dict, Any, List
 import uuid
-from datetime import datetime
+from datetime import datetime, timedelta
 from utils.firebase_utils import get_firestore_client
 from services.ai_service import AIService
 from question_bank import get_questions
@@ -179,10 +179,10 @@ class InterviewService:
         return report
 
     def get_interview_history(self, user_id: str) -> List[Dict[str, Any]]:
-        """Get interview history for a user"""
+        """Get interview history for a user (only completed interviews)"""
         interviews_ref = self.db.collection('interviews')
-        # Get all interviews for the user (simplified query to avoid index requirement)
-        query = interviews_ref.where('userId', '==', user_id)
+        # Get only completed interviews for the user
+        query = interviews_ref.where('userId', '==', user_id).where('status', '==', 'completed')
         results = query.stream()
 
         history = []
@@ -213,4 +213,54 @@ class InterviewService:
                 'date': date
             })
 
+        # Sort by completion date (most recent first)
+        history.sort(key=lambda x: x.get('completedAt') or x.get('startedAt'), reverse=True)
+
         return history
+
+    def cleanup_abandoned_interviews(self, days_old: int = 7) -> Dict[str, Any]:
+        """Clean up abandoned interviews that are older than specified days"""
+        cutoff_date = datetime.utcnow() - timedelta(days=days_old)
+
+        # Find all in-progress interviews older than cutoff
+        interviews_ref = self.db.collection('interviews')
+        query = interviews_ref.where('status', '==', 'in-progress')
+        results = query.stream()
+
+        cleaned_count = 0
+        for doc in results:
+            interview_data = doc.to_dict()
+            started_at = interview_data.get('startedAt')
+
+            # Check if interview is old enough to be cleaned up
+            if started_at and isinstance(started_at, datetime) and started_at < cutoff_date:
+                # Delete the interview document
+                doc.reference.delete()
+                cleaned_count += 1
+
+        return {
+            'message': f'Successfully cleaned up {cleaned_count} abandoned interviews',
+            'cleanedCount': cleaned_count,
+            'cutoffDays': days_old
+        }
+
+    def get_user_incomplete_interviews(self, user_id: str) -> List[Dict[str, Any]]:
+        """Get incomplete interviews for a user (for resuming or cleanup)"""
+        interviews_ref = self.db.collection('interviews')
+        query = interviews_ref.where('userId', '==', user_id).where('status', '==', 'in-progress')
+        results = query.stream()
+
+        incomplete_interviews = []
+        for doc in results:
+            interview_data = doc.to_dict()
+            incomplete_interviews.append({
+                'id': doc.id,
+                'domain': interview_data.get('domain'),
+                'difficulty': interview_data.get('difficulty'),
+                'startedAt': interview_data.get('startedAt'),
+                'currentQuestionIndex': interview_data.get('currentQuestionIndex', 0),
+                'totalQuestions': interview_data.get('totalQuestions', 0),
+                'progress': f"{interview_data.get('currentQuestionIndex', 0)}/{interview_data.get('totalQuestions', 0)}"
+            })
+
+        return incomplete_interviews
