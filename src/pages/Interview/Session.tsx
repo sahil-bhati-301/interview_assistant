@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router';
 import Button from '../../components/ui/button/Button';
 import ComponentCard from '../../components/common/ComponentCard';
 import AnswerInput from '../../components/interview/AnswerInput';
-import { apiService, Question, AnswerAnalysis } from '../../services/api';
+import { Question, API_BASE_URL } from '../../services/api';
 
 const Session: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -11,7 +11,6 @@ const Session: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [answers, setAnswers] = useState<string[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [currentAnswer, setCurrentAnswer] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -21,13 +20,18 @@ const Session: React.FC = () => {
 
       try {
         setLoading(true);
-        // Get all questions for this interview
-        const response = await fetch(`http://localhost:5000/api/interview/${id}/questions`);
+        // Get all questions for this interview (using plural endpoint)
+        const response = await fetch(`${API_BASE_URL}/interview/${id}/questions`);
         const data = await response.json();
 
-        setQuestions(data.questions);
-        // Initialize answers array with empty strings
-        setAnswers(new Array(data.questions.length).fill(''));
+        if (data.questions && data.questions.length > 0) {
+          setQuestions(data.questions);
+          // Initialize answers array with empty strings
+          setAnswers(new Array(data.questions.length).fill(''));
+        } else {
+          console.error('No questions found in response');
+          alert('No questions available for this interview.');
+        }
       } catch (error) {
         console.error('Failed to load questions:', error);
         alert('Failed to load questions. Please try again.');
@@ -43,20 +47,17 @@ const Session: React.FC = () => {
     const newAnswers = [...answers];
     newAnswers[currentQuestionIndex] = answer;
     setAnswers(newAnswers);
-    setCurrentAnswer(answer);
   };
 
   const handleNext = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setCurrentAnswer(answers[currentQuestionIndex + 1] || '');
     }
   };
 
   const handlePrevious = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex(currentQuestionIndex - 1);
-      setCurrentAnswer(answers[currentQuestionIndex - 1] || '');
     }
   };
 
@@ -66,25 +67,46 @@ const Session: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      // Submit all answers at once
-      const response = await fetch(`http://localhost:5000/api/interview/${id}/complete`, {
+      // Step 1: Submit all answers at once to complete the interview (fast operation)
+      const allAnswers = answers.map((answer, index) => ({
+        questionId: questions[index].id,
+        text: answer
+      }));
+
+      console.log('Submitting interview completion...');
+      const completeResponse = await fetch(`${API_BASE_URL}/interview/${id}/complete`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          answers: answers.map((answer, index) => ({
-            questionId: questions[index].id,
-            text: answer
-          }))
+          answers: allAnswers
         })
       });
 
-      if (response.ok) {
-        // Navigate to results
-        navigate(`/interview/${id}/results`);
+      if (!completeResponse.ok) {
+        throw new Error('Failed to complete interview');
+      }
+
+      const completeData = await completeResponse.json();
+      console.log('Interview completed:', completeData);
+
+      // Step 2: Get the analysis report (this may take longer)
+      console.log('Generating analysis report...');
+      const reportResponse = await fetch(`${API_BASE_URL}/interview/${id}/report`);
+
+      if (reportResponse.ok) {
+        const reportData = await reportResponse.json();
+        console.log('Report generated:', reportData);
+
+        // Navigate to results with report data
+        navigate(`/interview/${id}/results`, {
+          state: { report: reportData }
+        });
       } else {
-        throw new Error('Failed to submit interview');
+        // If report generation fails, still navigate to results (will show loading)
+        console.warn('Report generation failed, navigating to results anyway');
+        navigate(`/interview/${id}/results`);
       }
     } catch (error) {
       console.error('Error submitting interview:', error);

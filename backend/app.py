@@ -139,12 +139,12 @@ def get_interview_questions(interview_id):
 
 @app.route('/api/interview/<interview_id>/complete', methods=['POST'])
 def complete_interview(interview_id):
-    """Complete interview by submitting all answers at once"""
+    """Complete interview by submitting all answers at once (lightweight)"""
     try:
         data = request.get_json()
         answers = data.get('answers', [])
 
-        # Submit all answers
+        # Submit all answers (this should be fast)
         for answer_data in answers:
             question_id = answer_data.get('questionId')
             answer_text = answer_data.get('text')
@@ -152,7 +152,7 @@ def complete_interview(interview_id):
             if question_id and answer_text:
                 interview_service.submit_answer(interview_id, question_id, answer_text, 'text')
 
-        # Mark interview as completed and generate report
+        # Mark interview as completed (fast operation)
         from firebase_admin import firestore
         interview_ref = interview_service.db.collection('interviews').document(interview_id)
         interview_ref.update({
@@ -160,12 +160,11 @@ def complete_interview(interview_id):
             'completedAt': firestore.SERVER_TIMESTAMP
         })
 
-        # Generate the final report
-        report = interview_service.generate_report(interview_id)
-
+        # Return success immediately - report generation will happen separately
         return jsonify({
             'message': 'Interview completed successfully',
-            'report': report
+            'status': 'completed',
+            'interviewId': interview_id
         }), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
