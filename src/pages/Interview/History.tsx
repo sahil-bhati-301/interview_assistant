@@ -9,22 +9,30 @@ const History: React.FC = () => {
   const { user } = useAuth();
   const [interviews, setInterviews] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [clearing, setClearing] = useState(false);
 
   useEffect(() => {
     const loadHistory = async () => {
       try {
         setLoading(true);
+        setError(null);
+
         if (!user) {
           setInterviews([]);
           return;
         }
 
+        console.log('Loading interview history for user:', user.uid);
         const history = await apiService.getInterviewHistory(user.uid);
-        setInterviews(history);
+        console.log('History response:', history);
+
+        // Ensure we always have an array
+        setInterviews(Array.isArray(history) ? history : []);
       } catch (error) {
         console.error('Failed to load interview history:', error);
-        // For demo purposes, show empty state instead of error
+        setError('Failed to load interview history. Please try again.');
+        // Set empty array as fallback to prevent undefined errors
         setInterviews([]);
       } finally {
         setLoading(false);
@@ -87,6 +95,25 @@ const History: React.FC = () => {
     );
   }
 
+  if (error) {
+    return (
+      <div className="flex items-center justify-center min-h-96">
+        <div className="text-center">
+          <div className="text-red-500 mb-4">
+            <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+            </svg>
+          </div>
+          <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">Failed to Load History</h3>
+          <p className="text-gray-600 dark:text-gray-400 mb-4">{error}</p>
+          <Button onClick={() => window.location.reload()}>
+            Try Again
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -122,15 +149,15 @@ const History: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <ComponentCard title="">
           <div className="text-center">
-            <div className="text-2xl font-bold text-blue-600">{interviews.length}</div>
+            <div className="text-2xl font-bold text-blue-600">{interviews?.length || 0}</div>
             <div className="text-sm text-gray-600 dark:text-gray-400">Total Interviews</div>
           </div>
         </ComponentCard>
         <ComponentCard title="">
           <div className="text-center">
             <div className="text-2xl font-bold text-green-600">
-              {interviews.length > 0
-                ? Math.round(interviews.reduce((sum, interview) => sum + (interview.score || 0), 0) / interviews.length) + '%'
+              {interviews && interviews.length > 0
+                ? Math.round(interviews.reduce((sum, interview) => sum + (interview?.score || 0), 0) / interviews.length) + '%'
                 : '0%'
               }
             </div>
@@ -140,7 +167,10 @@ const History: React.FC = () => {
         <ComponentCard title="">
           <div className="text-center">
             <div className="text-2xl font-bold text-purple-600">
-              {new Set(interviews.map(i => i.domain)).size}
+              {interviews && interviews.length > 0
+                ? new Set(interviews.map(i => i?.domain || 'Unknown')).size
+                : 0
+              }
             </div>
             <div className="text-sm text-gray-600 dark:text-gray-400">Domains Practiced</div>
           </div>
@@ -148,8 +178,8 @@ const History: React.FC = () => {
         <ComponentCard title="">
           <div className="text-center">
             <div className="text-2xl font-bold text-orange-600">
-              {interviews.length > 0
-                ? Math.max(...interviews.map(i => i.score || 0)) + '%'
+              {interviews && interviews.length > 0
+                ? Math.max(...interviews.map(i => i?.score || 0)) + '%'
                 : '0%'
               }
             </div>
@@ -169,59 +199,65 @@ const History: React.FC = () => {
           </div>
         ) : (
           <div className="space-y-4">
-            {interviews.map((interview) => (
-              <div
-                key={interview.id}
-                className="border border-gray-200 dark:border-gray-700 rounded-lg p-6 hover:border-gray-300 dark:hover:border-gray-600 transition-colors"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-4">
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center ${getScoreBgColor(interview.score)}`}>
-                      <span className={`text-lg font-bold ${getScoreColor(interview.score)}`}>
-                        {interview.score}%
-                      </span>
-                    </div>
-                    <div>
-                      <h3 className="font-medium text-gray-900 dark:text-white">
-                        {interview.domain} Interview
-                      </h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {interview.difficulty} • {interview.questionsCount} questions • {
-                          (() => {
-                            const interviewDate = interview.date || interview.createdAt;
-                            if (interviewDate) {
-                              try {
-                                const date = new Date(interviewDate);
-                                if (!isNaN(date.getTime())) {
-                                  return date.toLocaleDateString();
+            {interviews && interviews.length > 0 ? (
+              interviews.map((interview) => (
+                <div
+                  key={interview?.id || Math.random()}
+                  className="border border-gray-200 dark:border-gray-700 rounded-lg p-6 hover:border-gray-300 dark:hover:border-gray-600 transition-colors"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-4">
+                      <div className={`w-12 h-12 rounded-full flex items-center justify-center ${getScoreBgColor(interview?.score || 0)}`}>
+                        <span className={`text-lg font-bold ${getScoreColor(interview?.score || 0)}`}>
+                          {interview?.score || 0}%
+                        </span>
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-gray-900 dark:text-white">
+                          {interview?.domain || 'Unknown'} Interview
+                        </h3>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                          {interview?.difficulty || 'Unknown'} • {interview?.questionsCount || 0} questions • {
+                            (() => {
+                              const interviewDate = interview?.date || interview?.createdAt;
+                              if (interviewDate) {
+                                try {
+                                  const date = new Date(interviewDate);
+                                  if (!isNaN(date.getTime())) {
+                                    return date.toLocaleDateString();
+                                  }
+                                } catch (error) {
+                                  console.warn('Invalid date format:', interviewDate);
                                 }
-                              } catch (error) {
-                                console.warn('Invalid date format:', interviewDate);
                               }
-                            }
-                            return 'Date not available';
-                          })()
-                        }
-                      </p>
+                              return 'Date not available';
+                            })()
+                          }
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                      interview.score >= 80 ? 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400' :
-                      interview.score >= 60 ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400' :
-                      'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400'
-                    }`}>
-                      {interview.score >= 80 ? 'Excellent' : interview.score >= 60 ? 'Good' : 'Needs Work'}
-                    </span>
-                    <Link to={`/interview/${interview.id}/results`}>
-                      <Button variant="outline" size="sm">
-                        View Results
-                      </Button>
-                    </Link>
+                    <div className="flex items-center space-x-3">
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                        (interview?.score || 0) >= 80 ? 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400' :
+                        (interview?.score || 0) >= 60 ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400' :
+                        'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400'
+                      }`}>
+                        {(interview?.score || 0) >= 80 ? 'Excellent' : (interview?.score || 0) >= 60 ? 'Good' : 'Needs Work'}
+                      </span>
+                      <Link to={`/interview/${interview?.id}/results`}>
+                        <Button variant="outline" size="sm">
+                          View Results
+                        </Button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
+              ))
+            ) : (
+              <div className="text-center py-8">
+                <p className="text-gray-600 dark:text-gray-400">No interviews to display</p>
               </div>
-            ))}
+            )}
           </div>
         )}
       </ComponentCard>
