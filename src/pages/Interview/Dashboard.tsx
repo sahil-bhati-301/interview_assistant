@@ -26,14 +26,13 @@ const Dashboard: React.FC = () => {
     { id: 'dsa', name: 'Data Structures & Algorithms', icon: '🧠', category: 'technical' },
     { id: 'aws', name: 'AWS', icon: '☁️', category: 'technical' },
     { id: 'cybersecurity', name: 'Cybersecurity', icon: '🔒', category: 'technical' },
+    { id: 'capgemini', name: 'Capgemini', icon: '🏢', category: 'company' },
   ];
 
   const categories = [
     { id: 'all', name: 'All Domains', icon: '🎯' },
     { id: 'technical', name: 'Technical', icon: '💻' },
-    { id: 'hr', name: 'HR Related', icon: '👥' },
     { id: 'company', name: 'Company Specific', icon: '🏢' },
-    { id: 'role', name: 'Role Specific', icon: '🎭' },
   ];
 
   const filteredDomains = selectedCategory === 'all'
@@ -64,10 +63,13 @@ const Dashboard: React.FC = () => {
 
       try {
         setLoadingStats(true);
+        console.log('Dashboard: Loading interview history for user:', user.uid);
         const history = await apiService.getInterviewHistory(user.uid);
+        console.log('Dashboard: History response:', history);
+        console.log('Dashboard: History length:', history?.length || 0);
         setInterviewHistory(history);
       } catch (error) {
-        console.error('Failed to load interview history:', error);
+        console.error('Dashboard: Failed to load interview history:', error);
         setInterviewHistory([]);
       } finally {
         setLoadingStats(false);
@@ -104,7 +106,7 @@ const Dashboard: React.FC = () => {
 
   // Calculate stats from interview history
   const calculateStats = () => {
-    if (interviewHistory.length === 0) {
+    if (!Array.isArray(interviewHistory) || interviewHistory.length === 0) {
       return {
         totalInterviews: 0,
         averageScore: 0,

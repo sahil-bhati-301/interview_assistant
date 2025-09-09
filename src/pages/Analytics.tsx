@@ -7,6 +7,7 @@ const Analytics: React.FC = () => {
   const { user } = useAuth();
   const [interviewHistory, setInterviewHistory] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedDomain, setSelectedDomain] = useState<string>('all');
 
   useEffect(() => {
     const loadAnalyticsData = async () => {
@@ -32,11 +33,19 @@ const Analytics: React.FC = () => {
   }, [user]);
 
   // Prepare data for growth trend line graph
-  const prepareGrowthData = () => {
+  const prepareGrowthData = (domainFilter: string = 'all') => {
     if (interviewHistory.length === 0) return [];
 
+    // Filter interviews by domain if specified
+    let filteredInterviews = interviewHistory;
+    if (domainFilter !== 'all') {
+      filteredInterviews = interviewHistory.filter(interview =>
+        (interview.domain || 'Unknown') === domainFilter
+      );
+    }
+
     // Sort interviews by date
-    const sortedInterviews = [...interviewHistory].sort((a, b) =>
+    const sortedInterviews = [...filteredInterviews].sort((a, b) =>
       new Date(a.date || a.createdAt).getTime() - new Date(b.date || b.createdAt).getTime()
     );
 
@@ -82,8 +91,39 @@ const Analytics: React.FC = () => {
     }));
   };
 
-  const growthData = prepareGrowthData();
+  // Prepare data for domain distribution pie chart
+  const preparePieChartData = () => {
+    if (interviewHistory.length === 0) return [];
+
+    const domainMap = new Map<string, number>();
+
+    interviewHistory.forEach(interview => {
+      const domain = interview.domain || 'Unknown';
+      domainMap.set(domain, (domainMap.get(domain) || 0) + 1);
+    });
+
+    const total = interviewHistory.length;
+    return Array.from(domainMap.entries())
+      .map(([domain, count]) => ({
+        domain,
+        count,
+        percentage: Math.round((count / total) * 100)
+      }))
+      .sort((a, b) => b.count - a.count); // Sort by count descending
+  };
+
+  const growthData = prepareGrowthData(selectedDomain);
   const domainData = prepareDomainData();
+  const pieChartData = preparePieChartData();
+
+  // Get unique domains for filter dropdown
+  const getUniqueDomains = () => {
+    if (interviewHistory.length === 0) return [];
+    const domains = new Set(interviewHistory.map(i => i.domain || 'Unknown'));
+    return Array.from(domains).sort();
+  };
+
+  const uniqueDomains = getUniqueDomains();
 
   if (loading) {
     return (
@@ -152,8 +192,38 @@ const Analytics: React.FC = () => {
 
       {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Domain Filter */}
+        {uniqueDomains.length > 1 && (
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center space-x-4">
+              <label htmlFor="domain-filter" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Filter by Domain:
+              </label>
+              <select
+                id="domain-filter"
+                value={selectedDomain}
+                onChange={(e) => setSelectedDomain(e.target.value)}
+                className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+              >
+                <option value="all">All Domains</option>
+                {uniqueDomains.map((domain) => (
+                  <option key={domain} value={domain}>
+                    {domain}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="text-sm text-gray-600 dark:text-gray-400">
+              {selectedDomain === 'all'
+                ? `${interviewHistory.length} interviews`
+                : `${interviewHistory.filter(i => (i.domain || 'Unknown') === selectedDomain).length} interviews`
+              }
+            </div>
+          </div>
+        )}
+
         {/* Growth Trend Line Graph */}
-        <ComponentCard title="Performance Growth Trend">
+        <ComponentCard title={`Performance Growth Trend ${selectedDomain !== 'all' ? `(${selectedDomain})` : ''}`}>
           <div className="h-80">
             {growthData.length > 0 ? (
               <div className="space-y-4">
@@ -286,6 +356,124 @@ const Analytics: React.FC = () => {
         </ComponentCard>
       </div>
 
+      {/* Domain Distribution Pie Chart */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <ComponentCard title="Domain Distribution">
+          <div className="h-80 flex flex-col">
+            {pieChartData.length > 0 ? (
+              <div className="flex-1 flex flex-col justify-center items-center space-y-4">
+                <div className="relative flex items-center justify-center">
+                  <svg className="w-48 h-48 transform -rotate-90" viewBox="0 0 200 200">
+                    {pieChartData.map((item, index) => {
+                      const colors = [
+                        '#3b82f6', // Blue
+                        '#ef4444', // Red
+                        '#10b981', // Green
+                        '#f59e0b', // Yellow
+                        '#8b5cf6', // Purple
+                        '#06b6d4', // Cyan
+                        '#f97316', // Orange
+                        '#84cc16', // Lime
+                        '#ec4899', // Pink
+                        '#6b7280'  // Gray
+                      ];
+
+                      const color = colors[index % colors.length];
+                      const total = pieChartData.reduce((sum, d) => sum + d.count, 0);
+                      const startAngle = pieChartData.slice(0, index).reduce((sum, d) => sum + (d.count / total) * 360, 0);
+                      const angle = (item.count / total) * 360;
+
+                      const x1 = 100 + 70 * Math.cos((startAngle * Math.PI) / 180);
+                      const y1 = 100 + 70 * Math.sin((startAngle * Math.PI) / 180);
+                      const x2 = 100 + 70 * Math.cos(((startAngle + angle) * Math.PI) / 180);
+                      const y2 = 100 + 70 * Math.sin(((startAngle + angle) * Math.PI) / 180);
+
+                      const largeArcFlag = angle > 180 ? 1 : 0;
+
+                      return (
+                        <path
+                          key={index}
+                          d={`M 100 100 L ${x1} ${y1} A 70 70 0 ${largeArcFlag} 1 ${x2} ${y2} Z`}
+                          fill={color}
+                          stroke="#ffffff"
+                          strokeWidth="2"
+                          className="hover:opacity-80 transition-opacity cursor-pointer"
+                        />
+                      );
+                    })}
+                  </svg>
+                </div>
+                <div className="text-center text-sm text-gray-600 dark:text-gray-400">
+                  Distribution of Interview Domains
+                </div>
+              </div>
+            ) : (
+              <div className="flex-1 flex items-center justify-center text-gray-500">
+                <div className="text-center">
+                  <div className="text-4xl mb-4">🥧</div>
+                  <p>Complete interviews to see domain distribution</p>
+                </div>
+              </div>
+            )}
+          </div>
+        </ComponentCard>
+
+        {/* Pie Chart Legend */}
+        <ComponentCard title="Legend">
+          <div className="h-80 overflow-y-auto">
+            {pieChartData.length > 0 ? (
+              <div className="space-y-2 pr-2">
+                {pieChartData.map((item, index) => {
+                  const colors = [
+                    '#3b82f6', // Blue
+                    '#ef4444', // Red
+                    '#10b981', // Green
+                    '#f59e0b', // Yellow
+                    '#8b5cf6', // Purple
+                    '#06b6d4', // Cyan
+                    '#f97316', // Orange
+                    '#84cc16', // Lime
+                    '#ec4899', // Pink
+                    '#6b7280'  // Gray
+                  ];
+
+                  const color = colors[index % colors.length];
+
+                  return (
+                    <div key={index} className="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                      <div className="flex items-center space-x-2">
+                        <div
+                          className="w-3 h-3 rounded-full flex-shrink-0"
+                          style={{ backgroundColor: color }}
+                        ></div>
+                        <span className="font-medium text-gray-900 dark:text-white text-sm truncate">
+                          {item.domain}
+                        </span>
+                      </div>
+                      <div className="text-right flex-shrink-0">
+                        <div className="text-sm font-bold text-gray-900 dark:text-white">
+                          {item.percentage}%
+                        </div>
+                        <div className="text-xs text-gray-600 dark:text-gray-400">
+                          {item.count} int{item.count !== 1 ? 's' : ''}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="flex items-center justify-center h-full text-gray-500">
+                <div className="text-center">
+                  <div className="text-4xl mb-4">📊</div>
+                  <p>Legend will appear when you have interview data</p>
+                </div>
+              </div>
+            )}
+          </div>
+        </ComponentCard>
+      </div>
+
       {/* Detailed Analytics */}
       {interviewHistory.length > 0 && (
         <ComponentCard title="Detailed Performance Metrics">
@@ -295,7 +483,7 @@ const Analytics: React.FC = () => {
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                 Recent Performance
               </h3>
-              <div className="space-y-3">
+              <div className="max-h-64 overflow-y-auto space-y-3 pr-2 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent">
                 {interviewHistory.slice(-5).map((interview, index) => {
                   const interviewDate = interview.date || interview.createdAt;
                   let formattedDate = 'Date not available';
@@ -340,7 +528,7 @@ const Analytics: React.FC = () => {
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                 Domain Breakdown
               </h3>
-              <div className="space-y-3">
+              <div className="max-h-64 overflow-y-auto space-y-3 pr-2 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent">
                 {domainData.map((domain, index) => (
                   <div key={index} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
                     <div>

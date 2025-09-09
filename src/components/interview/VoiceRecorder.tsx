@@ -28,10 +28,11 @@ const VoiceRecorder: React.FC<VoiceRecorderProps> = ({ onTranscriptChange, trans
     // Get browser information
     const userAgent = navigator.userAgent;
     const isOperaGX = userAgent.includes('OPR') && userAgent.includes('GX');
-    const isOpera = userAgent.includes('OPR') || userAgent.includes('Opera');
-    const isChrome = userAgent.includes('Chrome') && !userAgent.includes('OPR');
-    const isEdge = userAgent.includes('Edg');
-    const isSafari = userAgent.includes('Safari') && !userAgent.includes('Chrome');
+    // Browser detection variables (kept for future use)
+    // const isOpera = userAgent.includes('OPR') || userAgent.includes('Opera');
+    // const isChrome = userAgent.includes('Chrome') && !userAgent.includes('OPR');
+    // const isEdge = userAgent.includes('Edg');
+    // const isSafari = userAgent.includes('Safari') && !userAgent.includes('Chrome');
 
     if (!SpeechRecognition) {
       let recommendedBrowsers = 'Chrome, Edge, Safari, or Opera';

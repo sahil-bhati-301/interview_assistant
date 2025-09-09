@@ -7,16 +7,18 @@ from utils.firebase_utils import initialize_firebase
 
 app = Flask(__name__)
 CORS(app,
-     origins=[
-         "https://interview-88de2.web.app",
-         "http://localhost:3000",
-         "http://localhost:5173",
-         "http://127.0.0.1:3000",
-         "http://127.0.0.1:5173"
-     ],
-     methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-     allow_headers=["Content-Type", "Authorization", "X-Requested-With"],
-     supports_credentials=True
+      origins=[
+          "https://interview-88de2.web.app",
+          "http://localhost:3000",
+          "http://localhost:5173",
+          "http://localhost:5174",  # Added for Vite dev server
+          "http://127.0.0.1:3000",
+          "http://127.0.0.1:5173",
+          "http://127.0.0.1:5174"  # Added for Vite dev server
+      ],
+      methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+      allow_headers=["Content-Type", "Authorization", "X-Requested-With"],
+      supports_credentials=True
 )
 
 # Initialize Firebase
@@ -93,27 +95,30 @@ def submit_answer(interview_id):
 def get_report(interview_id):
     """Get the analysis report for an interview"""
     try:
-        # First check if report exists in results collection
-        results_ref = interview_service.db.collection('results').document(interview_id)
-        result_doc = results_ref.get()
+        print(f"DEBUG: Getting report for interview {interview_id}")
 
-        if result_doc.exists:
-            # Return cached report
-            return jsonify(result_doc.to_dict()), 200
+        # First check if report exists in the interview document itself
+        interview_ref = interview_service.db.collection('interviews').document(interview_id)
+        interview_doc = interview_ref.get()
+
+        if not interview_doc.exists:
+            print(f"DEBUG: Interview {interview_id} not found")
+            return jsonify({'error': 'Interview not found'}), 404
+
+        interview_data = interview_doc.to_dict()
+        report = interview_data.get('report')
+
+        if report:
+            print(f"DEBUG: Returning cached report for interview {interview_id}")
+            return jsonify(report), 200
         else:
-            # Generate new report and cache it
+            print(f"DEBUG: No cached report found, generating new report for interview {interview_id}")
+            # Generate new report and store it in the interview document
             result = interview_service.generate_report(interview_id)
-
-            # Cache the report in results collection
-            from firebase_admin import firestore
-            results_ref.set({
-                'interviewId': interview_id,
-                'report': result,
-                'generatedAt': firestore.SERVER_TIMESTAMP
-            })
-
+            print(f"DEBUG: Report generated successfully for interview {interview_id}")
             return jsonify(result), 200
     except Exception as e:
+        print(f"DEBUG: Error getting report for interview {interview_id}: {e}")
         return jsonify({'error': str(e)}), 500
 
 @app.route('/api/interview/<interview_id>/questions', methods=['GET'])
@@ -144,21 +149,67 @@ def complete_interview(interview_id):
         data = request.get_json()
         answers = data.get('answers', [])
 
-        # Submit all answers (this should be fast)
-        for answer_data in answers:
+        print(f"DEBUG: Completing interview {interview_id} with {len(answers)} answers")
+
+        # Get interview data first
+        interview_ref = interview_service.db.collection('interviews').document(interview_id)
+        interview_doc = interview_ref.get()
+
+        if not interview_doc.exists:
+            return jsonify({'error': 'Interview not found'}), 404
+
+        interview_data = interview_doc.to_dict()
+        questions = interview_data.get('questions', [])
+        existing_answers = interview_data.get('answers', [])
+
+        print(f"DEBUG: Interview has {len(questions)} questions, {len(existing_answers)} existing answers")
+
+        # Prepare all answers for bulk update
+        all_answers = existing_answers.copy()
+
+        # Add new answers to the list
+        for i, answer_data in enumerate(answers):
             question_id = answer_data.get('questionId')
             answer_text = answer_data.get('text')
 
-            if question_id and answer_text:
-                interview_service.submit_answer(interview_id, question_id, answer_text, 'text')
+            if question_id and answer_text and i < len(questions):
+                # Find the question to analyze
+                question = None
+                for q in questions:
+                    if q.get('id') == question_id:
+                        question = q
+                        break
 
-        # Mark interview as completed (fast operation)
+                if question:
+                    # Analyze the answer using AI
+                    analysis = interview_service.ai_service.analyze_answer(
+                        question['text'],
+                        answer_text,
+                        interview_data.get('domain', 'general'),
+                        interview_data.get('difficulty', 'intermediate')
+                    )
+
+                    from datetime import datetime
+                    answer_entry = {
+                        'questionId': question_id,
+                        'text': answer_text,
+                        'answerType': 'text',
+                        'submittedAt': datetime.utcnow(),  # Use current time
+                        'analysis': analysis
+                    }
+                    all_answers.append(answer_entry)
+                    print(f"DEBUG: Added answer for question {question_id}")
+
+        # Update interview with all answers and mark as completed
         from firebase_admin import firestore
-        interview_ref = interview_service.db.collection('interviews').document(interview_id)
         interview_ref.update({
+            'answers': all_answers,
             'status': 'completed',
-            'completedAt': firestore.SERVER_TIMESTAMP
+            'completedAt': firestore.SERVER_TIMESTAMP,
+            'currentQuestionIndex': len(questions)  # Mark all questions as answered
         })
+
+        print(f"DEBUG: Interview {interview_id} completed successfully")
 
         # Return success immediately - report generation will happen separately
         return jsonify({
@@ -167,15 +218,19 @@ def complete_interview(interview_id):
             'interviewId': interview_id
         }), 200
     except Exception as e:
+        print(f"DEBUG: Error completing interview: {e}")
         return jsonify({'error': str(e)}), 500
 
 @app.route('/api/interview/history/<user_id>', methods=['GET'])
 def get_interview_history(user_id):
     """Get interview history for a user"""
     try:
+        print(f"DEBUG: Getting interview history for user {user_id}")
         result = interview_service.get_interview_history(user_id)
+        print(f"DEBUG: Found {len(result)} interviews for user {user_id}")
         return jsonify(result), 200
     except Exception as e:
+        print(f"DEBUG: Error getting interview history for user {user_id}: {e}")
         return jsonify({'error': str(e)}), 500
 
 @app.route('/api/interview/history/<user_id>', methods=['DELETE'])

@@ -828,6 +828,194 @@ QUESTION_BANK = {
                 "type": "technical"
             }
         ]
+    },
+    "capgemini": {
+        "beginner": [
+            {
+                "id": "cap_beg_001",
+                "question": "Explain Encapsulation in Object Oriented Programming.",
+                "type": "technical"
+            },
+            {
+                "id": "cap_beg_002",
+                "question": "Explain the OOP concepts: Inheritance, Polymorphism, Encapsulation.",
+                "type": "technical"
+            },
+            {
+                "id": "cap_beg_003",
+                "question": "What is the difference between the assignment operator (=) and equality operator (==) in C++?",
+                "type": "technical"
+            },
+            {
+                "id": "cap_beg_004",
+                "question": "What is the purpose of a friend class or function in C++?",
+                "type": "technical"
+            },
+            {
+                "id": "cap_beg_005",
+                "question": "Is Java 100% object oriented? Why or why not?",
+                "type": "technical"
+            },
+            {
+                "id": "cap_beg_006",
+                "question": "Explain autoboxing and unboxing in Java.",
+                "type": "technical"
+            },
+            {
+                "id": "cap_beg_007",
+                "question": "What is the role of finalize() and garbage collector in Java?",
+                "type": "technical"
+            },
+            {
+                "id": "cap_beg_008",
+                "question": "What does SQL stand for and what are some advantages of using queries?",
+                "type": "technical"
+            },
+            {
+                "id": "cap_beg_009",
+                "question": "Explain the difference between LEFT JOIN and RIGHT JOIN with an example.",
+                "type": "technical"
+            },
+            {
+                "id": "cap_beg_010",
+                "question": "Why do we use a Database Management System (DBMS) and what are its advantages?",
+                "type": "technical"
+            },
+            {
+                "id": "cap_beg_011",
+                "question": "How would you explain a complex technical concept to a non-technical person?",
+                "type": "behavioral"
+            },
+            {
+                "id": "cap_beg_012",
+                "question": "Do you contribute to open source? Which resources do you follow to stay updated in software engineering?",
+                "type": "behavioral"
+            }
+        ],
+        "intermediate": [
+            {
+                "id": "cap_int_001",
+                "question": "Write an SQL query to identify users with more than 5 login events per week.",
+                "type": "technical"
+            },
+            {
+                "id": "cap_int_002",
+                "question": "Write an SQL query to find employees earning more than their manager.",
+                "type": "technical"
+            },
+            {
+                "id": "cap_int_003",
+                "question": "What is denormalization and why is it used?",
+                "type": "technical"
+            },
+            {
+                "id": "cap_int_004",
+                "question": "Why is normalization needed in databases? Explain its importance.",
+                "type": "technical"
+            },
+            {
+                "id": "cap_int_005",
+                "question": "Write pseudocode to check whether a number is prime.",
+                "type": "technical"
+            },
+            {
+                "id": "cap_int_006",
+                "question": "Write pseudocode to reverse a number.",
+                "type": "technical"
+            },
+            {
+                "id": "cap_int_007",
+                "question": "Write pseudocode to find the factorial of a number using recursion.",
+                "type": "technical"
+            },
+            {
+                "id": "cap_int_008",
+                "question": "Write pseudocode to generate the Fibonacci series up to N terms.",
+                "type": "technical"
+            },
+            {
+                "id": "cap_int_009",
+                "question": "Write pseudocode to check whether a string is a palindrome.",
+                "type": "technical"
+            },
+            {
+                "id": "cap_int_010",
+                "question": "Write pseudocode to count the number of vowels in a string.",
+                "type": "technical"
+            }
+        ],
+        "advanced": [
+            {
+                "id": "cap_adv_001",
+                "question": "Write pseudocode to find the largest element in an array.",
+                "type": "technical"
+            },
+            {
+                "id": "cap_adv_002",
+                "question": "Write pseudocode to sort an array in ascending order.",
+                "type": "technical"
+            },
+            {
+                "id": "cap_adv_003",
+                "question": "Write pseudocode to implement binary search.",
+                "type": "technical"
+            },
+            {
+                "id": "cap_adv_004",
+                "question": "Write pseudocode to implement linear search.",
+                "type": "technical"
+            },
+            {
+                "id": "cap_adv_005",
+                "question": "Write pseudocode to calculate the sum of digits of a number.",
+                "type": "technical"
+            },
+            {
+                "id": "cap_adv_006",
+                "question": "Write pseudocode to find the second largest number in an array.",
+                "type": "technical"
+            },
+            {
+                "id": "cap_adv_007",
+                "question": "Write pseudocode to merge two sorted arrays.",
+                "type": "technical"
+            },
+            {
+                "id": "cap_adv_008",
+                "question": "Write pseudocode to check whether a year is a leap year.",
+                "type": "technical"
+            },
+            {
+                "id": "cap_adv_009",
+                "question": "Write pseudocode to swap two numbers without using a third variable.",
+                "type": "technical"
+            },
+            {
+                "id": "cap_adv_010",
+                "question": "Write pseudocode to find the greatest common divisor (GCD) of two numbers.",
+                "type": "technical"
+            },
+            {
+                "id": "cap_adv_011",
+                "question": "Write pseudocode to remove duplicates from an array.",
+                "type": "technical"
+            },
+            {
+                "id": "cap_adv_012",
+                "question": "Write pseudocode to find the frequency of each element in an array.",
+                "type": "technical"
+            },
+            {
+                "id": "cap_adv_013",
+                "question": "Write pseudocode to check if two strings are anagrams.",
+                "type": "technical"
+            },
+            {
+                "id": "cap_adv_014",
+                "question": "Write pseudocode to count the number of words in a sentence.",
+                "type": "technical"
+            }
+        ]
     }
 }
 
