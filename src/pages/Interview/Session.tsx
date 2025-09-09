@@ -61,6 +61,13 @@ const Session: React.FC = () => {
     }
   };
 
+  const handleEndInterview = () => {
+    const confirmEnd = window.confirm('Do you want to abort current interview?');
+    if (confirmEnd) {
+      navigate('/interview');
+    }
+  };
+
   const handleSubmitInterview = async () => {
     if (!id) return;
 
@@ -68,10 +75,10 @@ const Session: React.FC = () => {
 
     try {
       // Step 1: Submit all answers at once to complete the interview (fast operation)
-      const allAnswers = answers.map((answer, index) => ({
+      const allAnswers = Array.isArray(answers) ? answers.map((answer, index) => ({
         questionId: questions[index].id,
         text: answer
-      }));
+      })) : [];
 
       console.log('Submitting interview completion...');
       const completeResponse = await fetch(`${API_BASE_URL}/interview/${id}/complete`, {
@@ -92,20 +99,23 @@ const Session: React.FC = () => {
       console.log('Interview completed:', completeData);
 
       // Step 2: Get the analysis report (this may take longer)
-      console.log('Generating analysis report...');
+      console.log('Fetching analysis report...');
       const reportResponse = await fetch(`${API_BASE_URL}/interview/${id}/report`);
+      console.log('Report response status:', reportResponse.status);
 
       if (reportResponse.ok) {
         const reportData = await reportResponse.json();
-        console.log('Report generated:', reportData);
+        console.log('Report data received:', reportData);
+        console.log('Report keys:', Object.keys(reportData));
 
         // Navigate to results with report data
         navigate(`/interview/${id}/results`, {
           state: { report: reportData }
         });
       } else {
+        const errorText = await reportResponse.text();
+        console.error('Report generation failed:', reportResponse.status, errorText);
         // If report generation fails, still navigate to results (will show loading)
-        console.warn('Report generation failed, navigating to results anyway');
         navigate(`/interview/${id}/results`);
       }
     } catch (error) {
@@ -212,7 +222,7 @@ const Session: React.FC = () => {
             <div className="flex gap-2">
               <Button
                 variant="outline"
-                onClick={() => navigate('/interview')}
+                onClick={handleEndInterview}
                 disabled={isSubmitting}
               >
                 End Interview

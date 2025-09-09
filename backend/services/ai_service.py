@@ -15,7 +15,22 @@ class AIService:
             raise ValueError("GEMINI_API_KEY environment variable is required")
 
         genai.configure(api_key=api_key)
-        self.model = genai.GenerativeModel('gemini-2.5-flash')
+
+        # Try gemini-2.5-flash first, then fallbacks
+        model_names = ['gemini-2.5-flash', 'gemini-1.5-flash', 'gemini-1.5-pro', 'gemini-pro']
+        self.model = None
+
+        for model_name in model_names:
+            try:
+                self.model = genai.GenerativeModel(model_name)
+                print(f"DEBUG: Successfully initialized model: {model_name}")
+                break
+            except Exception as e:
+                print(f"DEBUG: Failed to initialize model {model_name}: {e}")
+                continue
+
+        if self.model is None:
+            raise ValueError("Could not initialize any Gemini model")
 
     def generate_question(self, domain: str, difficulty: str, question_type: str = "technical") -> Dict[str, Any]:
         """Generate a technical interview question using Gemini AI"""
@@ -164,42 +179,76 @@ Provide a comprehensive analysis in the following JSON format:
 }}"""
 
         try:
+            print(f"DEBUG: Generating report with model: {self.model.model_name}")
             response = self.model.generate_content(prompt)
-            # Remove markdown code block formatting if present
             response_text = response.text.strip()
+            print(f"DEBUG: Raw AI response length: {len(response_text)}")
+
+            # Remove markdown code block formatting if present
             if response_text.startswith('```json'):
                 response_text = response_text[7:]  # Remove ```json
             if response_text.endswith('```'):
                 response_text = response_text[:-3]  # Remove ```
             response_text = response_text.strip()
+
+            print(f"DEBUG: Cleaned response preview: {response_text[:200]}...")
+
             result = json.loads(response_text)
+            print(f"DEBUG: Successfully parsed JSON report")
             return result
+
+        except json.JSONDecodeError as e:
+            print(f"DEBUG: JSON parsing failed: {e}")
+            print(f"DEBUG: Failed response: {response_text[:500]}")
         except Exception as e:
-            print(f"AI report generation failed: {e}")
-            # Fallback to basic analysis
-            total_questions = len(questions_answers)
-            total_score = sum(qa.get('analysis', {}).get('overallScore', 0) for qa in questions_answers)
-            average_score = total_score / total_questions if total_questions > 0 else 0
+            print(f"DEBUG: AI report generation failed: {e}")
 
-            if average_score >= 80:
-                performance_level = "Excellent"
-            elif average_score >= 60:
-                performance_level = "Good"
-            else:
-                performance_level = "Needs Improvement"
+        # Enhanced fallback analysis
+        print("DEBUG: Using fallback report generation")
+        total_questions = len(questions_answers)
+        total_score = 0
+        valid_answers = 0
 
-            return {
-                'overallScore': round(average_score, 1),
-                'performanceLevel': performance_level,
-                'totalQuestions': total_questions,
-                'domain': domain,
-                'difficulty': difficulty,
-                'strengths': ['Shows basic understanding'],
-                'weaknesses': ['Could provide more detailed explanations'],
-                'questionAnalysis': [],
-                'recommendations': ['Practice more coding problems', 'Review fundamental concepts'],
-                'conceptMastery': {
-                    'wellUnderstood': [],
-                    'needsWork': []
-                }
+        for qa in questions_answers:
+            analysis = qa.get('analysis', {})
+            if isinstance(analysis, dict) and 'overallScore' in analysis:
+                total_score += analysis.get('overallScore', 0)
+                valid_answers += 1
+
+        average_score = total_score / valid_answers if valid_answers > 0 else 0
+
+        if average_score >= 80:
+            performance_level = "Excellent"
+        elif average_score >= 60:
+            performance_level = "Good"
+        else:
+            performance_level = "Needs Improvement"
+
+        # Generate question analysis from individual analyses
+        question_analysis = []
+        for i, qa in enumerate(questions_answers, 1):
+            analysis = qa.get('analysis', {})
+            if isinstance(analysis, dict):
+                question_analysis.append({
+                    'questionNumber': i,
+                    'question': qa.get('questionText', ''),
+                    'userAnswer': qa.get('text', ''),
+                    'score': analysis.get('overallScore', 0),
+                    'feedback': analysis.get('suggestions', 'No feedback available')
+                })
+
+        return {
+            'overallScore': round(average_score, 1),
+            'performanceLevel': performance_level,
+            'totalQuestions': total_questions,
+            'domain': domain,
+            'difficulty': difficulty,
+            'strengths': ['Shows basic understanding', f'Completed {total_questions} questions'],
+            'weaknesses': ['Could provide more detailed explanations'],
+            'questionAnalysis': question_analysis,
+            'recommendations': ['Practice more coding problems', 'Review fundamental concepts', 'Focus on technical depth'],
+            'conceptMastery': {
+                'wellUnderstood': [domain],
+                'needsWork': ['Advanced concepts', 'Problem-solving techniques']
             }
+        }

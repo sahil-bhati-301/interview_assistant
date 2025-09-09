@@ -4,17 +4,8 @@ import { Link, useLocation } from "react-router";
 // Assume these icons are imported from an icon library
 import {
   BoltIcon,
-  BoxCubeIcon,
-  CalenderIcon,
   ChevronDownIcon,
-  GridIcon,
   HorizontaLDots,
-  ListIcon,
-  PageIcon,
-  PieChartIcon,
-  PlugInIcon,
-  TableIcon,
-  UserCircleIcon,
 } from "../icons";
 import { useSidebar } from "../context/SidebarContext";
 
@@ -42,6 +33,17 @@ const othersItems: NavItem[] = [];
 const AppSidebar: React.FC = () => {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
   const location = useLocation();
+
+  // Hide sidebar during interview sessions only
+  // Match paths like /interview/12345 but exclude known non-interview paths
+  const isInterviewSession = /^\/interview\/[^\/]+$/.test(location.pathname) &&
+                            !location.pathname.includes('/results') &&
+                            !location.pathname.includes('/history') &&
+                            location.pathname !== '/interview';
+
+  if (isInterviewSession) {
+    return null;
+  }
 
   const [openSubmenu, setOpenSubmenu] = useState<{
     type: "main" | "others";

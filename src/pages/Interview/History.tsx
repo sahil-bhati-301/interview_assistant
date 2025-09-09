@@ -29,6 +29,7 @@ const History: React.FC = () => {
         console.log('Raw history response:', history);
         console.log('History type:', typeof history);
         console.log('Is array:', Array.isArray(history));
+        console.log('History length:', history?.length || 0);
 
         // Ensure we always have an array - handle all possible response formats
         let processedHistory: any[] = [];
@@ -39,6 +40,11 @@ const History: React.FC = () => {
           const historyObj = history as any;
           processedHistory = historyObj.data || historyObj.interviews || [];
         } else {
+          processedHistory = [];
+        }
+
+        // Ensure processedHistory is always an array
+        if (!Array.isArray(processedHistory)) {
           processedHistory = [];
         }
 
@@ -142,7 +148,7 @@ const History: React.FC = () => {
           </p>
         </div>
         <div className="flex items-center space-x-3">
-          {interviews.length > 0 && (
+          {Array.isArray(interviews) && interviews.length > 0 && (
             <Button
               variant="outline"
               onClick={handleClearHistory}
@@ -164,14 +170,14 @@ const History: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <ComponentCard title="">
           <div className="text-center">
-            <div className="text-2xl font-bold text-blue-600">{interviews?.length || 0}</div>
+            <div className="text-2xl font-bold text-blue-600">{Array.isArray(interviews) ? interviews.length : 0}</div>
             <div className="text-sm text-gray-600 dark:text-gray-400">Total Interviews</div>
           </div>
         </ComponentCard>
         <ComponentCard title="">
           <div className="text-center">
             <div className="text-2xl font-bold text-green-600">
-              {interviews && interviews.length > 0
+              {Array.isArray(interviews) && interviews.length > 0
                 ? Math.round(interviews.reduce((sum, interview) => sum + (interview?.score || 0), 0) / interviews.length) + '%'
                 : '0%'
               }
@@ -182,7 +188,7 @@ const History: React.FC = () => {
         <ComponentCard title="">
           <div className="text-center">
             <div className="text-2xl font-bold text-purple-600">
-              {interviews && interviews.length > 0
+              {Array.isArray(interviews) && interviews.length > 0
                 ? new Set(interviews.map(i => i?.domain || 'Unknown')).size
                 : 0
               }
@@ -193,7 +199,7 @@ const History: React.FC = () => {
         <ComponentCard title="">
           <div className="text-center">
             <div className="text-2xl font-bold text-orange-600">
-              {interviews && interviews.length > 0
+              {Array.isArray(interviews) && interviews.length > 0
                 ? Math.max(...interviews.map(i => i?.score || 0)) + '%'
                 : '0%'
               }
@@ -205,7 +211,7 @@ const History: React.FC = () => {
 
       {/* Interview List */}
       <ComponentCard title="Past Interviews">
-        {interviews.length === 0 ? (
+        {!Array.isArray(interviews) || interviews.length === 0 ? (
           <div className="text-center py-12">
             <p className="text-gray-600 dark:text-gray-400 mb-4">No interviews completed yet</p>
             <Link to="/interview">
@@ -214,7 +220,7 @@ const History: React.FC = () => {
           </div>
         ) : (
           <div className="space-y-4">
-            {interviews && interviews.length > 0 ? (
+            {Array.isArray(interviews) && interviews.length > 0 ? (
               interviews.map((interview) => (
                 <div
                   key={interview?.id || Math.random()}

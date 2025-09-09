@@ -136,20 +136,27 @@ class InterviewService:
 
     def generate_report(self, interview_id: str) -> Dict[str, Any]:
         """Generate a comprehensive report for the interview"""
+        print(f"DEBUG: Generating report for interview {interview_id}")
+
         interview_ref = self.db.collection('interviews').document(interview_id)
         interview_doc = interview_ref.get()
 
         if not interview_doc.exists:
+            print(f"DEBUG: Interview {interview_id} not found")
             raise ValueError("Interview not found")
 
         interview_data = interview_doc.to_dict()
+        print(f"DEBUG: Interview data keys: {list(interview_data.keys())}")
+        print(f"DEBUG: Interview status: {interview_data.get('status')}")
 
         if interview_data.get('status') != 'completed':
+            print(f"DEBUG: Interview not completed, status: {interview_data.get('status')}")
             raise ValueError("Interview not completed yet")
 
         # Prepare data for AI report generation with questions and answers
         questions = interview_data.get('questions', [])
         answers = interview_data.get('answers', [])
+        print(f"DEBUG: Questions count: {len(questions)}, Answers count: {len(answers)}")
 
         # Combine questions and answers for AI analysis
         questions_answers = []
@@ -168,18 +175,25 @@ class InterviewService:
             'completedAt': interview_data.get('completedAt')
         }
 
+        print(f"DEBUG: Report data prepared: domain={report_data['domain']}, questions_answers_count={len(questions_answers)}")
+
         # Generate AI-powered report
+        print("DEBUG: Calling AI service to generate report...")
         report = self.ai_service.generate_report(report_data)
+        print(f"DEBUG: AI report generated, keys: {list(report.keys()) if isinstance(report, dict) else 'Not a dict'}")
 
         # Update interview with report
         interview_ref.update({
             'report': report
         })
+        print("DEBUG: Report saved to interview document")
 
         return report
 
     def get_interview_history(self, user_id: str) -> List[Dict[str, Any]]:
         """Get interview history for a user (only completed interviews)"""
+        print(f"DEBUG: Getting interview history for user {user_id}")
+
         interviews_ref = self.db.collection('interviews')
         # Get only completed interviews for the user
         query = interviews_ref.where('userId', '==', user_id).where('status', '==', 'completed')
@@ -188,12 +202,16 @@ class InterviewService:
         history = []
         for doc in results:
             interview_data = doc.to_dict()
+            print(f"DEBUG: Processing interview {doc.id}, status: {interview_data.get('status')}")
 
             # Extract score from report if available
             score = 0
             report = interview_data.get('report')
             if report and isinstance(report, dict):
                 score = report.get('overallScore', 0)
+                print(f"DEBUG: Found report with score {score}")
+            else:
+                print(f"DEBUG: No report found for interview {doc.id}")
 
             # Extract additional fields for frontend
             questions_count = len(interview_data.get('questions', []))
@@ -216,6 +234,7 @@ class InterviewService:
         # Sort by completion date (most recent first)
         history.sort(key=lambda x: x.get('completedAt') or x.get('startedAt'), reverse=True)
 
+        print(f"DEBUG: Returning {len(history)} interviews for user {user_id}")
         return history
 
     def cleanup_abandoned_interviews(self, days_old: int = 7) -> Dict[str, Any]:

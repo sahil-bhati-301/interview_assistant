@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://interview-assistant-backend-v59m.onrender.com/api';
+export const API_BASE_URL = 'http://localhost:5000/api';
 
 export interface InterviewSettings {
   domain: string;
@@ -35,6 +35,8 @@ export interface InterviewResult {
   weaknesses: string[];
   questionAnalysis: Array<{
     questionNumber: number;
+    question: string;
+    userAnswer: string;
     score: number;
     feedback: string;
   }>;
@@ -61,7 +63,12 @@ class ApiService {
       throw new Error(`API request failed: ${response.statusText}`);
     }
 
-    return response.json();
+    try {
+      return await response.json();
+    } catch (error) {
+      console.error('Failed to parse JSON response:', error);
+      throw new Error('Invalid response format from server');
+    }
   }
 
   async startInterview(settings: InterviewSettings): Promise<{ interviewId: string }> {
@@ -91,12 +98,18 @@ class ApiService {
     });
   }
 
-  async getResults(interviewId: string): Promise<{ report: InterviewResult }> {
-    return this.request(`/interview/${interviewId}/report`);
+  async getResults(interviewId: string): Promise<InterviewResult> {
+    console.log('API Service: Fetching results for interview:', interviewId);
+    const result = await this.request<InterviewResult>(`/interview/${interviewId}/report`);
+    console.log('API Service: Results received:', result);
+    return result;
   }
 
   async getInterviewHistory(userId: string): Promise<any[]> {
-    return this.request(`/interview/history/${userId}`);
+    console.log('API: Fetching interview history for user:', userId);
+    const result = await this.request<any[]>(`/interview/history/${userId}`);
+    console.log('API: Interview history result:', result);
+    return result;
   }
 
   async clearInterviewHistory(userId: string): Promise<{ message: string; deletedCount: number }> {
