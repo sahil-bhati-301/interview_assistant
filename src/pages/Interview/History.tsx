@@ -19,16 +19,31 @@ const History: React.FC = () => {
         setError(null);
 
         if (!user) {
+          console.log('No user found, setting empty interviews');
           setInterviews([]);
           return;
         }
 
         console.log('Loading interview history for user:', user.uid);
         const history = await apiService.getInterviewHistory(user.uid);
-        console.log('History response:', history);
+        console.log('Raw history response:', history);
+        console.log('History type:', typeof history);
+        console.log('Is array:', Array.isArray(history));
 
-        // Ensure we always have an array
-        setInterviews(Array.isArray(history) ? history : []);
+        // Ensure we always have an array - handle all possible response formats
+        let processedHistory: any[] = [];
+        if (Array.isArray(history)) {
+          processedHistory = history;
+        } else if (history && typeof history === 'object') {
+          // Handle object response - safely access properties
+          const historyObj = history as any;
+          processedHistory = historyObj.data || historyObj.interviews || [];
+        } else {
+          processedHistory = [];
+        }
+
+        console.log('Processed history:', processedHistory);
+        setInterviews(processedHistory);
       } catch (error) {
         console.error('Failed to load interview history:', error);
         setError('Failed to load interview history. Please try again.');
