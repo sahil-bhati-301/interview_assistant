@@ -3266,6 +3266,239 @@ QUESTION_BANK = {
                 "type": "technical"
             }
         ]
+    },
+    "accenture": {
+        "beginner": [
+            {
+                "id": "acc_beg_001",
+                "question": "Explain recursion in C.",
+                "type": "technical"
+            },
+            {
+                "id": "acc_beg_002",
+                "question": "Explain exception handling.",
+                "type": "technical"
+            },
+            {
+                "id": "acc_beg_003",
+                "question": "Explain the significance of the 'super' and 'this' keywords in Java.",
+                "type": "technical"
+            },
+            {
+                "id": "acc_beg_004",
+                "question": "Explain the basic features of OOP.",
+                "type": "technical"
+            },
+            {
+                "id": "acc_beg_005",
+                "question": "What is the length and purpose of an identifier?",
+                "type": "technical"
+            },
+            {
+                "id": "acc_beg_006",
+                "question": "What is XML?",
+                "type": "technical"
+            },
+            {
+                "id": "acc_beg_007",
+                "question": "Explain the difference between JRE, JDK, JVM, and JIT.",
+                "type": "technical"
+            },
+            {
+                "id": "acc_beg_008",
+                "question": "What are the basic data types in programming?",
+                "type": "technical"
+            },
+            {
+                "id": "acc_beg_009",
+                "question": "Explain the concept of variables and constants.",
+                "type": "technical"
+            },
+            {
+                "id": "acc_beg_010",
+                "question": "What are conditional statements and loops?",
+                "type": "technical"
+            },
+            {
+                "id": "acc_beg_011",
+                "question": "Explain the concept of functions and methods.",
+                "type": "technical"
+            },
+            {
+                "id": "acc_beg_012",
+                "question": "What are arrays and how are they used?",
+                "type": "technical"
+            },
+            {
+                "id": "acc_beg_013",
+                "question": "Explain the difference between compiled and interpreted languages.",
+                "type": "technical"
+            },
+            {
+                "id": "acc_beg_014",
+                "question": "What are the basic principles of software development?",
+                "type": "technical"
+            },
+            {
+                "id": "acc_beg_015",
+                "question": "Explain the concept of debugging and testing.",
+                "type": "technical"
+            }
+        ],
+        "intermediate": [
+            {
+                "id": "acc_int_001",
+                "question": "What are the similarities between Java and C++? List their distinctive features.",
+                "type": "technical"
+            },
+            {
+                "id": "acc_int_002",
+                "question": "Describe the memory allocation process in C.",
+                "type": "technical"
+            },
+            {
+                "id": "acc_int_003",
+                "question": "What is the collection framework in Java?",
+                "type": "technical"
+            },
+            {
+                "id": "acc_int_004",
+                "question": "What is JDBC?",
+                "type": "technical"
+            },
+            {
+                "id": "acc_int_005",
+                "question": "Write a C++ program (or pseudocode) to generate the Fibonacci series.",
+                "type": "technical"
+            },
+            {
+                "id": "acc_int_006",
+                "question": "What is a classifier in Python?",
+                "type": "technical"
+            },
+            {
+                "id": "acc_int_007",
+                "question": "What are lambda expressions in Java?",
+                "type": "technical"
+            },
+            {
+                "id": "acc_int_008",
+                "question": "Explain the difference between sleep and wait in Java.",
+                "type": "technical"
+            },
+            {
+                "id": "acc_int_009",
+                "question": "Define the various types of polymorphism in C++.",
+                "type": "technical"
+            },
+            {
+                "id": "acc_int_010",
+                "question": "What is database normalization?",
+                "type": "technical"
+            },
+            {
+                "id": "acc_int_011",
+                "question": "Explain pointers and memory management in C++.",
+                "type": "technical"
+            },
+            {
+                "id": "acc_int_012",
+                "question": "What are design patterns and their importance?",
+                "type": "technical"
+            },
+            {
+                "id": "acc_int_013",
+                "question": "Explain the concept of inheritance and its types.",
+                "type": "technical"
+            },
+            {
+                "id": "acc_int_014",
+                "question": "What are abstract classes and interfaces?",
+                "type": "technical"
+            },
+            {
+                "id": "acc_int_015",
+                "question": "Explain the MVC (Model-View-Controller) architecture.",
+                "type": "technical"
+            }
+        ],
+        "advanced": [
+            {
+                "id": "acc_adv_001",
+                "question": "What is virtual inheritance?",
+                "type": "technical"
+            },
+            {
+                "id": "acc_adv_002",
+                "question": "List Coffman's conditions that lead to deadlock.",
+                "type": "technical"
+            },
+            {
+                "id": "acc_adv_003",
+                "question": "Describe short-term, medium-term, and long-term scheduling.",
+                "type": "technical"
+            },
+            {
+                "id": "acc_adv_004",
+                "question": "Explain the concept of multithreading and concurrency.",
+                "type": "technical"
+            },
+            {
+                "id": "acc_adv_005",
+                "question": "What are the different types of operating system architectures?",
+                "type": "technical"
+            },
+            {
+                "id": "acc_adv_006",
+                "question": "Explain the concept of distributed systems.",
+                "type": "technical"
+            },
+            {
+                "id": "acc_adv_007",
+                "question": "What are microservices and their advantages?",
+                "type": "technical"
+            },
+            {
+                "id": "acc_adv_008",
+                "question": "Explain the CAP theorem and its implications.",
+                "type": "technical"
+            },
+            {
+                "id": "acc_adv_009",
+                "question": "What are the principles of secure coding?",
+                "type": "technical"
+            },
+            {
+                "id": "acc_adv_010",
+                "question": "Explain the concept of cloud computing and its service models.",
+                "type": "technical"
+            },
+            {
+                "id": "acc_adv_011",
+                "question": "What are the different types of software testing?",
+                "type": "technical"
+            },
+            {
+                "id": "acc_adv_012",
+                "question": "Explain the concept of DevOps and CI/CD pipelines.",
+                "type": "technical"
+            },
+            {
+                "id": "acc_adv_013",
+                "question": "What are the principles of agile software development?",
+                "type": "technical"
+            },
+            {
+                "id": "acc_adv_014",
+                "question": "Explain the concept of machine learning and its applications.",
+                "type": "technical"
+            },
+            {
+                "id": "acc_adv_015",
+                "question": "What are the challenges in scaling web applications?",
+                "type": "technical"
+            }
+        ]
     }
 }
 
