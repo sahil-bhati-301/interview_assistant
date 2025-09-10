@@ -28,6 +28,7 @@ const Dashboard: React.FC = () => {
     { id: 'cybersecurity', name: 'Cybersecurity', icon: '🔒', category: 'technical' },
     { id: 'capgemini', name: 'Capgemini', icon: '🏢', category: 'company' },
     { id: 'accenture', name: 'Accenture', icon: '🏛️', category: 'company' },
+    { id: 'google', name: 'Google', icon: '🔍', category: 'company' },
   ];
 
   const categories = [
