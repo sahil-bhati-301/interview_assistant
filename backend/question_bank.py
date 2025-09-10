@@ -3499,6 +3499,219 @@ QUESTION_BANK = {
                 "type": "technical"
             }
         ]
+    },
+    "google": {
+        "beginner": [
+            {
+                "id": "google_beg_001",
+                "question": "Why do you want to work at Google?",
+                "type": "behavioral"
+            },
+            {
+                "id": "google_beg_002",
+                "question": "Tell me about a time you went against the status quo.",
+                "type": "behavioral"
+            },
+            {
+                "id": "google_beg_003",
+                "question": "What is your favorite Google product and why?",
+                "type": "behavioral"
+            },
+            {
+                "id": "google_beg_004",
+                "question": "How would you measure the effectiveness of our employee referral program?",
+                "type": "behavioral"
+            },
+            {
+                "id": "google_beg_005",
+                "question": "If you looked at a clock showing 3:15, what is the angle between the hour and minute hands?",
+                "type": "technical"
+            },
+            {
+                "id": "google_beg_006",
+                "question": "Explain the difference between process and thread.",
+                "type": "technical"
+            },
+            {
+                "id": "google_beg_007",
+                "question": "How does garbage collection work in Java or Python?",
+                "type": "technical"
+            },
+            {
+                "id": "google_beg_008",
+                "question": "Explain the difference between TCP and UDP.",
+                "type": "technical"
+            },
+            {
+                "id": "google_beg_009",
+                "question": "What is the difference between relational and non-relational databases?",
+                "type": "technical"
+            },
+            {
+                "id": "google_beg_010",
+                "question": "How would you explain Big-O notation to a non-technical person?",
+                "type": "technical"
+            },
+            {
+                "id": "google_beg_011",
+                "question": "Explain how hashing works and what hash collisions are.",
+                "type": "technical"
+            },
+            {
+                "id": "google_beg_012",
+                "question": "What are the basic principles of software development?",
+                "type": "technical"
+            }
+        ],
+        "intermediate": [
+            {
+                "id": "google_int_001",
+                "question": "Given two sorted arrays, how would you find the median of the merged array?",
+                "type": "technical"
+            },
+            {
+                "id": "google_int_002",
+                "question": "Given an integer array and target, how would you return indices of two numbers that sum to target? (Two Sum)",
+                "type": "technical"
+            },
+            {
+                "id": "google_int_003",
+                "question": "How would you reverse a singly linked list?",
+                "type": "technical"
+            },
+            {
+                "id": "google_int_004",
+                "question": "How would you merge overlapping intervals?",
+                "type": "technical"
+            },
+            {
+                "id": "google_int_005",
+                "question": "How would you detect a cycle in a linked list?",
+                "type": "technical"
+            },
+            {
+                "id": "google_int_006",
+                "question": "How would you implement a stack using queues?",
+                "type": "technical"
+            },
+            {
+                "id": "google_int_007",
+                "question": "Given a rotated sorted array, find the minimum element.",
+                "type": "technical"
+            },
+            {
+                "id": "google_int_008",
+                "question": "Given a string, find the longest substring without repeating characters.",
+                "type": "technical"
+            },
+            {
+                "id": "google_int_009",
+                "question": "How do you balance a binary search tree?",
+                "type": "technical"
+            },
+            {
+                "id": "google_int_010",
+                "question": "How would you find the shortest path in a weighted graph?",
+                "type": "technical"
+            },
+            {
+                "id": "google_int_011",
+                "question": "How would you handle memory leaks in a large-scale system?",
+                "type": "technical"
+            },
+            {
+                "id": "google_int_012",
+                "question": "Write pseudocode to implement a Least Recently Used (LRU) cache.",
+                "type": "technical"
+            }
+        ],
+        "advanced": [
+            {
+                "id": "google_adv_001",
+                "question": "Given a binary tree, how would you find its maximum path sum (path can start and end at any node)?",
+                "type": "technical"
+            },
+            {
+                "id": "google_adv_002",
+                "question": "How would you decode an encoded string (e.g., '3[a2[c]]' → 'accaccacc')?",
+                "type": "technical"
+            },
+            {
+                "id": "google_adv_003",
+                "question": "How would you design a URL shortening service?",
+                "type": "technical"
+            },
+            {
+                "id": "google_adv_004",
+                "question": "Given an employee hierarchy with IDs and subordinates, how would you calculate total importance of an employee (including indirect subordinates)?",
+                "type": "technical"
+            },
+            {
+                "id": "google_adv_005",
+                "question": "Given a candy bar of length n that can be bitten in lengths of 1, 2, or 3, how many distinct ways can the bar be eaten? (Candy Bar Problem / DP)",
+                "type": "technical"
+            },
+            {
+                "id": "google_adv_006",
+                "question": "Given a grid filled with empty rooms, gates, and walls, how would you fill each empty room with distance to its nearest gate? (Walls and Gates)",
+                "type": "technical"
+            },
+            {
+                "id": "google_adv_007",
+                "question": "How would you find the longest common subsequence between two strings?",
+                "type": "technical"
+            },
+            {
+                "id": "google_adv_008",
+                "question": "Given a binary tree where every node has either 0 or 2 children, and every right node is a leaf, how do you flip it upside down?",
+                "type": "technical"
+            },
+            {
+                "id": "google_adv_009",
+                "question": "How would you implement regular expression matching with support for '.' and '*'?",
+                "type": "technical"
+            },
+            {
+                "id": "google_adv_010",
+                "question": "How would you split an integer array into k subarrays so that the largest sum among them is minimized? (Split Array Largest Sum)",
+                "type": "technical"
+            },
+            {
+                "id": "google_adv_011",
+                "question": "Write an algorithm to perform topological sorting on a directed acyclic graph.",
+                "type": "technical"
+            },
+            {
+                "id": "google_adv_012",
+                "question": "Given a stream of integers, how would you find the median efficiently?",
+                "type": "technical"
+            },
+            {
+                "id": "google_adv_013",
+                "question": "Design a system like Google Docs where multiple users can edit simultaneously.",
+                "type": "technical"
+            },
+            {
+                "id": "google_adv_014",
+                "question": "Explain CAP theorem in distributed systems.",
+                "type": "technical"
+            },
+            {
+                "id": "google_adv_015",
+                "question": "How would you design a recommendation system for YouTube?",
+                "type": "technical"
+            },
+            {
+                "id": "google_adv_016",
+                "question": "Design a scalable system for a chat application like WhatsApp.",
+                "type": "technical"
+            },
+            {
+                "id": "google_adv_017",
+                "question": "How would you reduce traffic as the chief traffic officer of Los Angeles?",
+                "type": "technical"
+            }
+        ]
     }
 }
 
