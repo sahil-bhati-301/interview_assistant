@@ -3712,6 +3712,399 @@ QUESTION_BANK = {
                 "type": "technical"
             }
         ]
+    },
+    "pseudocode": {
+        "beginner": [
+            {
+                "id": "pseudo_beg_001",
+                "question": "Find the factorial of a number.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_beg_002",
+                "question": "Check if a number is prime.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_beg_003",
+                "question": "Find the sum of digits of a number.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_beg_004",
+                "question": "Reverse a number.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_beg_005",
+                "question": "Check if a number is a palindrome.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_beg_006",
+                "question": "Generate the Fibonacci series up to N terms.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_beg_007",
+                "question": "Find the greatest common divisor (GCD) of two numbers.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_beg_008",
+                "question": "Find the least common multiple (LCM) of two numbers.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_beg_009",
+                "question": "Swap two numbers without using a third variable.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_beg_010",
+                "question": "Check whether a number is Armstrong.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_beg_011",
+                "question": "Find the largest element in an array.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_beg_012",
+                "question": "Find the second largest element in an array.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_beg_013",
+                "question": "Find the smallest element in an array.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_beg_014",
+                "question": "Calculate the sum of all elements in an array.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_beg_015",
+                "question": "Calculate the average of array elements.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_beg_016",
+                "question": "Search an element in an array using linear search.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_beg_017",
+                "question": "Reverse a string.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_beg_018",
+                "question": "Check if a string is a palindrome.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_beg_019",
+                "question": "Count the number of vowels in a string.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_beg_020",
+                "question": "Count the number of consonants in a string.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_beg_021",
+                "question": "Count words in a sentence.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_beg_022",
+                "question": "Add two matrices.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_beg_023",
+                "question": "Subtract two matrices.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_beg_024",
+                "question": "Find the transpose of a matrix.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_beg_025",
+                "question": "Check if a matrix is symmetric.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_beg_026",
+                "question": "Find the sum of diagonal elements of a matrix.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_beg_027",
+                "question": "Find the maximum element in a matrix.",
+                "type": "technical"
+            }
+        ],
+        "intermediate": [
+            {
+                "id": "pseudo_int_001",
+                "question": "Search an element in a sorted array using binary search.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_002",
+                "question": "Reverse an array.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_003",
+                "question": "Sort an array using bubble sort.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_004",
+                "question": "Sort an array using selection sort.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_005",
+                "question": "Sort an array using insertion sort.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_006",
+                "question": "Merge two sorted arrays.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_007",
+                "question": "Remove duplicates from an array.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_008",
+                "question": "Find the frequency of each element in an array.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_009",
+                "question": "Rotate an array left by k positions.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_010",
+                "question": "Rotate an array right by k positions.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_011",
+                "question": "Find the missing number in a sequence.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_012",
+                "question": "Find the intersection of two arrays.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_013",
+                "question": "Find the union of two arrays.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_014",
+                "question": "Check if an array is sorted.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_015",
+                "question": "Find the frequency of each character in a string.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_016",
+                "question": "Remove all spaces from a string.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_017",
+                "question": "Remove duplicate characters from a string.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_018",
+                "question": "Check if two strings are anagrams.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_019",
+                "question": "Convert a string to uppercase without built-in function.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_020",
+                "question": "Multiply two matrices.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_021",
+                "question": "Rotate a matrix by 90 degrees.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_022",
+                "question": "Check if a matrix is sparse.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_023",
+                "question": "Search an element in a matrix.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_024",
+                "question": "Implement linear search.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_025",
+                "question": "Implement binary search.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_026",
+                "question": "Implement quick sort.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_027",
+                "question": "Implement merge sort.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_028",
+                "question": "Implement selection sort.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_int_029",
+                "question": "Implement insertion sort.",
+                "type": "technical"
+            }
+        ],
+        "advanced": [
+            {
+                "id": "pseudo_adv_001",
+                "question": "Implement breadth-first search (BFS) for a graph.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_adv_002",
+                "question": "Implement depth-first search (DFS) for a graph.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_adv_003",
+                "question": "Find shortest path using Dijkstra's algorithm.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_adv_004",
+                "question": "Find factorial using recursion.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_adv_005",
+                "question": "Implement a stack using queues.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_adv_006",
+                "question": "Implement a queue using stacks.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_adv_007",
+                "question": "Find the longest common subsequence between two strings.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_adv_008",
+                "question": "Find the longest palindromic substring.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_adv_009",
+                "question": "Implement a trie (prefix tree).",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_adv_010",
+                "question": "Implement a binary search tree.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_adv_011",
+                "question": "Find the kth largest element in an array.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_adv_012",
+                "question": "Solve the knapsack problem using dynamic programming.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_adv_013",
+                "question": "Find all permutations of a string.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_adv_014",
+                "question": "Find all combinations of size k from n elements.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_adv_015",
+                "question": "Implement a LRU cache.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_adv_016",
+                "question": "Find the median of two sorted arrays.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_adv_017",
+                "question": "Solve the N-Queens problem.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_adv_018",
+                "question": "Implement a hash table with collision resolution.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_adv_019",
+                "question": "Find the maximum subarray sum.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_adv_020",
+                "question": "Implement a priority queue.",
+                "type": "technical"
+            },
+            {
+                "id": "pseudo_adv_021",
+                "question": "Solve the traveling salesman problem approximation.",
+                "type": "technical"
+            }
+        ]
     }
 }
 
