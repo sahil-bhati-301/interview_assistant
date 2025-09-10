@@ -25,6 +25,81 @@ QUESTION_BANK = {
                 "id": "js_beg_005",
                 "question": "How do you create an array in JavaScript?",
                 "type": "technical"
+            },
+            {
+                "id": "js_beg_006",
+                "question": "What is the difference between null and undefined in JavaScript?",
+                "type": "technical"
+            },
+            {
+                "id": "js_beg_007",
+                "question": "How do you check if a variable is an array in JavaScript?",
+                "type": "technical"
+            },
+            {
+                "id": "js_beg_008",
+                "question": "What are template literals in JavaScript?",
+                "type": "technical"
+            },
+            {
+                "id": "js_beg_009",
+                "question": "How do you add and remove elements from an array?",
+                "type": "technical"
+            },
+            {
+                "id": "js_beg_010",
+                "question": "What is a JavaScript object and how do you create one?",
+                "type": "technical"
+            },
+            {
+                "id": "js_beg_011",
+                "question": "How do you access object properties in JavaScript?",
+                "type": "technical"
+            },
+            {
+                "id": "js_beg_012",
+                "question": "What are conditional statements in JavaScript?",
+                "type": "technical"
+            },
+            {
+                "id": "js_beg_013",
+                "question": "How do you write a for loop in JavaScript?",
+                "type": "technical"
+            },
+            {
+                "id": "js_beg_014",
+                "question": "What is the difference between == and === in JavaScript?",
+                "type": "technical"
+            },
+            {
+                "id": "js_beg_015",
+                "question": "How do you declare a variable in JavaScript?",
+                "type": "technical"
+            },
+            {
+                "id": "js_beg_016",
+                "question": "What are JavaScript operators?",
+                "type": "technical"
+            },
+            {
+                "id": "js_beg_017",
+                "question": "How do you concatenate strings in JavaScript?",
+                "type": "technical"
+            },
+            {
+                "id": "js_beg_018",
+                "question": "What is a JavaScript comment and how do you write one?",
+                "type": "technical"
+            },
+            {
+                "id": "js_beg_019",
+                "question": "How do you convert a string to a number in JavaScript?",
+                "type": "technical"
+            },
+            {
+                "id": "js_beg_020",
+                "question": "What are JavaScript boolean values?",
+                "type": "technical"
             }
         ],
         "intermediate": [
@@ -52,6 +127,81 @@ QUESTION_BANK = {
                 "id": "js_int_005",
                 "question": "Explain asynchronous programming in JavaScript.",
                 "type": "technical"
+            },
+            {
+                "id": "js_int_006",
+                "question": "What are Promises in JavaScript and how do they work?",
+                "type": "technical"
+            },
+            {
+                "id": "js_int_007",
+                "question": "How do you handle errors in JavaScript using try-catch?",
+                "type": "technical"
+            },
+            {
+                "id": "js_int_008",
+                "question": "What is the difference between map, filter, and reduce methods?",
+                "type": "technical"
+            },
+            {
+                "id": "js_int_009",
+                "question": "How do you work with localStorage and sessionStorage?",
+                "type": "technical"
+            },
+            {
+                "id": "js_int_010",
+                "question": "What are JavaScript modules and how do you use them?",
+                "type": "technical"
+            },
+            {
+                "id": "js_int_011",
+                "question": "Explain the concept of hoisting in JavaScript.",
+                "type": "technical"
+            },
+            {
+                "id": "js_int_012",
+                "question": "What are JavaScript classes and how do you use them?",
+                "type": "technical"
+            },
+            {
+                "id": "js_int_013",
+                "question": "How do you handle form validation in JavaScript?",
+                "type": "technical"
+            },
+            {
+                "id": "js_int_014",
+                "question": "What are JavaScript timers (setTimeout, setInterval)?",
+                "type": "technical"
+            },
+            {
+                "id": "js_int_015",
+                "question": "How do you make AJAX calls in JavaScript?",
+                "type": "technical"
+            },
+            {
+                "id": "js_int_016",
+                "question": "What is JSON and how do you work with it in JavaScript?",
+                "type": "technical"
+            },
+            {
+                "id": "js_int_017",
+                "question": "How do you handle browser events in JavaScript?",
+                "type": "technical"
+            },
+            {
+                "id": "js_int_018",
+                "question": "What are JavaScript design patterns?",
+                "type": "technical"
+            },
+            {
+                "id": "js_int_019",
+                "question": "How do you optimize JavaScript code performance?",
+                "type": "technical"
+            },
+            {
+                "id": "js_int_020",
+                "question": "What are JavaScript frameworks and libraries?",
+                "type": "technical"
             }
         ],
         "advanced": [
@@ -78,6 +228,81 @@ QUESTION_BANK = {
             {
                 "id": "js_adv_005",
                 "question": "Explain memory management and garbage collection in JavaScript.",
+                "type": "technical"
+            },
+            {
+                "id": "js_adv_006",
+                "question": "What are JavaScript engines and how do they work?",
+                "type": "technical"
+            },
+            {
+                "id": "js_adv_007",
+                "question": "Explain the concept of currying in JavaScript.",
+                "type": "technical"
+            },
+            {
+                "id": "js_adv_008",
+                "question": "What are WebSockets and how do they differ from HTTP?",
+                "type": "technical"
+            },
+            {
+                "id": "js_adv_009",
+                "question": "How do you implement authentication in JavaScript applications?",
+                "type": "technical"
+            },
+            {
+                "id": "js_adv_010",
+                "question": "What are JavaScript design patterns like Module, Observer, and Singleton?",
+                "type": "technical"
+            },
+            {
+                "id": "js_adv_011",
+                "question": "Explain the concept of memoization in JavaScript.",
+                "type": "technical"
+            },
+            {
+                "id": "js_adv_012",
+                "question": "What are JavaScript iterators and generators?",
+                "type": "technical"
+            },
+            {
+                "id": "js_adv_013",
+                "question": "How do you handle cross-origin requests in JavaScript?",
+                "type": "technical"
+            },
+            {
+                "id": "js_adv_014",
+                "question": "What are JavaScript bundlers and why are they used?",
+                "type": "technical"
+            },
+            {
+                "id": "js_adv_015",
+                "question": "Explain the concept of functional programming in JavaScript.",
+                "type": "technical"
+            },
+            {
+                "id": "js_adv_016",
+                "question": "What are JavaScript testing frameworks?",
+                "type": "technical"
+            },
+            {
+                "id": "js_adv_017",
+                "question": "How do you optimize JavaScript applications for performance?",
+                "type": "technical"
+            },
+            {
+                "id": "js_adv_018",
+                "question": "What are JavaScript build tools and task runners?",
+                "type": "technical"
+            },
+            {
+                "id": "js_adv_019",
+                "question": "Explain the concept of server-side rendering in JavaScript.",
+                "type": "technical"
+            },
+            {
+                "id": "js_adv_020",
+                "question": "What are JavaScript micro-frontends?",
                 "type": "technical"
             }
         ]
@@ -108,6 +333,81 @@ QUESTION_BANK = {
                 "id": "py_beg_005",
                 "question": "How do you write a basic function in Python?",
                 "type": "technical"
+            },
+            {
+                "id": "py_beg_006",
+                "question": "What are Python dictionaries and how do you use them?",
+                "type": "technical"
+            },
+            {
+                "id": "py_beg_007",
+                "question": "How do you handle conditional statements in Python?",
+                "type": "technical"
+            },
+            {
+                "id": "py_beg_008",
+                "question": "What are Python loops and how do you use them?",
+                "type": "technical"
+            },
+            {
+                "id": "py_beg_009",
+                "question": "How do you read input from users in Python?",
+                "type": "technical"
+            },
+            {
+                "id": "py_beg_010",
+                "question": "What are Python modules and how do you import them?",
+                "type": "technical"
+            },
+            {
+                "id": "py_beg_011",
+                "question": "How do you work with strings in Python?",
+                "type": "technical"
+            },
+            {
+                "id": "py_beg_012",
+                "question": "What are Python sets and when do you use them?",
+                "type": "technical"
+            },
+            {
+                "id": "py_beg_013",
+                "question": "How do you handle file operations in Python?",
+                "type": "technical"
+            },
+            {
+                "id": "py_beg_014",
+                "question": "What are Python comments and how do you write them?",
+                "type": "technical"
+            },
+            {
+                "id": "py_beg_015",
+                "question": "How do you convert data types in Python?",
+                "type": "technical"
+            },
+            {
+                "id": "py_beg_016",
+                "question": "What are Python operators?",
+                "type": "technical"
+            },
+            {
+                "id": "py_beg_017",
+                "question": "How do you create and use Python classes?",
+                "type": "technical"
+            },
+            {
+                "id": "py_beg_018",
+                "question": "What is inheritance in Python?",
+                "type": "technical"
+            },
+            {
+                "id": "py_beg_019",
+                "question": "How do you handle exceptions in Python?",
+                "type": "technical"
+            },
+            {
+                "id": "py_beg_020",
+                "question": "What are Python list comprehensions?",
+                "type": "technical"
             }
         ],
         "intermediate": [
@@ -135,6 +435,81 @@ QUESTION_BANK = {
                 "id": "py_int_005",
                 "question": "What are lambda functions in Python?",
                 "type": "technical"
+            },
+            {
+                "id": "py_int_006",
+                "question": "What are Python generators and the yield keyword?",
+                "type": "technical"
+            },
+            {
+                "id": "py_int_007",
+                "question": "How do you work with regular expressions in Python?",
+                "type": "technical"
+            },
+            {
+                "id": "py_int_008",
+                "question": "What are Python context managers?",
+                "type": "technical"
+            },
+            {
+                "id": "py_int_009",
+                "question": "How do you handle JSON data in Python?",
+                "type": "technical"
+            },
+            {
+                "id": "py_int_010",
+                "question": "What are Python virtual environments?",
+                "type": "technical"
+            },
+            {
+                "id": "py_int_011",
+                "question": "How do you work with dates and times in Python?",
+                "type": "technical"
+            },
+            {
+                "id": "py_int_012",
+                "question": "What are Python packages and how do you create them?",
+                "type": "technical"
+            },
+            {
+                "id": "py_int_013",
+                "question": "How do you implement threading in Python?",
+                "type": "technical"
+            },
+            {
+                "id": "py_int_014",
+                "question": "What are Python data structures like deque and heapq?",
+                "type": "technical"
+            },
+            {
+                "id": "py_int_015",
+                "question": "How do you optimize Python code performance?",
+                "type": "technical"
+            },
+            {
+                "id": "py_int_016",
+                "question": "What are Python type hints and annotations?",
+                "type": "technical"
+            },
+            {
+                "id": "py_int_017",
+                "question": "How do you work with databases in Python?",
+                "type": "technical"
+            },
+            {
+                "id": "py_int_018",
+                "question": "What are Python metaclasses?",
+                "type": "technical"
+            },
+            {
+                "id": "py_int_019",
+                "question": "How do you handle logging in Python applications?",
+                "type": "technical"
+            },
+            {
+                "id": "py_int_020",
+                "question": "What are Python async and await keywords?",
+                "type": "technical"
             }
         ],
         "advanced": [
@@ -161,6 +536,81 @@ QUESTION_BANK = {
             {
                 "id": "py_adv_005",
                 "question": "What are context managers and how do they work?",
+                "type": "technical"
+            },
+            {
+                "id": "py_adv_006",
+                "question": "What are Python coroutines and async programming?",
+                "type": "technical"
+            },
+            {
+                "id": "py_adv_007",
+                "question": "Explain the Python import system and sys.path.",
+                "type": "technical"
+            },
+            {
+                "id": "py_adv_008",
+                "question": "What are Python descriptors and property decorators?",
+                "type": "technical"
+            },
+            {
+                "id": "py_adv_009",
+                "question": "How do you implement custom iterators in Python?",
+                "type": "technical"
+            },
+            {
+                "id": "py_adv_010",
+                "question": "What are Python memory profilers and debugging tools?",
+                "type": "technical"
+            },
+            {
+                "id": "py_adv_011",
+                "question": "Explain the Python object model and method resolution order.",
+                "type": "technical"
+            },
+            {
+                "id": "py_adv_012",
+                "question": "What are Python C extensions and ctypes?",
+                "type": "technical"
+            },
+            {
+                "id": "py_adv_013",
+                "question": "How do you implement design patterns in Python?",
+                "type": "technical"
+            },
+            {
+                "id": "py_adv_014",
+                "question": "What are Python web frameworks and their differences?",
+                "type": "technical"
+            },
+            {
+                "id": "py_adv_015",
+                "question": "How do you handle concurrency and parallelism in Python?",
+                "type": "technical"
+            },
+            {
+                "id": "py_adv_016",
+                "question": "What are Python testing frameworks and best practices?",
+                "type": "technical"
+            },
+            {
+                "id": "py_adv_017",
+                "question": "Explain the Python packaging and distribution system.",
+                "type": "technical"
+            },
+            {
+                "id": "py_adv_018",
+                "question": "What are Python security considerations and best practices?",
+                "type": "technical"
+            },
+            {
+                "id": "py_adv_019",
+                "question": "How do you optimize Python applications for production?",
+                "type": "technical"
+            },
+            {
+                "id": "py_adv_020",
+                "question": "What are Python data science and machine learning libraries?",
                 "type": "technical"
             }
         ]
@@ -191,6 +641,81 @@ QUESTION_BANK = {
                 "id": "react_beg_005",
                 "question": "What are props in React?",
                 "type": "technical"
+            },
+            {
+                "id": "react_beg_006",
+                "question": "How do you create a React component?",
+                "type": "technical"
+            },
+            {
+                "id": "react_beg_007",
+                "question": "What is the difference between functional and class components?",
+                "type": "technical"
+            },
+            {
+                "id": "react_beg_008",
+                "question": "How do you render a React component?",
+                "type": "technical"
+            },
+            {
+                "id": "react_beg_009",
+                "question": "What is the ReactDOM library?",
+                "type": "technical"
+            },
+            {
+                "id": "react_beg_010",
+                "question": "How do you handle events in React?",
+                "type": "technical"
+            },
+            {
+                "id": "react_beg_011",
+                "question": "What are React keys and why are they important?",
+                "type": "technical"
+            },
+            {
+                "id": "react_beg_012",
+                "question": "How do you conditionally render content in React?",
+                "type": "technical"
+            },
+            {
+                "id": "react_beg_013",
+                "question": "What are React fragments?",
+                "type": "technical"
+            },
+            {
+                "id": "react_beg_014",
+                "question": "How do you create a React application?",
+                "type": "technical"
+            },
+            {
+                "id": "react_beg_015",
+                "question": "What is the component lifecycle in React?",
+                "type": "technical"
+            },
+            {
+                "id": "react_beg_016",
+                "question": "How do you pass data between parent and child components?",
+                "type": "technical"
+            },
+            {
+                "id": "react_beg_017",
+                "question": "What are default props in React?",
+                "type": "technical"
+            },
+            {
+                "id": "react_beg_018",
+                "question": "How do you validate props in React?",
+                "type": "technical"
+            },
+            {
+                "id": "react_beg_019",
+                "question": "What is the virtual DOM in React?",
+                "type": "technical"
+            },
+            {
+                "id": "react_beg_020",
+                "question": "How do you update state in React?",
+                "type": "technical"
             }
         ],
         "intermediate": [
@@ -218,6 +743,81 @@ QUESTION_BANK = {
                 "id": "react_int_005",
                 "question": "What are React fragments and why use them?",
                 "type": "technical"
+            },
+            {
+                "id": "react_int_006",
+                "question": "What is the useContext hook and when do you use it?",
+                "type": "technical"
+            },
+            {
+                "id": "react_int_007",
+                "question": "How do you optimize React component performance?",
+                "type": "technical"
+            },
+            {
+                "id": "react_int_008",
+                "question": "What are React refs and how do you use them?",
+                "type": "technical"
+            },
+            {
+                "id": "react_int_009",
+                "question": "Explain React Router and navigation.",
+                "type": "technical"
+            },
+            {
+                "id": "react_int_010",
+                "question": "What are Higher-Order Components (HOCs) in React?",
+                "type": "technical"
+            },
+            {
+                "id": "react_int_011",
+                "question": "How do you handle forms in React?",
+                "type": "technical"
+            },
+            {
+                "id": "react_int_012",
+                "question": "What is React.memo and when do you use it?",
+                "type": "technical"
+            },
+            {
+                "id": "react_int_013",
+                "question": "How do you implement error boundaries in React?",
+                "type": "technical"
+            },
+            {
+                "id": "react_int_014",
+                "question": "What are React portals and their use cases?",
+                "type": "technical"
+            },
+            {
+                "id": "react_int_015",
+                "question": "How do you manage global state in React?",
+                "type": "technical"
+            },
+            {
+                "id": "react_int_016",
+                "question": "What are custom hooks in React?",
+                "type": "technical"
+            },
+            {
+                "id": "react_int_017",
+                "question": "How do you handle side effects in React?",
+                "type": "technical"
+            },
+            {
+                "id": "react_int_018",
+                "question": "What is the Context API in React?",
+                "type": "technical"
+            },
+            {
+                "id": "react_int_019",
+                "question": "How do you test React components?",
+                "type": "technical"
+            },
+            {
+                "id": "react_int_020",
+                "question": "What are React development tools?",
+                "type": "technical"
             }
         ],
         "advanced": [
@@ -244,6 +844,81 @@ QUESTION_BANK = {
             {
                 "id": "react_adv_005",
                 "question": "What are Higher-Order Components (HOCs)?",
+                "type": "technical"
+            },
+            {
+                "id": "react_adv_006",
+                "question": "Explain React's virtual DOM and its benefits.",
+                "type": "technical"
+            },
+            {
+                "id": "react_adv_007",
+                "question": "What is React Suspense and how do you use it?",
+                "type": "technical"
+            },
+            {
+                "id": "react_adv_008",
+                "question": "Explain React's concurrent features and concurrent rendering.",
+                "type": "technical"
+            },
+            {
+                "id": "react_adv_009",
+                "question": "What are React Server Components and their use cases?",
+                "type": "technical"
+            },
+            {
+                "id": "react_adv_010",
+                "question": "How do you implement code splitting in React applications?",
+                "type": "technical"
+            },
+            {
+                "id": "react_adv_011",
+                "question": "What is React's Strict Mode and what does it do?",
+                "type": "technical"
+            },
+            {
+                "id": "react_adv_012",
+                "question": "Explain React's Profiler API and performance monitoring.",
+                "type": "technical"
+            },
+            {
+                "id": "react_adv_013",
+                "question": "What are React's experimental features like concurrent mode?",
+                "type": "technical"
+            },
+            {
+                "id": "react_adv_014",
+                "question": "How do you implement internationalization (i18n) in React?",
+                "type": "technical"
+            },
+            {
+                "id": "react_adv_015",
+                "question": "What are React's accessibility features and best practices?",
+                "type": "technical"
+            },
+            {
+                "id": "react_adv_016",
+                "question": "Explain React's testing utilities and testing patterns.",
+                "type": "technical"
+            },
+            {
+                "id": "react_adv_017",
+                "question": "What are React's build tools and optimization techniques?",
+                "type": "technical"
+            },
+            {
+                "id": "react_adv_018",
+                "question": "How do you implement state management in large React applications?",
+                "type": "technical"
+            },
+            {
+                "id": "react_adv_019",
+                "question": "What are React's design patterns and architectural approaches?",
+                "type": "technical"
+            },
+            {
+                "id": "react_adv_020",
+                "question": "Explain React's ecosystem and popular libraries.",
                 "type": "technical"
             }
         ]
@@ -274,6 +949,81 @@ QUESTION_BANK = {
                 "id": "java_beg_005",
                 "question": "What are access modifiers in Java?",
                 "type": "technical"
+            },
+            {
+                "id": "java_beg_006",
+                "question": "What is object-oriented programming?",
+                "type": "technical"
+            },
+            {
+                "id": "java_beg_007",
+                "question": "How do you create and use variables in Java?",
+                "type": "technical"
+            },
+            {
+                "id": "java_beg_008",
+                "question": "What are Java operators?",
+                "type": "technical"
+            },
+            {
+                "id": "java_beg_009",
+                "question": "How do you write conditional statements in Java?",
+                "type": "technical"
+            },
+            {
+                "id": "java_beg_010",
+                "question": "What are loops in Java?",
+                "type": "technical"
+            },
+            {
+                "id": "java_beg_011",
+                "question": "How do you create arrays in Java?",
+                "type": "technical"
+            },
+            {
+                "id": "java_beg_012",
+                "question": "What are Java methods?",
+                "type": "technical"
+            },
+            {
+                "id": "java_beg_013",
+                "question": "How do you handle input and output in Java?",
+                "type": "technical"
+            },
+            {
+                "id": "java_beg_014",
+                "question": "What are Java packages?",
+                "type": "technical"
+            },
+            {
+                "id": "java_beg_015",
+                "question": "How do you compile and run a Java program?",
+                "type": "technical"
+            },
+            {
+                "id": "java_beg_016",
+                "question": "What are Java comments?",
+                "type": "technical"
+            },
+            {
+                "id": "java_beg_017",
+                "question": "How do you handle strings in Java?",
+                "type": "technical"
+            },
+            {
+                "id": "java_beg_018",
+                "question": "What are Java collections?",
+                "type": "technical"
+            },
+            {
+                "id": "java_beg_019",
+                "question": "How do you create objects in Java?",
+                "type": "technical"
+            },
+            {
+                "id": "java_beg_020",
+                "question": "What is inheritance in Java?",
+                "type": "technical"
             }
         ],
         "intermediate": [
@@ -301,6 +1051,81 @@ QUESTION_BANK = {
                 "id": "java_int_005",
                 "question": "What is the difference between method overloading and method overriding?",
                 "type": "technical"
+            },
+            {
+                "id": "java_int_006",
+                "question": "What are abstract classes and interfaces in Java?",
+                "type": "technical"
+            },
+            {
+                "id": "java_int_007",
+                "question": "How does garbage collection work in Java?",
+                "type": "technical"
+            },
+            {
+                "id": "java_int_008",
+                "question": "What are Java collections framework classes?",
+                "type": "technical"
+            },
+            {
+                "id": "java_int_009",
+                "question": "How do you implement multithreading in Java?",
+                "type": "technical"
+            },
+            {
+                "id": "java_int_010",
+                "question": "What are Java design patterns?",
+                "type": "technical"
+            },
+            {
+                "id": "java_int_011",
+                "question": "How do you handle file I/O in Java?",
+                "type": "technical"
+            },
+            {
+                "id": "java_int_012",
+                "question": "What are Java annotations?",
+                "type": "technical"
+            },
+            {
+                "id": "java_int_013",
+                "question": "How do you work with databases in Java?",
+                "type": "technical"
+            },
+            {
+                "id": "java_int_014",
+                "question": "What are Java streams and lambda expressions?",
+                "type": "technical"
+            },
+            {
+                "id": "java_int_015",
+                "question": "How do you handle serialization in Java?",
+                "type": "technical"
+            },
+            {
+                "id": "java_int_016",
+                "question": "What are Java reflection capabilities?",
+                "type": "technical"
+            },
+            {
+                "id": "java_int_017",
+                "question": "How do you implement unit testing in Java?",
+                "type": "technical"
+            },
+            {
+                "id": "java_int_018",
+                "question": "What are Java memory management techniques?",
+                "type": "technical"
+            },
+            {
+                "id": "java_int_019",
+                "question": "How do you handle concurrency in Java?",
+                "type": "technical"
+            },
+            {
+                "id": "java_int_020",
+                "question": "What are Java web development frameworks?",
+                "type": "technical"
             }
         ],
         "advanced": [
@@ -327,6 +1152,81 @@ QUESTION_BANK = {
             {
                 "id": "java_adv_005",
                 "question": "Explain the difference between HashMap, HashTable, and ConcurrentHashMap.",
+                "type": "technical"
+            },
+            {
+                "id": "java_adv_006",
+                "question": "What are Java microservices and their implementation?",
+                "type": "technical"
+            },
+            {
+                "id": "java_adv_007",
+                "question": "How do you implement security in Java applications?",
+                "type": "technical"
+            },
+            {
+                "id": "java_adv_008",
+                "question": "What are Java performance optimization techniques?",
+                "type": "technical"
+            },
+            {
+                "id": "java_adv_009",
+                "question": "Explain Java EE and Jakarta EE frameworks.",
+                "type": "technical"
+            },
+            {
+                "id": "java_adv_010",
+                "question": "What are Java build tools and dependency management?",
+                "type": "technical"
+            },
+            {
+                "id": "java_adv_011",
+                "question": "How do you implement caching in Java applications?",
+                "type": "technical"
+            },
+            {
+                "id": "java_adv_012",
+                "question": "What are Java testing frameworks and methodologies?",
+                "type": "technical"
+            },
+            {
+                "id": "java_adv_013",
+                "question": "Explain Java distributed systems and messaging.",
+                "type": "technical"
+            },
+            {
+                "id": "java_adv_014",
+                "question": "What are Java cloud deployment strategies?",
+                "type": "technical"
+            },
+            {
+                "id": "java_adv_015",
+                "question": "How do you handle big data processing in Java?",
+                "type": "technical"
+            },
+            {
+                "id": "java_adv_016",
+                "question": "What are Java machine learning libraries?",
+                "type": "technical"
+            },
+            {
+                "id": "java_adv_017",
+                "question": "Explain Java containerization with Docker.",
+                "type": "technical"
+            },
+            {
+                "id": "java_adv_018",
+                "question": "What are Java monitoring and logging frameworks?",
+                "type": "technical"
+            },
+            {
+                "id": "java_adv_019",
+                "question": "How do you implement API gateways in Java?",
+                "type": "technical"
+            },
+            {
+                "id": "java_adv_020",
+                "question": "What are Java serverless computing solutions?",
                 "type": "technical"
             }
         ]
@@ -357,6 +1257,81 @@ QUESTION_BANK = {
                 "id": "node_beg_005",
                 "question": "How do you handle file operations in Node.js?",
                 "type": "technical"
+            },
+            {
+                "id": "node_beg_006",
+                "question": "What is the difference between require() and import in Node.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_beg_007",
+                "question": "How do you handle errors in Node.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_beg_008",
+                "question": "What are Node.js buffers and streams?",
+                "type": "technical"
+            },
+            {
+                "id": "node_beg_009",
+                "question": "How do you work with JSON in Node.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_beg_010",
+                "question": "What are Node.js events and event emitters?",
+                "type": "technical"
+            },
+            {
+                "id": "node_beg_011",
+                "question": "How do you create and use timers in Node.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_beg_012",
+                "question": "What are Node.js global objects?",
+                "type": "technical"
+            },
+            {
+                "id": "node_beg_013",
+                "question": "How do you handle command line arguments in Node.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_beg_014",
+                "question": "What are Node.js process object methods?",
+                "type": "technical"
+            },
+            {
+                "id": "node_beg_015",
+                "question": "How do you create child processes in Node.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_beg_016",
+                "question": "What are Node.js path utilities?",
+                "type": "technical"
+            },
+            {
+                "id": "node_beg_017",
+                "question": "How do you handle URL parsing in Node.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_beg_018",
+                "question": "What are Node.js crypto modules?",
+                "type": "technical"
+            },
+            {
+                "id": "node_beg_019",
+                "question": "How do you work with dates in Node.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_beg_020",
+                "question": "What are Node.js OS utilities?",
+                "type": "technical"
             }
         ],
         "intermediate": [
@@ -384,6 +1359,81 @@ QUESTION_BANK = {
                 "id": "node_int_005",
                 "question": "How do you handle errors in Node.js applications?",
                 "type": "technical"
+            },
+            {
+                "id": "node_int_006",
+                "question": "What are Node.js routing techniques?",
+                "type": "technical"
+            },
+            {
+                "id": "node_int_007",
+                "question": "How do you implement authentication in Node.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_int_008",
+                "question": "What are Node.js template engines?",
+                "type": "technical"
+            },
+            {
+                "id": "node_int_009",
+                "question": "How do you handle sessions in Node.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_int_010",
+                "question": "What are Node.js validation libraries?",
+                "type": "technical"
+            },
+            {
+                "id": "node_int_011",
+                "question": "How do you implement caching in Node.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_int_012",
+                "question": "What are Node.js testing frameworks?",
+                "type": "technical"
+            },
+            {
+                "id": "node_int_013",
+                "question": "How do you handle file uploads in Node.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_int_014",
+                "question": "What are Node.js WebSocket implementations?",
+                "type": "technical"
+            },
+            {
+                "id": "node_int_015",
+                "question": "How do you implement rate limiting in Node.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_int_016",
+                "question": "What are Node.js ORM libraries?",
+                "type": "technical"
+            },
+            {
+                "id": "node_int_017",
+                "question": "How do you handle CORS in Node.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_int_018",
+                "question": "What are Node.js logging frameworks?",
+                "type": "technical"
+            },
+            {
+                "id": "node_int_019",
+                "question": "How do you implement pagination in Node.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_int_020",
+                "question": "What are Node.js deployment strategies?",
+                "type": "technical"
             }
         ],
         "advanced": [
@@ -410,6 +1460,81 @@ QUESTION_BANK = {
             {
                 "id": "node_adv_005",
                 "question": "What is the difference between process.nextTick() and setImmediate()?",
+                "type": "technical"
+            },
+            {
+                "id": "node_adv_006",
+                "question": "What are Node.js performance optimization techniques?",
+                "type": "technical"
+            },
+            {
+                "id": "node_adv_007",
+                "question": "How do you implement microservices with Node.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_adv_008",
+                "question": "What are Node.js containerization strategies?",
+                "type": "technical"
+            },
+            {
+                "id": "node_adv_009",
+                "question": "How do you handle distributed systems in Node.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_adv_010",
+                "question": "What are Node.js monitoring and debugging tools?",
+                "type": "technical"
+            },
+            {
+                "id": "node_adv_011",
+                "question": "How do you implement GraphQL with Node.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_adv_012",
+                "question": "What are Node.js serverless architectures?",
+                "type": "technical"
+            },
+            {
+                "id": "node_adv_013",
+                "question": "How do you handle big data processing in Node.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_adv_014",
+                "question": "What are Node.js machine learning integrations?",
+                "type": "technical"
+            },
+            {
+                "id": "node_adv_015",
+                "question": "How do you implement real-time applications with Node.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_adv_016",
+                "question": "What are Node.js deployment and scaling strategies?",
+                "type": "technical"
+            },
+            {
+                "id": "node_adv_017",
+                "question": "How do you handle internationalization in Node.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_adv_018",
+                "question": "What are Node.js blockchain development frameworks?",
+                "type": "technical"
+            },
+            {
+                "id": "node_adv_019",
+                "question": "How do you implement IoT solutions with Node.js?",
+                "type": "technical"
+            },
+            {
+                "id": "node_adv_020",
+                "question": "What are Node.js enterprise application patterns?",
                 "type": "technical"
             }
         ]
@@ -440,6 +1565,81 @@ QUESTION_BANK = {
                 "id": "sd_beg_005",
                 "question": "What is load balancing and why is it important?",
                 "type": "technical"
+            },
+            {
+                "id": "sd_beg_006",
+                "question": "What are databases and their types?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_beg_007",
+                "question": "What is caching and why do we use it?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_beg_008",
+                "question": "What are the differences between HTTP and HTTPS?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_beg_009",
+                "question": "What is scalability in system design?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_beg_010",
+                "question": "What are the basic principles of REST APIs?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_beg_011",
+                "question": "What is the difference between SQL and NoSQL databases?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_beg_012",
+                "question": "What are message queues and their use cases?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_beg_013",
+                "question": "What is the CAP theorem?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_beg_014",
+                "question": "What are the differences between horizontal and vertical scaling?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_beg_015",
+                "question": "What is the difference between synchronous and asynchronous communication?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_beg_016",
+                "question": "What are the basic concepts of networking?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_beg_017",
+                "question": "What is the difference between stateful and stateless applications?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_beg_018",
+                "question": "What are the basic security principles in system design?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_beg_019",
+                "question": "What is the difference between authentication and authorization?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_beg_020",
+                "question": "What are the basic monitoring and logging concepts?",
+                "type": "technical"
             }
         ],
         "intermediate": [
@@ -467,6 +1667,81 @@ QUESTION_BANK = {
                 "id": "sd_int_005",
                 "question": "How do you handle database connections in a high-traffic application?",
                 "type": "technical"
+            },
+            {
+                "id": "sd_int_006",
+                "question": "Design a rate limiting system for an API.",
+                "type": "technical"
+            },
+            {
+                "id": "sd_int_007",
+                "question": "How would you design a search engine like Google?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_int_008",
+                "question": "Explain the design of a content delivery network (CDN).",
+                "type": "technical"
+            },
+            {
+                "id": "sd_int_009",
+                "question": "How do you design a recommendation system?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_int_010",
+                "question": "What are the considerations for designing a chat application?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_int_011",
+                "question": "How do you handle data consistency in distributed systems?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_int_012",
+                "question": "Design a payment processing system.",
+                "type": "technical"
+            },
+            {
+                "id": "sd_int_013",
+                "question": "How would you design a video streaming service like Netflix?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_int_014",
+                "question": "Explain the design of a logging and monitoring system.",
+                "type": "technical"
+            },
+            {
+                "id": "sd_int_015",
+                "question": "How do you design for fault tolerance and high availability?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_int_016",
+                "question": "Design a file storage system like Dropbox.",
+                "type": "technical"
+            },
+            {
+                "id": "sd_int_017",
+                "question": "How do you handle data migration in large systems?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_int_018",
+                "question": "What are the considerations for designing a mobile application backend?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_int_019",
+                "question": "How do you design a job queue system?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_int_020",
+                "question": "Explain the design of a configuration management system.",
+                "type": "technical"
             }
         ],
         "advanced": [
@@ -493,6 +1768,81 @@ QUESTION_BANK = {
             {
                 "id": "sd_adv_005",
                 "question": "What are design patterns for scalable systems? Explain a few.",
+                "type": "technical"
+            },
+            {
+                "id": "sd_adv_006",
+                "question": "Design a global content delivery network (CDN).",
+                "type": "technical"
+            },
+            {
+                "id": "sd_adv_007",
+                "question": "How would you design a cryptocurrency exchange platform?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_adv_008",
+                "question": "Explain the design of a large-scale e-commerce platform.",
+                "type": "technical"
+            },
+            {
+                "id": "sd_adv_009",
+                "question": "How do you design a real-time analytics system?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_adv_010",
+                "question": "What are the considerations for designing a blockchain system?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_adv_011",
+                "question": "Design a machine learning model serving system.",
+                "type": "technical"
+            },
+            {
+                "id": "sd_adv_012",
+                "question": "How would you design a social media platform like Twitter?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_adv_013",
+                "question": "Explain the design of a distributed database system.",
+                "type": "technical"
+            },
+            {
+                "id": "sd_adv_014",
+                "question": "How do you design for disaster recovery and backup systems?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_adv_015",
+                "question": "What are the considerations for designing IoT systems?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_adv_016",
+                "question": "Design a video conferencing system for millions of users.",
+                "type": "technical"
+            },
+            {
+                "id": "sd_adv_017",
+                "question": "How would you design a stock trading platform?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_adv_018",
+                "question": "Explain the design of a large-scale gaming platform.",
+                "type": "technical"
+            },
+            {
+                "id": "sd_adv_019",
+                "question": "How do you design for regulatory compliance in financial systems?",
+                "type": "technical"
+            },
+            {
+                "id": "sd_adv_020",
+                "question": "What are the considerations for designing autonomous systems?",
                 "type": "technical"
             }
         ]
@@ -523,6 +1873,81 @@ QUESTION_BANK = {
                 "id": "ml_beg_005",
                 "question": "What is overfitting in machine learning?",
                 "type": "technical"
+            },
+            {
+                "id": "ml_beg_006",
+                "question": "What is the difference between classification and regression?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_beg_007",
+                "question": "What is a confusion matrix?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_beg_008",
+                "question": "What is the difference between parametric and non-parametric models?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_beg_009",
+                "question": "What is cross-validation?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_beg_010",
+                "question": "What are the basic steps in a machine learning project?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_beg_011",
+                "question": "What is the difference between AI, ML, and DL?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_beg_012",
+                "question": "What is a hypothesis in machine learning?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_beg_013",
+                "question": "What is the difference between batch and online learning?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_beg_014",
+                "question": "What are the main challenges in machine learning?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_beg_015",
+                "question": "What is the difference between model-based and instance-based learning?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_beg_016",
+                "question": "What is the curse of dimensionality?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_beg_017",
+                "question": "What are the different types of machine learning algorithms?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_beg_018",
+                "question": "What is the difference between generative and discriminative models?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_beg_019",
+                "question": "What is the difference between hard and soft voting classifiers?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_beg_020",
+                "question": "What are the basic evaluation metrics for machine learning models?",
+                "type": "technical"
             }
         ],
         "intermediate": [
@@ -550,6 +1975,81 @@ QUESTION_BANK = {
                 "id": "ml_int_005",
                 "question": "How do you handle missing data in a dataset?",
                 "type": "technical"
+            },
+            {
+                "id": "ml_int_006",
+                "question": "What is the difference between L1 and L2 regularization?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_int_007",
+                "question": "Explain the concept of gradient descent optimization.",
+                "type": "technical"
+            },
+            {
+                "id": "ml_int_008",
+                "question": "What are the different types of distance metrics used in ML?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_int_009",
+                "question": "How do you handle imbalanced datasets?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_int_010",
+                "question": "What is the difference between bagging and boosting?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_int_011",
+                "question": "Explain the concept of feature engineering.",
+                "type": "technical"
+            },
+            {
+                "id": "ml_int_012",
+                "question": "What are the different types of cross-validation techniques?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_int_013",
+                "question": "How do you detect and handle outliers in data?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_int_014",
+                "question": "What is the difference between parametric and non-parametric algorithms?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_int_015",
+                "question": "Explain the concept of dimensionality reduction.",
+                "type": "technical"
+            },
+            {
+                "id": "ml_int_016",
+                "question": "What are the different evaluation metrics for regression models?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_int_017",
+                "question": "How do you handle categorical variables in machine learning?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_int_018",
+                "question": "What is the difference between correlation and causation?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_int_019",
+                "question": "Explain the concept of model interpretability.",
+                "type": "technical"
+            },
+            {
+                "id": "ml_int_020",
+                "question": "What are the different techniques for feature selection?",
+                "type": "technical"
             }
         ],
         "advanced": [
@@ -576,6 +2076,81 @@ QUESTION_BANK = {
             {
                 "id": "ml_adv_005",
                 "question": "How do you deploy machine learning models in production?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_adv_006",
+                "question": "What are recurrent neural networks (RNNs) and LSTMs?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_adv_007",
+                "question": "Explain the concept of attention mechanisms in deep learning.",
+                "type": "technical"
+            },
+            {
+                "id": "ml_adv_008",
+                "question": "What are generative adversarial networks (GANs)?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_adv_009",
+                "question": "How do you handle imbalanced datasets in deep learning?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_adv_010",
+                "question": "What are the different optimization algorithms in deep learning?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_adv_011",
+                "question": "Explain the concept of batch normalization.",
+                "type": "technical"
+            },
+            {
+                "id": "ml_adv_012",
+                "question": "What are the different types of loss functions?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_adv_013",
+                "question": "How do you prevent overfitting in deep learning models?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_adv_014",
+                "question": "What are the considerations for model compression and quantization?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_adv_015",
+                "question": "Explain the concept of federated learning.",
+                "type": "technical"
+            },
+            {
+                "id": "ml_adv_016",
+                "question": "What are the challenges in deploying ML models at scale?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_adv_017",
+                "question": "How do you implement model monitoring and drift detection?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_adv_018",
+                "question": "What are the ethical considerations in machine learning?",
+                "type": "technical"
+            },
+            {
+                "id": "ml_adv_019",
+                "question": "Explain the concept of meta-learning.",
+                "type": "technical"
+            },
+            {
+                "id": "ml_adv_020",
+                "question": "What are the latest trends in machine learning research?",
                 "type": "technical"
             }
         ]
@@ -606,6 +2181,81 @@ QUESTION_BANK = {
                 "id": "dsa_beg_005",
                 "question": "What is a binary search and when would you use it?",
                 "type": "technical"
+            },
+            {
+                "id": "dsa_beg_006",
+                "question": "What is the difference between linear and binary search?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_beg_007",
+                "question": "Explain the concept of recursion with an example.",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_beg_008",
+                "question": "What is a hash table and how does it work?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_beg_009",
+                "question": "What are the different types of sorting algorithms?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_beg_010",
+                "question": "Explain the bubble sort algorithm.",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_beg_011",
+                "question": "What is a binary tree and its types?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_beg_012",
+                "question": "What is the difference between DFS and BFS?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_beg_013",
+                "question": "Explain the concept of dynamic programming.",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_beg_014",
+                "question": "What are greedy algorithms?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_beg_015",
+                "question": "What is the difference between time and space complexity?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_beg_016",
+                "question": "What are the basic operations on arrays?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_beg_017",
+                "question": "Explain the concept of a graph data structure.",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_beg_018",
+                "question": "What is a heap data structure?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_beg_019",
+                "question": "What are the different types of linked lists?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_beg_020",
+                "question": "Explain the merge sort algorithm.",
+                "type": "technical"
             }
         ],
         "intermediate": [
@@ -633,6 +2283,81 @@ QUESTION_BANK = {
                 "id": "dsa_int_005",
                 "question": "What are balanced binary search trees and why are they important?",
                 "type": "technical"
+            },
+            {
+                "id": "dsa_int_006",
+                "question": "Explain the different types of graph representations.",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_int_007",
+                "question": "What are the different approaches to solve the knapsack problem?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_int_008",
+                "question": "Explain the concept of trie data structure.",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_int_009",
+                "question": "What are the different types of sorting algorithms and their complexities?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_int_010",
+                "question": "Explain the union-find data structure and its applications.",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_int_011",
+                "question": "What are the different approaches to find the shortest path in a graph?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_int_012",
+                "question": "Explain the concept of segment trees.",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_int_013",
+                "question": "What are the different techniques for string pattern matching?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_int_014",
+                "question": "Explain the concept of topological sorting.",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_int_015",
+                "question": "What are the different approaches to solve the traveling salesman problem?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_int_016",
+                "question": "Explain the concept of fenwick trees (binary indexed trees).",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_int_017",
+                "question": "What are the different types of tree traversals?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_int_018",
+                "question": "Explain the concept of minimum spanning trees.",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_int_019",
+                "question": "What are the different approaches to solve the longest common subsequence problem?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_int_020",
+                "question": "Explain the concept of suffix arrays and suffix trees.",
+                "type": "technical"
             }
         ],
         "advanced": [
@@ -659,6 +2384,81 @@ QUESTION_BANK = {
             {
                 "id": "dsa_adv_005",
                 "question": "How do you design algorithms for large-scale distributed systems?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_adv_006",
+                "question": "Explain the concept of amortized analysis in algorithm design.",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_adv_007",
+                "question": "What are the different approaches to solve the maximum flow problem?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_adv_008",
+                "question": "Explain the concept of persistent data structures.",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_adv_009",
+                "question": "What are the different techniques for string matching algorithms?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_adv_010",
+                "question": "Explain the concept of randomized algorithms and their applications.",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_adv_011",
+                "question": "What are the different approaches to solve the longest increasing subsequence problem?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_adv_012",
+                "question": "Explain the concept of approximation algorithms.",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_adv_013",
+                "question": "What are the different techniques for handling large datasets in memory-constrained environments?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_adv_014",
+                "question": "Explain the concept of cache-oblivious algorithms.",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_adv_015",
+                "question": "What are the different approaches to solve the minimum cut problem?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_adv_016",
+                "question": "Explain the concept of streaming algorithms.",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_adv_017",
+                "question": "What are the different techniques for parallel algorithm design?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_adv_018",
+                "question": "Explain the concept of online algorithms and competitive analysis.",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_adv_019",
+                "question": "What are the different approaches to solve the maximum matching problem?",
+                "type": "technical"
+            },
+            {
+                "id": "dsa_adv_020",
+                "question": "Explain the concept of algorithmic game theory.",
                 "type": "technical"
             }
         ]
@@ -689,6 +2489,81 @@ QUESTION_BANK = {
                 "id": "aws_beg_005",
                 "question": "What are AWS regions and availability zones?",
                 "type": "technical"
+            },
+            {
+                "id": "aws_beg_006",
+                "question": "What is Amazon VPC and why is it important?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_beg_007",
+                "question": "Explain AWS IAM and its main components.",
+                "type": "technical"
+            },
+            {
+                "id": "aws_beg_008",
+                "question": "What is Amazon CloudWatch and what does it monitor?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_beg_009",
+                "question": "What are AWS security groups and network ACLs?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_beg_010",
+                "question": "Explain Amazon Route 53 and DNS concepts.",
+                "type": "technical"
+            },
+            {
+                "id": "aws_beg_011",
+                "question": "What is Amazon CloudFront and how does it work?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_beg_012",
+                "question": "What are AWS Elastic Load Balancers (ELB)?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_beg_013",
+                "question": "Explain Amazon EBS and instance store differences.",
+                "type": "technical"
+            },
+            {
+                "id": "aws_beg_014",
+                "question": "What is AWS Auto Scaling and its benefits?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_beg_015",
+                "question": "What are AWS CloudFormation templates?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_beg_016",
+                "question": "Explain Amazon SNS and SQS messaging services.",
+                "type": "technical"
+            },
+            {
+                "id": "aws_beg_017",
+                "question": "What is AWS Lambda and serverless computing?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_beg_018",
+                "question": "What are AWS pricing models and cost optimization?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_beg_019",
+                "question": "Explain AWS support plans and their differences.",
+                "type": "technical"
+            },
+            {
+                "id": "aws_beg_020",
+                "question": "What are AWS compliance and security certifications?",
+                "type": "technical"
             }
         ],
         "intermediate": [
@@ -716,6 +2591,81 @@ QUESTION_BANK = {
                 "id": "aws_int_005",
                 "question": "What are CloudFormation templates and their benefits?",
                 "type": "technical"
+            },
+            {
+                "id": "aws_int_006",
+                "question": "How do you implement multi-region deployments in AWS?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_int_007",
+                "question": "What are AWS database services and their use cases?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_int_008",
+                "question": "How do you implement CI/CD pipelines in AWS?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_int_009",
+                "question": "What are AWS monitoring and logging best practices?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_int_010",
+                "question": "How do you implement backup and disaster recovery in AWS?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_int_011",
+                "question": "What are AWS networking services and configurations?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_int_012",
+                "question": "How do you optimize AWS performance and costs?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_int_013",
+                "question": "What are AWS container services (ECS, EKS, Fargate)?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_int_014",
+                "question": "How do you implement security best practices in AWS?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_int_015",
+                "question": "What are AWS analytics and big data services?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_int_016",
+                "question": "How do you implement API Gateway and microservices?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_int_017",
+                "question": "What are AWS machine learning and AI services?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_int_018",
+                "question": "How do you implement event-driven architectures in AWS?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_int_019",
+                "question": "What are AWS compliance and governance tools?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_int_020",
+                "question": "How do you implement hybrid cloud solutions with AWS?",
+                "type": "technical"
             }
         ],
         "advanced": [
@@ -742,6 +2692,81 @@ QUESTION_BANK = {
             {
                 "id": "aws_adv_005",
                 "question": "What are advanced AWS services like SageMaker and Rekognition?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_adv_006",
+                "question": "How do you implement zero-trust security in AWS environments?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_adv_007",
+                "question": "What are AWS Well-Architected Framework best practices?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_adv_008",
+                "question": "How do you implement advanced monitoring with AWS X-Ray?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_adv_009",
+                "question": "What are AWS serverless best practices and patterns?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_adv_010",
+                "question": "How do you implement data lake architectures on AWS?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_adv_011",
+                "question": "What are AWS migration strategies and tools?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_adv_012",
+                "question": "How do you implement chaos engineering on AWS?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_adv_013",
+                "question": "What are AWS governance and compliance frameworks?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_adv_014",
+                "question": "How do you implement advanced networking with AWS Transit Gateway?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_adv_015",
+                "question": "What are AWS container orchestration best practices?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_adv_016",
+                "question": "How do you implement real-time analytics on AWS?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_adv_017",
+                "question": "What are AWS edge computing solutions and use cases?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_adv_018",
+                "question": "How do you implement machine learning pipelines on AWS?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_adv_019",
+                "question": "What are AWS IoT architectures and implementations?",
+                "type": "technical"
+            },
+            {
+                "id": "aws_adv_020",
+                "question": "How do you implement enterprise-grade security on AWS?",
                 "type": "technical"
             }
         ]
@@ -772,6 +2797,81 @@ QUESTION_BANK = {
                 "id": "cyber_beg_005",
                 "question": "What are strong passwords and why are they important?",
                 "type": "technical"
+            },
+            {
+                "id": "cyber_beg_006",
+                "question": "What is phishing and how can you recognize it?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_beg_007",
+                "question": "What are the different types of cyber attacks?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_beg_008",
+                "question": "What is two-factor authentication (2FA)?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_beg_009",
+                "question": "What are the basic principles of secure coding?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_beg_010",
+                "question": "What is a firewall and how does it work?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_beg_011",
+                "question": "What are the differences between HTTP and HTTPS?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_beg_012",
+                "question": "What is social engineering in cybersecurity?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_beg_013",
+                "question": "What are the basic concepts of network security?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_beg_014",
+                "question": "What is data backup and why is it important?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_beg_015",
+                "question": "What are the common signs of a security breach?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_beg_016",
+                "question": "What is antivirus software and how does it work?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_beg_017",
+                "question": "What are the basic principles of access control?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_beg_018",
+                "question": "What is a security policy and why is it needed?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_beg_019",
+                "question": "What are the risks of using public Wi-Fi?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_beg_020",
+                "question": "What is incident response and why is it important?",
+                "type": "technical"
             }
         ],
         "intermediate": [
@@ -799,6 +2899,81 @@ QUESTION_BANK = {
                 "id": "cyber_int_005",
                 "question": "How do firewalls work and what are different types?",
                 "type": "technical"
+            },
+            {
+                "id": "cyber_int_006",
+                "question": "What is encryption and what are different encryption methods?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_int_007",
+                "question": "Explain public key infrastructure (PKI) and certificates.",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_int_008",
+                "question": "What are intrusion detection and prevention systems?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_int_009",
+                "question": "How do you implement secure coding practices?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_int_010",
+                "question": "What is vulnerability assessment and penetration testing?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_int_011",
+                "question": "Explain network segmentation and its benefits.",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_int_012",
+                "question": "What are the principles of least privilege and need-to-know?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_int_013",
+                "question": "How do you handle data classification and protection?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_int_014",
+                "question": "What are security information and event management (SIEM) systems?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_int_015",
+                "question": "Explain digital forensics and incident response.",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_int_016",
+                "question": "What are the different types of malware and their behaviors?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_int_017",
+                "question": "How do you implement secure API design?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_int_018",
+                "question": "What are the principles of secure software development lifecycle?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_int_019",
+                "question": "Explain wireless network security concepts.",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_int_020",
+                "question": "What are compliance frameworks like GDPR and HIPAA?",
+                "type": "technical"
             }
         ],
         "advanced": [
@@ -825,6 +3000,81 @@ QUESTION_BANK = {
             {
                 "id": "cyber_adv_005",
                 "question": "How do you conduct a security audit and vulnerability assessment?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_adv_006",
+                "question": "What are advanced threat hunting techniques and methodologies?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_adv_007",
+                "question": "Explain blockchain security and smart contract vulnerabilities.",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_adv_008",
+                "question": "What are the principles of secure architecture design?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_adv_009",
+                "question": "How do you implement quantum-resistant cryptography?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_adv_010",
+                "question": "What are advanced malware analysis techniques?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_adv_011",
+                "question": "Explain secure multi-party computation and homomorphic encryption.",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_adv_012",
+                "question": "What are the challenges of securing IoT devices and networks?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_adv_013",
+                "question": "How do you implement behavioral analytics for threat detection?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_adv_014",
+                "question": "What are the principles of secure cloud architecture?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_adv_015",
+                "question": "Explain digital identity management and federated authentication.",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_adv_016",
+                "question": "What are the challenges of securing microservices architectures?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_adv_017",
+                "question": "How do you implement secure DevSecOps practices?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_adv_018",
+                "question": "What are the principles of secure AI and machine learning systems?",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_adv_019",
+                "question": "Explain supply chain security and third-party risk management.",
+                "type": "technical"
+            },
+            {
+                "id": "cyber_adv_020",
+                "question": "What are the challenges of securing quantum computing systems?",
                 "type": "technical"
             }
         ]
