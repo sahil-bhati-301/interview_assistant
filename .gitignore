@@ -7,7 +7,10 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
+# Dependencies
+node_modules/
+
+# Build outputs
 dist
 dist-ssr
 *.local
@@ -33,6 +36,7 @@ firebase-credentials.json
 .env.local
 .env.development
 .env.production
+.env.example
 backend/.env
 backend/.env.local
 
@@ -40,3 +44,24 @@ backend/.env.local
 *API_KEY*
 *PRIVATE_KEY*
 *SECRET*
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Firebase cache
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
+
+# IDE specific files
+*.iml
+.vscode/
