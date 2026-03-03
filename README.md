@@ -13,17 +13,114 @@ A React-based AI-powered technical interview assistant that helps users practice
 ## Project Structure
 
 ```
-AI-Interview-Assistant/
-├── backend/                 # Python Flask backend
-│   ├── services/           # Business logic services
-│   ├── utils/              # Utility functions
-│   └── app.py              # Main Flask application
-├── src/                    # React frontend
-│   ├── components/         # Reusable UI components
-│   ├── pages/             # Page components
-│   ├── context/           # React context for state management
-│   └── services/          # API service functions
-└── public/                 # Static assets
+interview_assistant/
+├── src/                         # React frontend application
+│   ├── components/              # Reusable UI components
+│   │   ├── auth/               # Authentication components
+│   │   │   ├── ProtectedRoute.tsx
+│   │   │   ├── SignInForm.tsx
+│   │   │   └── SignUpForm.tsx
+│   │   ├── common/             # Shared components
+│   │   │   ├── ChartTab.tsx
+│   │   │   ├── ComponentCard.tsx
+│   │   │   ├── GridShape.tsx
+│   │   │   ├── PageBreadCrumb.tsx
+│   │   │   ├── PageMeta.tsx
+│   │   │   ├── ScrollToTop.tsx
+│   │   │   ├── ThemeToggleButton.tsx
+│   │   │   └── ThemeTogglerTwo.tsx
+│   │   ├── form/               # Form components
+│   │   │   ├── input/          # Input components
+│   │   │   │   ├── Checkbox.tsx
+│   │   │   │   ├── FileInput.tsx
+│   │   │   │   ├── InputField.tsx
+│   │   │   │   ├── Radio.tsx
+│   │   │   │   ├── RadioSm.tsx
+│   │   │   │   └── TextArea.tsx
+│   │   │   ├── date-picker.tsx
+│   │   │   ├── Form.tsx
+│   │   │   ├── Label.tsx
+│   │   │   ├── MultiSelect.tsx
+│   │   │   └── Select.tsx
+│   │   ├── header/              # Header components
+│   │   │   ├── Header.tsx
+│   │   │   ├── NotificationDropdown.tsx
+│   │   │   └── UserDropdown.tsx
+│   │   ├── interview/          # Interview-specific components
+│   │   │   ├── AnswerInput.tsx
+│   │   │   └── VoiceRecorder.tsx
+│   │   └── ui/                  # Base UI components
+│   │       ├── button/
+│   │       │   └── Button.tsx
+│   │       ├── dropdown/
+│   │       │   ├── Dropdown.tsx
+│   │       │   └── DropdownItem.tsx
+│   │       └── modal/
+│   │           └── index.tsx
+│   ├── context/                # React context (state management)
+│   │   ├── AuthContext.tsx
+│   │   ├── InterviewContext.tsx
+│   │   ├── SidebarContext.tsx
+│   │   └── ThemeContext.tsx
+│   ├── hooks/                  # Custom React hooks
+│   │   ├── useGoBack.ts
+│   │   └── useModal.ts
+│   ├── icons/                  # SVG icon library
+│   ├── layout/                 # Layout components
+│   │   ├── AppHeader.tsx
+│   │   ├── AppLayout.tsx
+│   │   ├── AppSidebar.tsx
+│   │   └── Backdrop.tsx
+│   ├── pages/                  # Page components
+│   │   ├── About.tsx
+│   │   ├── Analytics.tsx
+│   │   ├── AuthPages/
+│   │   │   ├── AuthPageLayout.tsx
+│   │   │   ├── Login.tsx
+│   │   │   ├── Register.tsx
+│   │   │   ├── SignIn.tsx
+│   │   │   └── SignUp.tsx
+│   │   ├── Interview/
+│   │   │   ├── Dashboard.tsx
+│   │   │   ├── History.tsx
+│   │   │   ├── Results.tsx
+│   │   │   └── Session.tsx
+│   │   └── OtherPage/
+│   │       └── NotFound.tsx
+│   ├── services/               # API service functions
+│   │   └── api.ts
+│   ├── App.tsx                 # Main App component
+│   ├── firebase.ts             # Firebase configuration
+│   ├── index.css               # Global styles
+│   └── main.tsx                # Application entry point
+│
+├── backend/                    # Python Flask backend
+│   ├── services/              # Business logic services
+│   │   ├── ai_service.py      # Gemini AI integration
+│   │   └── interview_service.py
+│   ├── utils/                 # Utility functions
+│   │   └── firebase_utils.py  # Firebase utilities
+│   ├── app.py                 # Main Flask application
+│   ├── question_bank.py       # Question data
+│   ├── requirements.txt       # Python dependencies
+│   ├── setup_env.py           # Environment setup script
+│   ├── firebase-credentials.json
+│   ├── .env                   # Environment variables
+│   └── .env.example           # Environment template
+│
+├── public/                     # Static assets
+│   ├── images/
+│   │   ├── favicon.ico
+│   │   └── logo.png
+│   └── favicon.png
+│
+├── .env                        # Root environment variables
+├── .env.example                # Environment template
+├── .gitignore                  # Git ignore rules
+├── package.json                # Node.js dependencies
+├── tsconfig.json              # TypeScript configuration
+├── vite.config.ts             # Vite configuration
+└── firebase.json              # Firebase configuration
 ```
 
 ## Setup Instructions
@@ -38,13 +135,14 @@ AI-Interview-Assistant/
 
 1. **Navigate to backend directory:**
    ```bash
-   cd AI-Interview-Assistant/backend
+   cd backend
    ```
 
 2. **Create virtual environment:**
    ```bash
    python -m venv venv
    venv\Scripts\activate  # On Windows
+   source venv/bin/activate  # On Linux/Mac
    ```
 
 3. **Install dependencies:**
@@ -67,7 +165,7 @@ AI-Interview-Assistant/
 
 1. **Navigate to project root:**
    ```bash
-   cd AI-Interview-Assistant
+   cd interview_assistant
    ```
 
 2. **Install dependencies:**
@@ -77,7 +175,7 @@ AI-Interview-Assistant/
 
 3. **Set up Firebase configuration:**
    - Create a `.env` file in the root directory
-   - Add your Firebase configuration
+   - Add your Firebase configuration (see below)
 
 4. **Run the development server:**
    ```bash
@@ -95,7 +193,7 @@ AI-Interview-Assistant/
 
 ### Backend (.env)
 ```
-FIREBASE_CREDENTIALS_PATH=path/to/firebase-credentials.json
+FIREBASE_CREDENTIALS_PATH=backend/firebase-credentials.json
 GEMINI_API_KEY=your_gemini_api_key_here
 FLASK_ENV=development
 ```
@@ -136,6 +234,13 @@ VITE_FIREBASE_APP_ID=your_app_id
    ```bash
    firebase deploy --only hosting
    ```
+
+## Security Notes
+
+- Never commit `.env` files or Firebase credentials to version control
+- The `.gitignore` file is configured to exclude sensitive files
+- Always use environment variables for API keys and secrets
+- Review `.gitignore` before committing
 
 ## Contributing
 
