@@ -1,6 +1,13 @@
 # AI Interview Assistant
 
-A React-based AI-powered technical interview assistant that helps users practice technical interviews with real-time feedback and analysis.
+The main aim of this project is to develop a full-stack, AI-driven interview preparation tool that simulates real-world technical interviews, evaluates responses using artificial intelligence and helps users enhance their skills through structured insights and progress tracking
+
+## Live Demo
+
+Access the deployed application here:
+🔗 https://interview-88de2.web.app/interview
+
+Experience the full workflow including interview simulation, AI-based evaluation, and performance analytics in real-time.
 
 ## Features
 
@@ -9,6 +16,51 @@ A React-based AI-powered technical interview assistant that helps users practice
 - **Real-time Analysis**: Get instant feedback on your answers
 - **Progress Tracking**: Monitor your interview performance over time
 - **Responsive Design**: Works on desktop and mobile devices
+
+## Scope
+
+• Simulating technical interviews across different domains and difficulty levels.
+• Enabling users to choose the number of questions based on their practice needs.
+• Using Gemini AI to evaluate answers and generate detailed, automated feedback reports.
+• Storing and managing user information, responses and reports using Firebase.
+• Displaying user progress and performance trends over time.
+• Providing a modern, responsive interface built with React and Tailwind CSS for seamless user experience.
+
+## System Architecture
+
+![Architecture Diagram](./readmefiles/architecture-diagram.png)
+
+The system architecture follows a modular, service-oriented design. The frontend, built with React and Tailwind CSS, handles user interaction and integrates with the Web Speech API for voice-based input. The backend consists of Python-based services and Firebase Functions that manage application logic and processing. Firebase Authentication is used for secure user management, while Firestore serves as the primary database for storing user data, responses, and reports. External services such as the Gemini API are integrated for AI-driven evaluation and feedback generation. The application is deployed using Firebase Hosting, ensuring scalability and seamless delivery.
+
+### Components
+
+![Component Diagram](./readmefiles/component-diagram.png)
+
+### Sequence Diagram
+
+![Sequence Diagram](./readmefiles/sequence-diagram.png)
+
+## User Interface
+
+### Dashboard
+![Dashboard](./readmefiles/dashboard.png)
+Select your domain, difficulty level, and number of questions to customize your interview experience.
+
+### Analytics
+![Analytics](./readmefiles/analytics.png)
+Visualize your progress over time with detailed score trends and domain-based performance insights.
+
+### AI-Powered Feedback Report
+![Report](./readmefiles/report.png)
+Receive structured feedback highlighting strengths, weaknesses, and targeted areas for improvement after each session.
+
+### Interview Session
+![Interview Session](./readmefiles/interview-session.png)
+Get a quick snapshot of your interview activity, including total sessions, average score, domains practiced, and best performance.
+
+### Interview History
+![History](./readmefiles/history.png)
+Track past interviews, review scores, and revisit detailed results to monitor your improvement.
 
 ## Project Structure
 
