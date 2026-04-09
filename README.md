@@ -19,12 +19,12 @@ Experience the full workflow including interview simulation, AI-based evaluation
 
 ## Scope
 
-• Simulating technical interviews across different domains and difficulty levels.
-• Enabling users to choose the number of questions based on their practice needs.
-• Using Gemini AI to evaluate answers and generate detailed, automated feedback reports.
-• Storing and managing user information, responses and reports using Firebase.
-• Displaying user progress and performance trends over time.
-• Providing a modern, responsive interface built with React and Tailwind CSS for seamless user experience.
+- **Interview Simulation**: Simulating technical interviews across different domains and difficulty levels.
+- **Customizable Sessions**: Enabling users to choose the number of questions based on their practice needs.
+- **AI Evaluation**: Using Gemini AI to evaluate answers and generate detailed, automated feedback reports.
+- **Data Management**: Storing and managing user information, responses and reports using Firebase.
+- **Progress Analytics**: Displaying user progress and performance trends over time.
+- **Modern UI**: Providing a modern, responsive interface built with React and Tailwind CSS for seamless user experience.
 
 ## System Architecture
 
